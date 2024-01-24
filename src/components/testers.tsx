@@ -1,4 +1,4 @@
-import { LinkedinIcon } from "lucide-react"
+import Image from "next/image"
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
@@ -10,7 +10,7 @@ type MainContributors = {
 
 export function Testers(props: MainContributors) {
     return (
-        <div className="flex h-[100px] w-[400px] max-w-full items-center justify-around rounded-xl border bg-background px-3">
+        <div className="flex h-[100px] w-[400px] max-w-full items-center justify-around rounded-xl border bg-secondary px-3">
             <Avatar className="h-20 w-20 rounded-full bg-secondary">
                 <AvatarImage
                     src={
@@ -25,7 +25,12 @@ export function Testers(props: MainContributors) {
                 <span className="flex items-center space-x-3 text-xl">
                     {props.name}
                     <p className="ml-5 flex space-x-1 text-sm text-muted-foreground">
-                        <LinkedinIcon height={20} color="#fff" />
+                        <Image
+                            height={20}
+                            width={20}
+                            src={"/linkedin.png"}
+                            alt="in"
+                        />
                     </p>
                 </span>
 

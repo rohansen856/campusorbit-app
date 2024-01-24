@@ -169,7 +169,7 @@ export const columns: ColumnDef<RoutineSchema>[] = [
 
 export function DataTableDemo({ routine = [] }: { routine: RoutineSchema[] }) {
     data = routine
-    console.log(routine)
+
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] =
         React.useState<ColumnFiltersState>([])

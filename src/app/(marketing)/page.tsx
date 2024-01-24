@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default async function DashboardPage() {
     const users = await db.select().from(profiles)
-    console.log(users)
+
     return (
         <>
             <div className="md:hidden">

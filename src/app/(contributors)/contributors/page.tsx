@@ -9,6 +9,33 @@ export const metadata: Metadata = {
 }
 
 export default function ContributorsPage() {
+    const testers = [
+        {
+            name: "Rohan Chandra Sen",
+            email: "rohansen856@gmail.com",
+            image: "https://utfs.io/f/064e5de1-7b54-4a1a-a86b-26df4b79c204-epgwbf.png",
+        },
+        {
+            name: "Tharun Tej Peddinti",
+            email: "tharuntejpeddinti3@gmail.com",
+            image: "https://utfs.io/f/636c80b4-72e2-46e7-ae2d-4f0672c7562e-un2s1u.57.33_8a777cd9.jpg",
+        },
+        {
+            name: "Sayan Chakraborty",
+            email: "sayan.chakraborty0811@gmail.com",
+            image: "https://utfs.io/f/b5788c33-e5e3-4702-92ab-7e935ae3b1a4-ppmzr2.07.04_298d5f25.jpg",
+        },
+        {
+            name: "Ritankar Saha",
+            email: "ritankar.saha786@gmail.com",
+            image: "https://utfs.io/f/984554b3-46af-4761-a35c-44ed0c572cb7-4c0pks.jpg",
+        },
+        {
+            name: "Nitin Pandey",
+            email: "nitin2005p@gmail.com",
+            image: "https://utfs.io/f/7e1650d4-6313-41fb-a76a-0da01e6e572f-ppmzr0.07.50_8d299cbb.jpg",
+        },
+    ]
     return (
         <>
             <div className="flex h-[80vh] flex-col items-center justify-center space-y-5 p-5">
@@ -17,34 +44,23 @@ export default function ContributorsPage() {
                 </span>
                 <div className="flex w-full flex-col items-center justify-center gap-5 lg:flex-row">
                     <MainContributors
-                        name="Rohan"
+                        name="Rohan Chandra Sen"
                         speciality="ui/ux, backend"
                         email="rohansen856@gmail.com"
+                        about="A fulls tack react and flutter developer with extensive knowledge in ui/ux developement"
                     />
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center space-y-5 p-5">
                 <span className="mb-6 font-heading text-5xl">Beta Testers</span>
-                <div className="grid grid-cols-3 space-x-3 space-y-2">
-                    <Testers
-                        name="Tharun Tej Peddinti"
-                        email="tharuntejpeddinti3@gmail.com"
-                        image="https://utfs.io/f/636c80b4-72e2-46e7-ae2d-4f0672c7562e-un2s1u.57.33_8a777cd9.jpg"
-                    />
-                    <Testers
-                        name="Sayan Chakraborty"
-                        email="sayan.chakraborty0811@gmail.com"
-                        image="https://utfs.io/f/b5788c33-e5e3-4702-92ab-7e935ae3b1a4-ppmzr2.07.04_298d5f25.jpg"
-                    />
-                    <Testers
-                        name="Ritankar Saha"
-                        email="ritankar.saha786@gmail.com"
-                        image="https://utfs.io/f/984554b3-46af-4761-a35c-44ed0c572cb7-4c0pks.jpg"
-                    />
-                    <Testers name="Rohan" email="rohansen856@gmail.com" />
-                    <Testers name="Rohan" email="rohansen856@gmail.com" />
-                    <Testers name="Rohan" email="rohansen856@gmail.com" />
-                    <Testers name="Rohan" email="rohansen856@gmail.com" />
+                <div className="grid grid-cols-1 space-x-3 space-y-2 lg:grid-cols-2 xl:grid-cols-3">
+                    {testers.map((tester) => (
+                        <Testers
+                            name={tester.name}
+                            email={tester.email}
+                            image={tester.image}
+                        />
+                    ))}
                 </div>
             </div>
         </>
