@@ -36,7 +36,11 @@ export default function ContributorsPage() {
                         email="sayan.chakraborty0811@gmail.com"
                         image="https://utfs.io/f/b5788c33-e5e3-4702-92ab-7e935ae3b1a4-ppmzr2.07.04_298d5f25.jpg"
                     />
-                    <Testers name="Rohan" email="rohansen856@gmail.com" />
+                    <Testers
+                        name="Ritankar Saha"
+                        email="ritankar.saha786@gmail.com"
+                        image="https://utfs.io/f/984554b3-46af-4761-a35c-44ed0c572cb7-4c0pks.jpg"
+                    />
                     <Testers name="Rohan" email="rohansen856@gmail.com" />
                     <Testers name="Rohan" email="rohansen856@gmail.com" />
                     <Testers name="Rohan" email="rohansen856@gmail.com" />
