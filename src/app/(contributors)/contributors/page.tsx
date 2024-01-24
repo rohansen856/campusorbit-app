@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 
-import { MainContributors } from "@/components/main-contributors"
+import { ContactDeveloper } from "@/components/contact"
+import { CreatorsComponent } from "@/components/creators-card"
 import { Testers } from "@/components/testers"
 
 export const metadata: Metadata = {
@@ -38,12 +39,10 @@ export default function ContributorsPage() {
     ]
     return (
         <>
-            <div className="flex h-[80vh] flex-col items-center justify-center space-y-5 p-5">
-                <span className="mb-14 font-heading text-5xl">
-                    Main contributors
-                </span>
+            <div className="mb-12 flex h-[80vh] flex-col items-center justify-center space-y-5 p-5">
+                <span className="mb-6 font-heading text-5xl">Creator</span>
                 <div className="flex w-full flex-col items-center justify-center gap-5 lg:flex-row">
-                    <MainContributors
+                    <CreatorsComponent
                         name="Rohan Chandra Sen"
                         speciality="ui/ux, backend"
                         email="rohansen856@gmail.com"
@@ -51,9 +50,9 @@ export default function ContributorsPage() {
                     />
                 </div>
             </div>
-            <div className="flex flex-col items-center justify-center space-y-5 p-5">
-                <span className="mb-6 font-heading text-5xl">Beta Testers</span>
-                <div className="grid grid-cols-1 space-x-3 space-y-2 lg:grid-cols-2 xl:grid-cols-3">
+            <div className="mb-12 flex flex-col items-center justify-center space-y-5 p-5">
+                <span className="mb-4 font-heading text-5xl">Beta Testers</span>
+                <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
                     {testers.map((tester) => (
                         <Testers
                             name={tester.name}
@@ -62,6 +61,10 @@ export default function ContributorsPage() {
                         />
                     ))}
                 </div>
+            </div>
+            <div className="flex flex-col items-center justify-center space-y-5 p-5">
+                <span className="mb-4 font-heading text-5xl">Contact Us</span>
+                <ContactDeveloper />
             </div>
         </>
     )

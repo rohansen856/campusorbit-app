@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 type MainContributors = {
     name: string
@@ -10,7 +10,7 @@ type MainContributors = {
 
 export function Testers(props: MainContributors) {
     return (
-        <div className="flex h-[100px] w-[400px] max-w-full items-center justify-around rounded-xl border bg-secondary px-3">
+        <div className="flex h-[100px] w-[400px] max-w-full items-center justify-around rounded-xl border bg-secondary px-3 duration-300 hover:scale-110 hover:border-[#2af598]">
             <Avatar className="h-20 w-20 rounded-full bg-secondary">
                 <AvatarImage
                     src={
@@ -22,7 +22,7 @@ export function Testers(props: MainContributors) {
                 <AvatarFallback>{props.name}</AvatarFallback>
             </Avatar>
             <div className="flex h-[170px] w-[350px] flex-col justify-center overflow-y-hidden p-2">
-                <span className="flex items-center space-x-3 text-xl">
+                <span className="flex items-center justify-between space-x-3 text-xl">
                     {props.name}
                     <p className="ml-5 flex space-x-1 text-sm text-muted-foreground">
                         <Image
