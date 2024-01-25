@@ -4,11 +4,13 @@ import {
     boolean,
     pgEnum,
     pgTable,
+    serial,
     smallint,
     text,
     timestamp,
     unique,
     uuid,
+    varchar,
 } from "drizzle-orm/pg-core"
 
 export const keyStatus = pgEnum("key_status", [
@@ -45,7 +47,7 @@ export const profiles = pgTable(
         createdAt: timestamp("created_at", {
             withTimezone: true,
             mode: "string",
-        }),
+        }).defaultNow(),
         email: text("email"),
         username: text("username"),
         fullName: text("full_name"),
@@ -97,4 +99,11 @@ export const routineModificatins = pgTable("routine_modificatins", {
         .notNull(),
     classId: text("class_id").notNull(),
     status: text("status"),
+})
+
+export const testers = pgTable("testers", {
+    id: serial("id").primaryKey().notNull(),
+    name: varchar("name", { length: 255 }).notNull(),
+    email: varchar("email", { length: 255 }).notNull(),
+    image: varchar("image", { length: 255 }).notNull(),
 })

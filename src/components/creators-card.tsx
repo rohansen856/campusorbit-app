@@ -18,7 +18,7 @@ export function CreatorsComponent(props: MainContributors) {
                     src="https://utfs.io/f/064e5de1-7b54-4a1a-a86b-26df4b79c204-epgwbf.png"
                     alt={props.name}
                 />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>RCSen</AvatarFallback>
             </Avatar>
             <div className="flex h-[170px] w-[350px] flex-col items-center justify-center overflow-y-hidden p-2">
                 <span className="flex items-center space-x-3 text-xl">
