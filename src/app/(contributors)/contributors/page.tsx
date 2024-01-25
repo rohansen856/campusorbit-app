@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ContributorsPage() {
-    const allTesters = [{ name: "", email: "", image: "" }] //await db.select().from(testers)
+    const allTesters = await db.select().from(testers)
 
     return (
         <>
