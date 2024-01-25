@@ -3,6 +3,8 @@ import localFont from "next/font/local"
 
 import "@/styles/globals.css"
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import { siteConfig } from "@/config/site"
 import { absoluteUrl, cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
@@ -94,6 +96,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 >
                     {children}
                     <Analytics />
+                    <SpeedInsights />
                     <Toaster />
                     <TailwindIndicator />
                 </ThemeProvider>
