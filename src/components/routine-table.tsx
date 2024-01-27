@@ -19,6 +19,7 @@ import {
     useReactTable,
     VisibilityState,
 } from "@tanstack/react-table"
+import axios from "axios"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -42,6 +43,7 @@ import {
 } from "@/components/ui/table"
 
 import { BranchFilter, DayFilter, YearFilter } from "./rotine-filters"
+import { toast } from "./ui/use-toast"
 
 let data: RoutineSchema[] = []
 
@@ -133,7 +135,33 @@ export const columns: ColumnDef<RoutineSchema>[] = [
         id: "actions",
         enableHiding: false,
         cell: ({ row }) => {
-            const payment = row.original
+            const lecture = row.original
+
+            async function markCancelled() {
+                try {
+                    const response = await axios.post(
+                        `/api/routine/${lecture.id}`
+                    )
+                    if (response.status === 200)
+                        return toast({
+                            title: "Routine updated successfully.",
+                            description: "the class has been marked cancelled.",
+                            variant: "default",
+                        })
+                    return toast({
+                        title: "Operation failed.",
+                        description: "Failed to update. please try again",
+                        variant: "destructive",
+                    })
+                } catch (err) {
+                    return toast({
+                        title: "Something went wrong.",
+                        description:
+                            "Something unexpected happened. Please try again later.",
+                        variant: "destructive",
+                    })
+                }
+            }
 
             return (
                 <DropdownMenu>
@@ -147,13 +175,13 @@ export const columns: ColumnDef<RoutineSchema>[] = [
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem
                             onClick={() =>
-                                navigator.clipboard.writeText(payment.id)
+                                navigator.clipboard.writeText(lecture.id)
                             }
                         >
                             Copy class ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => markCancelled()}>
                             <span className="text-red-700">
                                 {" "}
                                 Mark Cancelled
@@ -198,29 +226,26 @@ export function DataTableDemo({ routine = [] }: { routine: RoutineSchema[] }) {
 
     return (
         <div className="w-full">
-            <div className="flex items-center py-4">
+            <div className="flex flex-col items-center gap-y-2 py-4 md:flex-row">
                 <Input
                     placeholder="Filter classes..."
                     value={
-                        (table
-                            .getColumn("email")
-                            ?.getFilterValue() as string) ?? ""
+                        (table.getColumn("code")?.getFilterValue() as string) ??
+                        ""
                     }
                     onChange={(event) =>
                         table
-                            .getColumn("email")
+                            .getColumn("code")
                             ?.setFilterValue(event.target.value)
                     }
                     className="max-w-sm"
                 />
-                <div className="mx-5 flex space-x-2">
-                    <YearFilter />
-                    <BranchFilter />
-                    <DayFilter />
-                </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
+                        <Button
+                            variant="outline"
+                            className="w-full md:ml-auto md:w-auto"
+                        >
                             Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
                         </Button>
                     </DropdownMenuTrigger>
@@ -244,6 +269,11 @@ export function DataTableDemo({ routine = [] }: { routine: RoutineSchema[] }) {
                             })}
                     </DropdownMenuContent>
                 </DropdownMenu>
+                <div className="mx-5 flex space-x-2">
+                    <YearFilter />
+                    <BranchFilter />
+                    <DayFilter />
+                </div>
             </div>
             <div className="rounded-md border">
                 <Table>

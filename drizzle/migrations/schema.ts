@@ -91,15 +91,27 @@ export const mess = pgTable("mess", {
     dinner: text("dinner").default(""),
 })
 
-export const routineModificatins = pgTable("routine_modificatins", {
-    // You can use { mode: "bigint" } if numbers are exceeding js number limitations
-    id: bigint("id", { mode: "number" }).primaryKey().notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
-        .defaultNow()
-        .notNull(),
-    classId: text("class_id").notNull(),
-    status: text("status"),
-})
+export const routineModifications = pgTable(
+    "routine_modifications",
+    {
+        createdAt: timestamp("created_at", {
+            withTimezone: true,
+            mode: "string",
+        })
+            .defaultNow()
+            .notNull(),
+        classId: text("class_id").notNull(),
+        status: text("status"),
+        id: uuid("id").defaultRandom().primaryKey().notNull(),
+    },
+    (table) => {
+        return {
+            routineModificationsIdKey: unique(
+                "routine_modifications_id_key"
+            ).on(table.id),
+        }
+    }
+)
 
 export const testers = pgTable("testers", {
     id: serial("id").primaryKey().notNull(),

@@ -1,4 +1,3 @@
-import { sql } from "drizzle-orm"
 import {
     bigint,
     boolean,
@@ -96,3 +95,25 @@ export const testers = pgTable("testers", {
     email: text("email").notNull(),
     image: text("image").notNull(),
 })
+
+export const routineModifications = pgTable(
+    "routine_modifications",
+    {
+        createdAt: timestamp("created_at", {
+            withTimezone: true,
+            mode: "string",
+        })
+            .defaultNow()
+            .notNull(),
+        classId: text("class_id").notNull(),
+        status: text("status"),
+        id: uuid("id").defaultRandom().primaryKey().notNull(),
+    },
+    (table) => {
+        return {
+            routineModificationsIdKey: unique(
+                "routine_modifications_id_key"
+            ).on(table.id),
+        }
+    }
+)

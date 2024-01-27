@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import Image from "next/image"
+import { UserSchema } from "@/types"
 
 import { db } from "@/lib/db"
 import { profiles } from "@/lib/schema"
@@ -22,8 +22,13 @@ export const metadata: Metadata = {
     description: "Example dashboard app built using the components.",
 }
 
+async function getUsers(): Promise<UserSchema[]> {
+    const data = await db.select().from(profiles)
+    return data
+}
+
 export default async function DashboardPage() {
-    const users = await db.select().from(profiles)
+    const users = await getUsers()
 
     return (
         <>
