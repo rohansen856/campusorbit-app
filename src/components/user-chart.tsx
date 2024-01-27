@@ -2,7 +2,7 @@
 
 import React from "react"
 import { type UserSchema } from "@/types"
-import { Label, Legend, Line, Pie, PieChart, Tooltip } from "recharts"
+import { Pie, PieChart, Tooltip } from "recharts"
 
 export function ChartComponent({ users }: { users: UserSchema[] }) {
     const yearData = [
@@ -69,7 +69,7 @@ export function ChartComponent({ users }: { users: UserSchema[] }) {
     ]
 
     return (
-        <div className="flex justify-between">
+        <div className="flex flex-wrap justify-between md:justify-center md:gap-3">
             <div className="flex flex-col items-center">
                 <PieChart width={400} height={400}>
                     <Pie

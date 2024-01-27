@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/card"
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { Overview } from "@/components/overview"
-import { UsersTable } from "@/components/recent-sales"
 import { Search } from "@/components/search"
 import { ChartComponent } from "@/components/user-chart"
+import { UsersTable } from "@/components/users-table"
 
 export const metadata: Metadata = {
     title: "Dashboard",
@@ -29,7 +29,7 @@ export default async function DashboardPage() {
         <>
             <div className="flex flex-col md:flex">
                 <div className="flex-1 space-y-4 p-8 pt-6">
-                    <div className="flex items-center justify-between space-y-2">
+                    <div className="flex flex-col items-center justify-between space-y-2 md:flex-row">
                         <h2 className="text-3xl font-bold tracking-tight">
                             Dashboard
                         </h2>
@@ -167,12 +167,20 @@ export default async function DashboardPage() {
                                     <Overview />
                                 </CardContent>
                             </Card>
-                            <Card className="col-span-3">
+                            <Card
+                                className="col-span-4 max-h-[70vh] overflow-x-hidden overflow-y-scroll lg:col-span-3"
+                                style={{
+                                    scrollbarWidth: "none",
+                                }}
+                            >
                                 <CardHeader>
-                                    <CardTitle className="flex items-center justify-between">
-                                        All Users <Search />
+                                    <CardTitle className="flex flex-col items-center justify-between md:flex-row">
+                                        <p className="mb-2 md:mb-0">
+                                            All Users
+                                        </p>{" "}
+                                        <Search />
                                     </CardTitle>
-                                    <CardDescription>
+                                    <CardDescription className="flex justify-center md:justify-start">
                                         Total {users.length} users found
                                     </CardDescription>
                                 </CardHeader>
@@ -191,7 +199,12 @@ export default async function DashboardPage() {
                                         Curated analysed data of all users
                                     </CardDescription>
                                 </CardHeader>
-                                <CardContent>
+                                <CardContent className="flex justify-center md:hidden">
+                                    <p>
+                                        ←{"  "} scroll {"  "}→
+                                    </p>
+                                </CardContent>
+                                <CardContent className="overflow-x-scroll md:overflow-x-hidden">
                                     <ChartComponent users={users} />
                                 </CardContent>
                             </Card>
