@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm"
 import {
     bigint,
     boolean,
+    jsonb,
     pgEnum,
     pgTable,
     serial,
@@ -89,6 +90,11 @@ export const mess = pgTable("mess", {
     breakfast: text("breakfast").default(""),
     lunch: text("lunch").default(""),
     dinner: text("dinner").default(""),
+    timings: jsonb("timings").default({
+        lunch: "12:30 - 2:30",
+        dinner: "7:30 - 9:30",
+        breakfast: "7:30 - 9:30",
+    }),
 })
 
 export const routineModifications = pgTable(

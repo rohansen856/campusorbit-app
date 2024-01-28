@@ -24,3 +24,10 @@ export type RoutineSchema = {
     branch: string | null
     room: string | null
 }
+
+export type ModificationsSchema = {
+    status: string | null
+    createdAt: string
+    classId: string
+    id: string
+}

@@ -16,10 +16,11 @@ export async function POST(
     try {
         // Validate the route context.
         const { params } = routeContextSchema.parse(context)
+        const body = (await req.json()) as { status: string }
 
         const data = await db.insert(routineModifications).values({
             classId: params.lectureId,
-            status: "cancelled",
+            status: body.status,
         })
 
         return new Response(JSON.stringify(""), { status: 200 })
