@@ -61,8 +61,6 @@ export const profiles = pgTable(
     roll: smallint("roll"),
     visibility: boolean("visibility").default(true),
     group: text("group"),
-    device: text("device"),
-    fcmToken: text("fcm_token"),
   },
   (table) => {
     return {
@@ -85,6 +83,26 @@ export const routine = pgTable("routine", {
   room: text("room"),
   group: text("group").default("B"),
 })
+
+export const analytics = pgTable(
+  "analytics",
+  {
+    id: uuid("id")
+      .primaryKey()
+      .notNull()
+      .references(() => profiles.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+      .defaultNow()
+      .notNull(),
+    device: text("device"),
+    fcmToken: text("fcm_token"),
+  },
+  (table) => {
+    return {
+      analyticsIdKey: unique("analytics_id_key").on(table.id),
+    }
+  }
+)
 
 export const mess = pgTable("mess", {
   // You can use { mode: "bigint" } if numbers are exceeding js number limitations
