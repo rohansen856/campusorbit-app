@@ -1,18 +1,39 @@
-import { SiteFooter } from "@/components/site-footer"
+import Link from "next/link"
+
+import { marketingConfig } from "@/config/marketing"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { Chatbot } from "@/components/chatbot"
+import { MainNav } from "@/components/shared/main-nav"
+import { SiteFooter } from "@/components/shared/site-footer"
 
 interface MarketingLayoutProps {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
 export default async function MarketingLayout({
-    children,
+  children,
 }: MarketingLayoutProps) {
-    return (
-        <div className="flex min-h-screen flex-col">
-            <main className="flex-1">
-                {children}
-            </main>
-            <SiteFooter className="bg-background" />
+  return (
+    <div className="flex min-h-screen flex-col">
+      <header className="container z-40 bg-background">
+        <div className="flex h-20 items-center justify-between py-6">
+          <MainNav items={marketingConfig.mainNav} />
+          <nav>
+            <Link
+              href="/download"
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "sm" }),
+                "px-4"
+              )}
+            >
+              download
+            </Link>
+          </nav>
         </div>
-    )
+      </header>
+      <main className="flex-1">{children}</main>
+      <SiteFooter />
+    </div>
+  )
 }
