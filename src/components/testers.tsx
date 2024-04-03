@@ -1,39 +1,52 @@
-import { LinkedinIcon } from "lucide-react"
+"use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useEffect, useState } from "react"
+import { MainContributors } from "@/types"
+import axios from "axios"
 
-type MainContributors = {
-  name: string
-  email: string
-  image?: string
-}
+import { TestersCard } from "@/components/testers-card"
 
-export function Testers(props: MainContributors) {
+import { AnimatedTooltip } from "./testers-tooltip"
+import { Skeleton } from "./ui/skeleton"
+
+export function Testers() {
+  const [allTesters, setTesters] = useState<MainContributors[]>([])
+
+  async function getTesters() {
+    try {
+      const response = await axios.get("/api/testers")
+      if (response.status === 200) setTesters(response.data)
+    } catch (error) {
+      setTesters([])
+    }
+  }
+
+  useEffect(() => {
+    getTesters()
+  }, [])
+
   return (
-    <div className="flex h-[100px] w-[400px] max-w-full items-center justify-around rounded-xl border bg-secondary px-3 duration-300 hover:scale-110 hover:border-[#2af598]">
-      <Avatar className="size-20 rounded-full bg-secondary">
-        <AvatarImage
-          src={
-            props.image ??
-            "https://utfs.io/f/064e5de1-7b54-4a1a-a86b-26df4b79c204-epgwbf.png"
-          }
-          alt={props.name}
-        />
-        <AvatarFallback>{props.name}</AvatarFallback>
-      </Avatar>
-      <div className="flex h-[170px] w-[350px] flex-col justify-center overflow-y-hidden p-2">
-        <span className="flex items-center justify-between space-x-3 text-xl">
-          {props.name}
-          <p className="ml-5 flex space-x-1 text-sm text-muted-foreground">
-            <LinkedinIcon
-              height={25}
-              width={25}
-              className="rounded-full bg-blue-800 p-1"
+    <div className="flex w-full flex-col items-center justify-center pb-16">
+      {allTesters.length <= 0 ? (
+        <Skeleton className="mb-6 h-16 w-[500px] max-w-[80vw] rounded-lg" />
+      ) : (
+        <div className="mb-10 flex w-full flex-row items-center justify-center">
+          <AnimatedTooltip items={allTesters} />
+        </div>
+      )}
+      <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
+        {allTesters.length <= 0 ? (
+          <Skeleton className="h-32 w-[500px] max-w-[80vw] rounded-lg" />
+        ) : (
+          allTesters.map((tester) => (
+            <TestersCard
+              id={tester.id}
+              name={tester.name}
+              email={tester.email}
+              image={tester.image}
             />
-          </p>
-        </span>
-
-        <span className="mb-4">{props.email}</span>
+          ))
+        )}
       </div>
     </div>
   )

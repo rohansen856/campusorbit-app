@@ -12,8 +12,6 @@ export const metadata: Metadata = {
 }
 
 export default async function ContributorsPage() {
-  const allTesters = await db.select().from(testers)
-
   return (
     <>
       <div className="mb-12 flex h-[80vh] flex-col items-center justify-center space-y-5 p-5">
@@ -29,15 +27,7 @@ export default async function ContributorsPage() {
       </div>
       <div className="mb-12 flex flex-col items-center justify-center space-y-5 p-5">
         <span className="mb-4 font-heading text-5xl">Beta Testers</span>
-        <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
-          {allTesters.map((tester) => (
-            <Testers
-              name={tester.name}
-              email={tester.email}
-              image={tester.image}
-            />
-          ))}
-        </div>
+        <Testers />
       </div>
       <div className="flex flex-col items-center justify-center space-y-5 p-5">
         <span className="mb-4 font-heading text-5xl">Contact Us</span>

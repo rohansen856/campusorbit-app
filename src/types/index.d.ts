@@ -65,3 +65,10 @@ export type UserSchema = {
   year: number | null
   visibility: boolean | null
 }
+
+export type MainContributors = {
+  id: number
+  name: string
+  email: string
+  image?: string
+}
