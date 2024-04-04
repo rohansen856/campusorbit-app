@@ -42,6 +42,22 @@ export const codeChallengeMethod = pgEnum("code_challenge_method", [
   "s256",
   "plain",
 ])
+export const equalityOp = pgEnum("equality_op", [
+  "eq",
+  "neq",
+  "lt",
+  "lte",
+  "gt",
+  "gte",
+  "in",
+])
+export const action = pgEnum("action", [
+  "INSERT",
+  "UPDATE",
+  "DELETE",
+  "TRUNCATE",
+  "ERROR",
+])
 
 export const profiles = pgTable(
   "profiles",
@@ -100,6 +116,27 @@ export const analytics = pgTable(
   (table) => {
     return {
       analyticsIdKey: unique("analytics_id_key").on(table.id),
+    }
+  }
+)
+
+export const notifications = pgTable(
+  "notifications",
+  {
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+      .defaultNow()
+      .notNull(),
+    title: text("title").notNull(),
+    description: text("description"),
+    link: text("link"),
+    branch: text("branch"),
+    group: text("group"),
+    from: text("from").notNull(),
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+  },
+  (table) => {
+    return {
+      notificationsIdKey: unique("notifications_id_key").on(table.id),
     }
   }
 )

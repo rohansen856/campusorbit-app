@@ -3,7 +3,6 @@ import {
   boolean,
   integer,
   jsonb,
-  pgEnum,
   pgTable,
   serial,
   smallint,
@@ -71,6 +70,27 @@ export const analytics = pgTable(
   (table) => {
     return {
       analyticsIdKey: unique("analytics_id_key").on(table.id),
+    }
+  }
+)
+
+export const notifications = pgTable(
+  "notifications",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+      .defaultNow()
+      .notNull(),
+    title: text("title").notNull(),
+    description: text("description"),
+    link: text("link"),
+    branch: text("branch"),
+    group: text("group"),
+    from: text("from").notNull(),
+  },
+  (table) => {
+    return {
+      notificationsIdKey: unique("notifications_id_key").on(table.id),
     }
   }
 )
