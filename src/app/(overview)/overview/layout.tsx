@@ -1,6 +1,8 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
 
 import { marketingConfig } from "@/config/marketing"
+import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Chatbot } from "@/components/chatbot"
@@ -14,6 +16,9 @@ interface MarketingLayoutProps {
 export default async function MarketingLayout({
   children,
 }: MarketingLayoutProps) {
+  const user = await getCurrentUser()
+  if (!user) return redirect("/login")
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container z-40 bg-background">

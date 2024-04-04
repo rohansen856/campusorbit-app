@@ -36,7 +36,7 @@ export function Testers() {
       )}
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
         {allTesters.length <= 0 ? (
-          <Skeleton className="h-32 w-[500px] max-w-[80vw] rounded-lg" />
+          <Skeleton className="col-span-3 h-32 w-[500px] max-w-[80vw] rounded-lg" />
         ) : (
           allTesters.map((tester) => (
             <TestersCard

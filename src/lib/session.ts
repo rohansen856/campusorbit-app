@@ -1,9 +1,10 @@
-import { getServerSession } from "next-auth/next"
-
-// import { authOptions } from "@/lib/auth"
+import { cookies } from "next/headers"
 
 export async function getCurrentUser() {
-  const session = await getServerSession()
-
-  return session?.user
+  const cookie = cookies()
+  if (cookie.has("userId")) {
+    const userId = cookie.get("userId")
+    return userId
+  }
+  return null
 }

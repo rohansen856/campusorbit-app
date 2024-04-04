@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from "axios"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { toast } from "@/components/ui/use-toast"
 
 import { Routine } from "../data/schema"
 
@@ -31,6 +33,45 @@ export function EditTable({ data }: EditTableProps) {
   const [branch, setBranch] = useState<string>(data.branch)
   const [room, setRoom] = useState<string>(data.room)
   const [group, setGroup] = useState<string>(data.group)
+
+  async function changeRoutine() {
+    const query = {
+      id: data.id,
+      code,
+      type,
+      prof,
+      from,
+      to,
+      day,
+      sem,
+      branch,
+      room,
+      group,
+    }
+    try {
+      const response = await axios.post("/routine/modifications", query)
+      if (response.status !== 204)
+        return toast({
+          title: "Something went wrong!",
+          description:
+            "There was an error doing modification. Please try again later.",
+          variant: "destructive",
+        })
+
+      return toast({
+        title: "Successfully updated",
+        description: "There routine was modified successfully.",
+        variant: "default",
+      })
+    } catch (error) {
+      return toast({
+        title: "Something went wrong!",
+        description:
+          "There was an error doing modification. Please try again later.",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <Sheet>
@@ -185,7 +226,9 @@ export function EditTable({ data }: EditTableProps) {
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" onClick={changeRoutine}>
+              Save changes
+            </Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

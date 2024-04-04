@@ -18,9 +18,12 @@ export function UsersTable({ users }: { users: UserSchema[] }) {
   return (
     <div className="space-y-2">
       {users.map((user) => (
-        <div className="flex items-center rounded p-3 hover:bg-muted">
+        <div
+          id={user.id}
+          className="flex items-center rounded p-3 hover:bg-muted"
+        >
           <Avatar className="size-9">
-            <AvatarImage src="/avatars/01.png" alt="Avatar" />
+            <AvatarImage src="/favicon.ico" alt="Avatar" />
             <AvatarFallback>{user.roll}</AvatarFallback>
           </Avatar>
           <div className="ml-4 flex w-full flex-col items-start justify-between gap-y-1 md:flex-row md:items-center">
