@@ -3,7 +3,6 @@ import Link from "next/link"
 import { marketingConfig } from "@/config/marketing"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { Chatbot } from "@/components/chatbot"
 import { MainNav } from "@/components/shared/main-nav"
 import { SiteFooter } from "@/components/shared/site-footer"
 

@@ -47,6 +47,10 @@ export type MarketingConfig = {
   mainNav: MainNavItem[]
 }
 
+export type OverviewConfig = {
+  mainNav: MainNavItem[]
+}
+
 export type DashboardConfig = {
   mainNav: MainNavItem[]
   sidebarNav: SidebarNavItem[]

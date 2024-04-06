@@ -8,3 +8,9 @@ export async function getCurrentUser() {
   }
   return null
 }
+
+export async function logoutUser() {
+  const cookie = cookies()
+  cookie.delete("userId")
+  return null
+}

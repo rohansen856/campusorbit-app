@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
+import { Icons } from "@/components/icons"
 import { Overview } from "@/components/overview"
 import { Search } from "@/components/search"
 import { ChartComponent } from "@/components/user-chart"
@@ -20,14 +21,21 @@ import { UsersTable } from "@/components/users-table"
 
 export default function DashboardPage() {
   const [users, setUsers] = useState<UserSchema[]>([])
+  const [isLoading, setLoading] = useState<boolean>(true)
 
-  async function getUserData() {
-    const data = await getUsers()
-    setUsers(data)
+  async function getUsersData() {
+    try {
+      const data = await getUsers()
+      setUsers(data)
+    } catch (error) {
+      setUsers([])
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    getUserData()
+    getUsersData()
   }, [])
 
   return (
@@ -62,7 +70,13 @@ export default function DashboardPage() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{users.length}</div>
+                  <div className="text-2xl font-bold">
+                    {isLoading ? (
+                      <Icons.spinner className="animate-spin" />
+                    ) : (
+                      users.length
+                    )}
+                  </div>
                   <p className="text-xs text-muted-foreground">
                     +20.1% from last month
                   </p>
@@ -89,7 +103,11 @@ export default function DashboardPage() {
                     <p className="mb-2 md:mb-0">All Users</p> <Search />
                   </CardTitle>
                   <CardDescription className="flex justify-center md:justify-start">
-                    Total {users.length} users found
+                    {isLoading ? (
+                      <Icons.spinner className="animate-spin" />
+                    ) : (
+                      `Total ${users.length} users found`
+                    )}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
