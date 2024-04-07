@@ -76,3 +76,9 @@ export type MainContributors = {
   email: string
   image?: string
 }
+
+export type CurrentuserProps = {
+  id: number
+  name: string
+  email: string
+}

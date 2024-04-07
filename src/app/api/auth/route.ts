@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     if (pin !== validPin) return new Response(null, { status: 403 })
 
     const cookie = cookies()
-    cookie.set("userId", pin)
+    cookie.set("access_token", pin)
     return new Response(null, { status: 200 })
   } catch (error) {
     return new Response(null, { status: 500 })
