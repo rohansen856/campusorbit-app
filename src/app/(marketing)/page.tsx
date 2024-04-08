@@ -1,9 +1,9 @@
 import Link from "next/link"
+import { HardDriveDownload, PersonStanding } from "lucide-react"
 
 import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { HeroButton } from "@/components/hero-button"
 import { Meteors } from "@/components/meteors"
 
 export default async function IndexPage() {
@@ -29,21 +29,28 @@ export default async function IndexPage() {
             This is a multi purpose app built by student of IIITDMJ for the ease
             and comfort of students.
           </p>
-          <div className="space-x-4">
-            <Link
-              href={"/download"}
-              className={cn(buttonVariants({ size: "lg" }))}
-            >
-              Download
-            </Link>
-            <Link
-              href={"/contributors"}
-              // target="_blank"
-              // rel="noreferrer"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-            >
-              Creators
-            </Link>
+          <div className="relative scale-50 md:scale-75 xl:scale-90 2xl:scale-100">
+            <div className="absolute left-6 top-4 size-48 overflow-hidden rounded-[25%] rounded-br-[60%] border-2 border-dotted border-blue-900 duration-200 hover:scale-110">
+              <Link
+                href={"/download"}
+                className="flex size-48 flex-col items-center justify-center gap-2 bg-white/90 text-2xl font-bold text-black"
+              >
+                Download
+                <HardDriveDownload />
+              </Link>
+            </div>
+            <div className="absolute right-6 top-4 size-48 rotate-90 overflow-hidden rounded-[25%] rounded-br-[60%] border-2 border-dotted border-blue-900 duration-200 hover:scale-110">
+              <Link
+                href={"/contributors"}
+                // target="_blank"
+                // rel="noreferrer"
+                className="flex size-48 -rotate-90 flex-col items-center justify-center gap-2 bg-white/90 text-2xl font-bold text-black"
+              >
+                Creators
+                <PersonStanding />
+              </Link>
+            </div>
+            <HeroButton />
           </div>
         </div>
       </section>
