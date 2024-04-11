@@ -58,7 +58,7 @@ export type DashboardConfig = {
 
 export type UserSchema = {
   roll: number | null
-  email: string | null
+  email: string
   id: string
   createdAt: string | null
   username: string | null
@@ -68,6 +68,7 @@ export type UserSchema = {
   mess: number | null
   year: number | null
   visibility: boolean | null
+  image: string | null
 }
 
 export type MainContributors = {

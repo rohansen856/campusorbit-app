@@ -77,6 +77,7 @@ export const profiles = pgTable(
     roll: smallint("roll"),
     visibility: boolean("visibility").default(true),
     group: text("group"),
+    image: text("image"),
   },
   (table) => {
     return {

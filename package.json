@@ -69,6 +69,7 @@
     "@tanstack/react-table": "^8.15.3",
     "@types/mdx": "^2.0.11",
     "@typescript-eslint/parser": "^7.3.1",
+    "@uploadthing/react": "^6.4.4",
     "@vercel/analytics": "^1.2.2",
     "@vercel/og": "^0.6.2",
     "ai": "latest",
@@ -107,6 +108,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.163.0",
     "three-globe": "^2.31.0",
+    "uploadthing": "^6.9.0",
     "vaul": "^0.9.0",
     "zod": "^3.22.4"
   },

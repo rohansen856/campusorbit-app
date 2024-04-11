@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   return (
     <div className="flex h-full flex-col items-center">
       <div className="grid place-items-center">
-        <UserImageField image={user.id} />
+        <UserImageField image={user.image} />
         <UserNameField username={user.username} />
         <div className="rounded-md bg-secondary p-2">
           {user.email ?? <Icons.spinner className="animate-spin" />}

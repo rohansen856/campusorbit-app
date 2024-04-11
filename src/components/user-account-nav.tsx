@@ -20,6 +20,7 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
     username: string | null
     email: string
     id: string
+    image: string | null
   }
 }
 
@@ -41,7 +42,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          user={{ name: user.username || null, image: user.username || null }}
+          user={{ name: user.username || null, image: user.image || null }}
           className="size-8"
         />
       </DropdownMenuTrigger>

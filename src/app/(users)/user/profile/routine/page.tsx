@@ -15,10 +15,10 @@ export default async function Page() {
     return redirect("/login")
   }
 
-  if (!user.branch) {
+  if (!user.branch || !user.group) {
     return (
       <div className="flex h-[30vh] w-full items-center justify-center font-heading">
-        Set Your Semester from Settings Menu
+        Set Your Branch and Group from Settings Menu
       </div>
     )
   }

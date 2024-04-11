@@ -21,7 +21,7 @@ export const profiles = pgTable(
       withTimezone: true,
       mode: "string",
     }).defaultNow(),
-    email: text("email"),
+    email: text("email").notNull(),
     username: text("username"),
     fullName: text("full_name"),
     branch: text("branch"),
@@ -31,6 +31,7 @@ export const profiles = pgTable(
     roll: smallint("roll"),
     visibility: boolean("visibility").default(true),
     group: text("group"),
+    image: text("image"),
   },
   (table) => {
     return {
@@ -77,7 +78,6 @@ export const analytics = pgTable(
 export const notifications = pgTable(
   "notifications",
   {
-    id: uuid("id").defaultRandom().primaryKey().notNull(),
     createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
       .notNull(),
@@ -87,6 +87,7 @@ export const notifications = pgTable(
     branch: text("branch"),
     group: text("group"),
     from: text("from").notNull(),
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
   },
   (table) => {
     return {

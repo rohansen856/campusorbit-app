@@ -9,7 +9,8 @@ export async function getCurrentSession() {
   const cookie = cookies()
   if (cookie.has("userId")) {
     const userId = cookie.get("userId")?.value
-    return userId
+    if (!userId) return null
+    return userId.toString().slice(1, -1)
   }
   return null
 }
@@ -19,26 +20,10 @@ export async function getCurrentUser() {
   if (cookie.has("userId")) {
     const userId = await getCurrentSession()
     if (!userId) return null
-    const user = [
-      {
-        id: "af8c5123-3761-455f-b162-104f38f76f70",
-        createdAt: "2024-03-11T20:21:31.565Z",
-        email: "23bcs212@iiitdmj.ac.in",
-        username: null,
-        fullName: null,
-        branch: "bcs",
-        sem: 2,
-        mess: 2,
-        year: 23,
-        roll: 212,
-        visibility: true,
-        group: "B",
-      },
-    ]
-    // await db
-    //   .select()
-    //   .from(profiles)
-    //   .where(eq(profiles.id, userId.toString().slice(1, -1)))
+    const user = await db
+      .select()
+      .from(profiles)
+      .where(eq(profiles.id, userId.toString()))
     if (!user) return null
     return user[0]
   }
