@@ -4,7 +4,7 @@ export const overviewConfig: OverviewConfig = {
   mainNav: [
     {
       title: "Dashboard",
-      href: "/overview",
+      href: "/user/profile",
     },
     {
       title: "Routines",

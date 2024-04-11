@@ -82,3 +82,8 @@ export type CurrentuserProps = {
   name: string
   email: string
 }
+
+export type RoutineCardProps = Pick<
+  Routine,
+  "code" | "room" | "prof" | "from" | "to"
+>

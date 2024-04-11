@@ -25,7 +25,7 @@ export async function POST(
     if (user.length <= 0) return new Response(null, { status: 404 })
 
     const cookie = cookies()
-    cookie.set("userId", JSON.stringify(user[0].id))
+    cookie.set("userId", JSON.stringify(user[0].id), { sameSite: "lax" })
 
     return new Response(null, { status: 200 })
   } catch (error) {
