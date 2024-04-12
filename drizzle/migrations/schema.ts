@@ -176,6 +176,16 @@ export const routineModifications = pgTable(
   }
 )
 
+export const admin = pgTable("admin", {
+  id: uuid("id")
+    .defaultRandom()
+    .primaryKey()
+    .notNull()
+    .references(() => profiles.id, { onDelete: "cascade" }),
+  type: text("type").notNull(),
+  author: text("author").notNull(),
+})
+
 export const testers = pgTable("testers", {
   id: serial("id").primaryKey().notNull(),
   name: varchar("name", { length: 255 }).notNull(),

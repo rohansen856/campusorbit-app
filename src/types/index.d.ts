@@ -65,6 +65,7 @@ export type UserSchema = {
   fullName: string | null
   branch: string | null
   sem: number | null
+  group: string | null
   mess: number | null
   year: number | null
   visibility: boolean | null

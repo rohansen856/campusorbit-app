@@ -9,7 +9,7 @@ import { ImageUploader } from "./components/image-upload"
 import { UserForm } from "./components/user-form"
 
 export const metadata = {
-  title: "Dashboard",
+  title: "Settings",
 }
 
 export default async function DashboardPage() {
@@ -27,7 +27,7 @@ export default async function DashboardPage() {
             <AvatarImage
               src={`https://utfs.io/f/${user.image}`}
               alt="user"
-              className="object-cover"
+              className="bg-secondary object-cover"
             />
             <AvatarFallback>
               <Icons.spinner className="animate-spin" />

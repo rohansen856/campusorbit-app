@@ -1,5 +1,6 @@
 "use client"
 
+import { group } from "console"
 import { UserSchema } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -16,12 +17,34 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
 
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  fullname: z.string().min(5, {
+    message: "full name must be at least 5 characters.",
+  }),
+  group: z
+    .string()
+    .min(1, {
+      message: "invalid group",
+    })
+    .max(1, { message: "invalid group" }),
+  sem: z
+    .string()
+    .min(1, {
+      message: "invalid group",
+    })
+    .max(1, { message: "invalid group" }),
 })
 
 interface UserFormProps {
@@ -33,6 +56,9 @@ export function UserForm({ user }: UserFormProps) {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: user.username ?? undefined,
+      fullname: user.fullName ?? undefined,
+      group: user.group ?? undefined,
+      sem: user.sem?.toString() ?? undefined,
     },
   })
 
@@ -69,7 +95,81 @@ export function UserForm({ user }: UserFormProps) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="fullname"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Full Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter Full name" {...field} />
+              </FormControl>
+              <FormDescription>This is your Full Name.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="flex items-center justify-between gap-2">
+          <FormField
+            control={form.control}
+            name="group"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your group" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="A">A</SelectItem>
+                    <SelectItem value="B">B</SelectItem>
+                    <SelectItem value="C">C</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  You can manage email addresses in your{" "}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="sem"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Semester</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your semester" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="1">1</SelectItem>
+                    <SelectItem value="2">2</SelectItem>
+                    <SelectItem value="3">3</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  You can manage email addresses in your{" "}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Submit
+        </Button>
       </form>
     </Form>
   )

@@ -4,9 +4,12 @@ import { and, eq } from "drizzle-orm"
 import { db } from "@/lib/db"
 import { routine } from "@/lib/schema"
 import { getCurrentUser } from "@/lib/session"
-import { sleep } from "@/lib/utils"
 
 import { RoutineLayout } from "./components/routine-layout"
+
+export const metadata = {
+  title: "Routine",
+}
 
 export default async function Page() {
   const user = await getCurrentUser()

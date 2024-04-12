@@ -11,14 +11,17 @@ export function UserImageField({ image }: UserImageFieldProps) {
   return (
     <div>
       <Avatar className="size-36">
-        <AvatarImage
-          src={`https://utfs.io/f/${image}`}
-          alt="user"
-          className="object-cover"
-        />
-        <AvatarFallback>
-          <Icons.spinner className="animate-spin" />
-        </AvatarFallback>
+        {image && image.length > 5 ? (
+          <AvatarImage
+            src={`https://utfs.io/f/${image}`}
+            alt="user"
+            className="bg-secondary object-cover"
+          />
+        ) : (
+          <AvatarFallback>
+            <Icons.logo className="size-2/3" />
+          </AvatarFallback>
+        )}
       </Avatar>
     </div>
   )

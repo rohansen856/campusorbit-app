@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { UserSchema } from "@/types"
+import axios from "axios"
 
-import { getUsers } from "@/lib/users"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -25,8 +25,9 @@ export default function DashboardPage() {
 
   async function getUsersData() {
     try {
-      const data = await getUsers()
-      setUsers(data)
+      const res = await axios.get("/api/admin/users")
+      if (res.status !== 200) return setUsers([])
+      return setUsers(res.data)
     } catch (error) {
       setUsers([])
     } finally {

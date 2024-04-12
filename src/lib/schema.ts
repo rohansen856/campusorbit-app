@@ -1,8 +1,11 @@
+import { sql } from "drizzle-orm"
 import {
   bigint,
   boolean,
+  foreignKey,
   integer,
   jsonb,
+  pgEnum,
   pgTable,
   serial,
   smallint,
@@ -12,6 +15,49 @@ import {
   uuid,
   varchar,
 } from "drizzle-orm/pg-core"
+
+export const keyStatus = pgEnum("key_status", [
+  "default",
+  "valid",
+  "invalid",
+  "expired",
+])
+export const keyType = pgEnum("key_type", [
+  "aead-ietf",
+  "aead-det",
+  "hmacsha512",
+  "hmacsha256",
+  "auth",
+  "shorthash",
+  "generichash",
+  "kdf",
+  "secretbox",
+  "secretstream",
+  "stream_xchacha20",
+])
+export const factorType = pgEnum("factor_type", ["totp", "webauthn"])
+export const factorStatus = pgEnum("factor_status", ["unverified", "verified"])
+export const aalLevel = pgEnum("aal_level", ["aal1", "aal2", "aal3"])
+export const codeChallengeMethod = pgEnum("code_challenge_method", [
+  "s256",
+  "plain",
+])
+export const equalityOp = pgEnum("equality_op", [
+  "eq",
+  "neq",
+  "lt",
+  "lte",
+  "gt",
+  "gte",
+  "in",
+])
+export const action = pgEnum("action", [
+  "INSERT",
+  "UPDATE",
+  "DELETE",
+  "TRUNCATE",
+  "ERROR",
+])
 
 export const profiles = pgTable(
   "profiles",
@@ -129,6 +175,16 @@ export const routineModifications = pgTable(
     }
   }
 )
+
+export const admin = pgTable("admin", {
+  id: uuid("id")
+    .defaultRandom()
+    .primaryKey()
+    .notNull()
+    .references(() => profiles.id, { onDelete: "cascade" }),
+  type: text("type").notNull(),
+  author: text("author").notNull(),
+})
 
 export const testers = pgTable("testers", {
   id: serial("id").primaryKey().notNull(),
