@@ -3,7 +3,7 @@ import { Metadata } from "next/types"
 import { StarIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
+import { Illustrations } from "@/components/illustrations"
 
 export const metadata: Metadata = {
   title: "Download",
@@ -16,7 +16,7 @@ export default async function DownloadPage() {
       <section className="space-y-6 px-4 pb-8 md:pt-2 lg:pt-6 2xl:pt-10">
         <div className="container flex h-[80vh] flex-col items-center gap-4 rounded-lg bg-teal-900/35 text-center lg:flex-row">
           <div className="flex size-full items-center justify-center lg:w-1/2">
-            <Icons.logo className="size-2/3" />
+            <Illustrations.download className="size-2/3" />
           </div>
           <div className="flex size-full flex-col justify-between py-6 lg:w-1/2">
             <div className="flex h-32 w-full">
