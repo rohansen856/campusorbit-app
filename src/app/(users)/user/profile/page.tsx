@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 
+import { IdCard } from "./components/id_card"
 import { UserImageField } from "./components/user-avatar"
 import { UserNameField } from "./components/username"
 
@@ -27,6 +28,9 @@ export default async function DashboardPage() {
         <div className="rounded-md bg-secondary p-2">
           {user.email ?? <Icons.spinner className="animate-spin" />}
         </div>
+      </div>
+      <div className="mt-6">
+        <IdCard />
       </div>
     </div>
   )
