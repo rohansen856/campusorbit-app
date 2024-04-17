@@ -1,11 +1,11 @@
 import Image from "next/image"
 
-export function IdCard() {
+export function IdCard({ image }: { image: string | null }) {
   return (
     <div className="h-[250px] w-[500px] rounded-lg bg-blue-800 p-2">
       <div className="size-full rounded-md bg-blue-500 p-1">
         <div className="size-full rounded-sm bg-blue-800">
-          <div className="flex h-1/3 w-full items-center">
+          <div className="flex h-1/3 w-full items-center justify-between">
             <div className="h-full w-20 p-1">
               <div className="relative size-full overflow-hidden rounded-lg bg-white">
                 <Image
@@ -29,11 +29,15 @@ export function IdCard() {
             </div>
           </div>
           <div className="flex h-2/3 w-full flex-col items-center justify-between bg-white text-black">
-            <div className="flex max-h-[97%] w-full flex-1 font-bold">
+            <div className="relative flex max-h-[97%] w-full flex-1 font-bold">
               <div className="flex h-full w-1/5 flex-col justify-between p-1">
-                <div className="relative h-[100px] w-full">
+                <div className="relative h-[90px] w-full">
                   <Image
-                    src={"/images/avatars/shadcn.png"}
+                    src={
+                      image
+                        ? `https://utfs.io/f/${image} `
+                        : "/images/avatars/shadcn.png"
+                    }
                     alt="iiitdmj"
                     fill
                     className="object-contain"
@@ -71,6 +75,19 @@ export function IdCard() {
                 <h1>Prabir Chandra Sen</h1>
                 <h1>B.Tech (CSE)</h1>
                 <h1>31-08-2027</h1>
+                <div className="absolute bottom-0 right-2">
+                  <div className="relative h-6 w-full">
+                    <Image
+                      src={"/signature.png"}
+                      alt="signature"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="w-full text-nowrap text-xs font-extrabold">
+                    Dean (Students)
+                  </div>
+                </div>
               </div>
             </div>
             <div className="h-2 w-2/5 bg-blue-800"></div>

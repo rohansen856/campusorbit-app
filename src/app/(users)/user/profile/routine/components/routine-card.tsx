@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import { Routine } from "@/app/(overview)/overview/routine/data/schema"
+import { Routine } from "@/app/(overview)/overview/routine/components/schema"
 
 interface RoutineCardProps {
   data: Pick<Routine, "code" | "room" | "prof" | "from" | "to">

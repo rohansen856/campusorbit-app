@@ -72,7 +72,7 @@ export const Icons = {
         r="151"
         fill="url(#paint0_linear_1008_5)"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <defs>
         <linearGradient
@@ -83,8 +83,8 @@ export const Icons = {
           y2="400"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00FFD1" />
-          <stop offset="1" stop-color="#005099" />
+          <stop stopColor="#00FFD1" />
+          <stop offset="1" stopColor="#005099" />
         </linearGradient>
       </defs>
     </svg>

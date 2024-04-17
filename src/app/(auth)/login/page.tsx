@@ -35,6 +35,9 @@ export default async function LoginPage() {
             <p className="text-sm text-muted-foreground">
               Enter your UserId below to Login
             </p>
+            <p className="text-destructive">
+              *you can also login from the app&apos;s settings menu
+            </p>
           </div>
           <UserAuthForm />
           <p className="px-8 text-center text-sm text-muted-foreground">

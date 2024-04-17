@@ -30,7 +30,7 @@ export default async function DashboardPage() {
         </div>
       </div>
       <div className="mt-6">
-        <IdCard />
+        <IdCard image={user.image} />
       </div>
     </div>
   )

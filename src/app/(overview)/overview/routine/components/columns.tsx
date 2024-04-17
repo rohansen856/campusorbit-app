@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
 import { labels } from "../data/data"
-import { Routine } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { Routine } from "./schema"
 
 export const columns: ColumnDef<Routine>[] = [
   {

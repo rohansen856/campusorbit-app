@@ -2,8 +2,8 @@
 
 import { Row } from "@tanstack/react-table"
 
-import { routineSchema } from "../data/schema"
 import { EditTable } from "./edit-table"
+import { routineSchema } from "./schema"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>

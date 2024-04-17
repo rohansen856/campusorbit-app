@@ -9,8 +9,8 @@ import { routine } from "@/lib/schema"
 
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
+import { routineSchema } from "./components/schema"
 import { UserNav } from "./components/user-nav"
-import { routineSchema } from "./data/schema"
 
 export const metadata: Metadata = {
   title: "Tasks",

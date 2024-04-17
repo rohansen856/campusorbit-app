@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sheet"
 import { toast } from "@/components/ui/use-toast"
 
-import { Routine } from "../data/schema"
+import { Routine } from "./schema"
 
 interface EditTableProps {
   data: Routine

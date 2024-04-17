@@ -6,9 +6,9 @@ import { Table } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-import { branches, days } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { DataTableViewOptions } from "./data-table-view-options"
+import { branches, days } from "./schema"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>

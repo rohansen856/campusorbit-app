@@ -115,7 +115,7 @@ export function UserForm({ user }: UserFormProps) {
             name="group"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Group</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -131,9 +131,7 @@ export function UserForm({ user }: UserFormProps) {
                     <SelectItem value="C">C</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormDescription>
-                  You can manage email addresses in your{" "}
-                </FormDescription>
+                <FormDescription>Select your group</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -159,9 +157,7 @@ export function UserForm({ user }: UserFormProps) {
                     <SelectItem value="3">3</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormDescription>
-                  You can manage email addresses in your{" "}
-                </FormDescription>
+                <FormDescription>Select your semester</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
