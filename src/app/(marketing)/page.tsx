@@ -1,10 +1,23 @@
 import Link from "next/link"
 import { HardDriveDownload, PersonStanding } from "lucide-react"
 
-import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
 import { HeroButton } from "@/components/hero-button"
+import { InfiniteMovingCards } from "@/components/infinite-moving-cards"
 import { Meteors } from "@/components/meteors"
+
+export const clients = [
+  "android",
+  "dart",
+  "firebase",
+  "flutter",
+  "nextjs",
+  "react",
+  "supabase",
+].map((client, index) => ({
+  name: client,
+  href: `/tech/${client}.svg`,
+}))
 
 export default async function IndexPage() {
   return (
@@ -53,6 +66,17 @@ export default async function IndexPage() {
             <HeroButton />
           </div>
         </div>
+      </section>
+      <section
+        id="tech-stack"
+        className="flex w-full flex-col items-center justify-center"
+      >
+        <InfiniteMovingCards
+          className=""
+          items={clients}
+          direction="right"
+          speed="slow"
+        />
       </section>
       <section
         id="features"
