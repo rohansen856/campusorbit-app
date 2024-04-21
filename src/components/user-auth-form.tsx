@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
@@ -34,15 +34,6 @@ const FormSchema = z.object({
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setLoading] = useState(false)
   const router = useRouter()
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.href.split("?")[1])
-    if (params.has("redirect_from") && params.has("user_token")) {
-      const token = params.get("user_token")
-      if (!token) return
-      onSubmit({ userId: token })
-    }
-  }, [])
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
