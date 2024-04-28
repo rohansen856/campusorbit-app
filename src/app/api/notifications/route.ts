@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm"
 import { notifications } from "drizzle/migrations/schema"
 
 import { db } from "@/lib/db"
@@ -26,6 +27,27 @@ export async function GET() {
     if (!user) return new Response(null, { status: 403 })
 
     const data = await db.select().from(notifications)
+
+    return new Response(JSON.stringify(data), { status: 200 })
+  } catch (error) {
+    return new Response(error, { status: 500 })
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const user = await getCurrentUser()
+    if (!user) return new Response(null, { status: 403 })
+
+    const json = await req.json()
+    const body = json as { id: string }
+    const notificationId = body.id
+
+    if (!notificationId) return new Response(null, { status: 400 })
+
+    const data = await db
+      .delete(notifications)
+      .where(eq(notifications.id, notificationId))
 
     return new Response(JSON.stringify(data), { status: 200 })
   } catch (error) {

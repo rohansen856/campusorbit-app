@@ -3,6 +3,7 @@
 import { group } from "console"
 import { UserSchema } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -62,7 +63,22 @@ export function UserForm({ user }: UserFormProps) {
     },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      const res = await axios.post(`/api/users/${user.id}`)
+      return toast({
+        title: "success",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify(res.data, null, 2)}
+            </code>
+          </pre>
+        ),
+      })
+    } catch (error) {
+      console.log(error)
+    }
     toast({
       title: "This component is not ready yet!",
       description: (

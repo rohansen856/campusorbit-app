@@ -71,7 +71,6 @@ export const InfiniteMovingCards = ({
       }
     }
   }
-  console.log(items)
   return (
     <div
       ref={containerRef}
@@ -89,7 +88,7 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" key={idx}>
             <Image
               width={70}
               height={1}
