@@ -1,34 +1,34 @@
+import Image from "next/image"
 import Link from "next/link"
 import { HardDriveDownload, PersonStanding } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { HeroButton } from "@/components/hero-button"
-import { InfiniteMovingCards } from "@/components/infinite-moving-cards"
-import { Meteors } from "@/components/meteors"
+import {
+  clients,
+  InfiniteMovingCards,
+} from "@/components/infinite-moving-cards"
 
 import { Benefits } from "./components/features/benifits"
 import { Socials } from "./components/social/social"
 
-export const clients = [
-  "android",
-  "dart",
-  "docker",
-  "firebase",
-  "flutter",
-  "nextjs",
-  "react",
-  "supabase",
-].map((client, index) => ({
-  name: client,
-  href: `/tech/${client}.svg`,
-}))
-
 export default async function IndexPage() {
   return (
     <>
-      <section className="relative max-w-full space-y-6 overflow-x-hidden pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-        <Meteors number={20} className="-z-10 lg:ml-24 2xl:ml-56" />
-        <div className="container flex max-w-5xl flex-col items-center gap-4 text-center">
+      <section className="relative max-w-full space-y-6 overflow-hidden pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+        <div className="absolute left-0 top-0 -z-10 h-screen w-screen [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]">
+          <div className="relative size-full">
+            <Image
+              fill
+              src={
+                "https://github.githubassets.com/images/modules/site/home-campaign/hero-bg.webp"
+              }
+              alt=""
+              className="object-contain"
+            />
+          </div>
+        </div>
+        <div className="container z-10 flex max-w-5xl flex-col items-center gap-4 text-center">
           <Link
             href={siteConfig.links.twitter}
             className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
@@ -102,7 +102,7 @@ export default async function IndexPage() {
         id="socials"
         className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
       >
-        <div className="mx-auto mb-20 flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+        <div className="mx-auto mb-10 flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
             Social
           </h2>

@@ -9,7 +9,11 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
-    domains: ["avatars.githubusercontent.com", "utfs.io"],
+    domains: [
+      "avatars.githubusercontent.com",
+      "github.githubassets.com",
+      "utfs.io",
+    ],
   },
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client"],

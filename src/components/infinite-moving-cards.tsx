@@ -5,6 +5,20 @@ import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 
+export const clients = [
+  "android",
+  "dart",
+  "docker",
+  "firebase",
+  "flutter",
+  "nextjs",
+  "react",
+  "supabase",
+].map((client, index) => ({
+  name: client,
+  href: `/tech/${client}.svg`,
+}))
+
 export const InfiniteMovingCards = ({
   items,
   direction = "left",

@@ -56,13 +56,13 @@ export function Socials() {
                 <li
                   key={app.id}
                   className={cn(
-                    "absolute top-0 left-1/2 h-1/2 -ml-[1.6rem] origin-bottom",
+                    "absolute left-1/2 top-0 -ml-[1.6rem] h-1/2 origin-bottom",
                     `rotate-${index * 45}`
                   )}
                 >
                   <div
                     className={cn(
-                      "bg-secondary relative -top-[1.6rem] flex w-[3.2rem] h-[3.2rem] bg-n-7 border border-muted-foreground rounded-xl",
+                      "bg-n-7 relative -top-[1.6rem] flex h-[3.2rem] w-[3.2rem] rounded-xl border border-muted-foreground bg-secondary hover:scale-110 duration-300 cursor-pointer",
                       `-rotate-${index * 45}`
                     )}
                   >
