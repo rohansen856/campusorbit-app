@@ -14,7 +14,7 @@ type UserSchema = {
   visibility: boolean | null
 }
 
-export function UsersTable({ users }: { users: UserSchema[] }) {
+export function UsersTable({ users }) {
   return (
     <div className="space-y-2">
       {users.map((user) => (
@@ -34,11 +34,12 @@ export function UsersTable({ users }: { users: UserSchema[] }) {
               <p className="text-sm text-muted-foreground">{user.email}</p>
             </div>
             <div className="space-x-1 font-medium">
+              <span className="rounded bg-muted p-2">{user.institute}</span>
               <span className="rounded bg-muted p-2">
                 Branch: {user.branch}
               </span>
               <span className="rounded bg-muted p-2">
-                Year: {24 - (user.year || 0)}
+                Year: {user.year || 0}
               </span>
             </div>
           </div>

@@ -4,19 +4,19 @@ import { HardDriveDownload, PersonStanding } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { HeroButton } from "@/components/hero-button"
-import {
-  clients,
-  InfiniteMovingCards,
-} from "@/components/infinite-moving-cards"
 
 import { Benefits } from "./components/features/benifits"
 import { Socials } from "./components/social/social"
+import {
+  clients,
+  InfiniteMovingCards,
+} from "./components/tech-stack/infinite-moving-cards"
 
 export default async function IndexPage() {
   return (
     <>
       <section className="relative max-w-full space-y-6 overflow-hidden pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-        <div className="absolute left-0 top-0 -z-10 h-screen w-screen [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]">
+        <div className="absolute left-0 top-0 -z-10 h-screen w-screen [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_80%,transparent)]">
           <div className="relative size-full">
             <Image
               fill
@@ -24,7 +24,7 @@ export default async function IndexPage() {
                 "https://github.githubassets.com/images/modules/site/home-campaign/hero-bg.webp"
               }
               alt=""
-              className="object-contain"
+              className="object-contain max-lg:object-cover max-lg:opacity-50"
             />
           </div>
         </div>
@@ -100,7 +100,7 @@ export default async function IndexPage() {
       </section>
       <section
         id="socials"
-        className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
+        className="container space-y-6 py-8 dark:bg-transparent md:py-12 lg:py-24"
       >
         <div className="mx-auto mb-10 flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
@@ -110,8 +110,20 @@ export default async function IndexPage() {
         <Socials />
       </section>
 
-      <section id="open-source" className="container py-8 md:py-12 lg:py-24">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
+      <section
+        id="open-source"
+        className="container relative py-8 md:py-12 lg:py-24"
+      >
+        {/* <div className="absolute -top-10 flex size-full items-center justify-center opacity-50">
+          <Image
+            src={"/images/globe-small.png"}
+            alt=""
+            height={350}
+            width={350}
+            className="-z-10"
+          />
+        </div> */}
+        <div className="z-10 mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
             Built by Students
           </h2>

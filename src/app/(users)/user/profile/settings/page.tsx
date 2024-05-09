@@ -23,19 +23,9 @@ export default async function DashboardPage() {
     <div className="flex h-full flex-col items-center">
       <div className="grid place-items-center">
         <div className="mb-6">
-          <Avatar className="mb-3 size-36">
-            <AvatarImage
-              src={`https://utfs.io/f/${user.image}`}
-              alt="user"
-              className="bg-secondary object-cover"
-            />
-            <AvatarFallback>
-              <Icons.spinner className="animate-spin" />
-            </AvatarFallback>
-          </Avatar>
           <ImageUploader />
         </div>
-        <UserForm user={user} />
+        <h3>Not built yetttttt</h3>
       </div>
     </div>
   )

@@ -18,16 +18,16 @@ export const dashboardConfig: DashboardConfig = {
       href: "/user/profile",
       icon: "post",
     },
-    {
-      title: "Routine",
-      href: "/user/profile/routine",
-      icon: "media",
-    },
-    {
-      title: "Clubs",
-      href: "/user/profile/clubs",
-      icon: "media",
-    },
+    // {
+    //   title: "Routine",
+    //   href: "/user/profile/routine",
+    //   icon: "media",
+    // },
+    // {
+    //   title: "Clubs",
+    //   href: "/user/profile/clubs",
+    //   icon: "media",
+    // },
     {
       title: "Admin Panel",
       href: "/overview",

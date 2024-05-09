@@ -16,16 +16,19 @@ import { z } from "zod"
 // IRL, you will have a schema for your data models.
 export const routineSchema = z.object({
   id: z.string(),
+  institute: z.string(),
   type: z.string(),
-  code: z.string(),
-  prof: z.string(),
-  from: z.number(),
-  to: z.number(),
-  day: z.number(),
-  sem: z.number(),
+  from: z.string(),
+  to: z.string(),
+  semester: z.number(),
   branch: z.string(),
-  room: z.string(),
   group: z.string(),
+  courseCode: z.string(),
+  courseTitle: z.string(),
+  courseId: z.string(),
+  prof: z.string(),
+  day: z.number(),
+  room: z.string(),
 })
 // export const taskSchema = z.object({
 //   id: z.string(),
@@ -54,23 +57,23 @@ export const labels = [
 
 export const branches = [
   {
-    value: "BCS",
-    label: "BCS",
+    value: "cs",
+    label: "CS",
     icon: QuestionMarkCircledIcon,
   },
   {
-    value: "BEC",
-    label: "BEC",
+    value: "ec",
+    label: "EC",
     icon: CircleIcon,
   },
   {
-    value: "BME",
-    label: "BME",
+    value: "me",
+    label: "ME",
     icon: StopwatchIcon,
   },
   {
-    value: "BSM",
-    label: "BSM",
+    value: "sm",
+    label: "SM",
     icon: CheckCircledIcon,
   },
 ]

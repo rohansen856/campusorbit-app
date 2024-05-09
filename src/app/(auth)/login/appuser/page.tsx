@@ -33,13 +33,6 @@ export default function AppUsers() {
     }
   }, [])
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      userId: "",
-    },
-  })
-
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       setStatus("Authenticating")

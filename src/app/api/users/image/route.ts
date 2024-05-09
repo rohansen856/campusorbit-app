@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm"
 import { z } from "zod"
 
 import { db } from "@/lib/db"
-import { profiles } from "@/lib/schema"
+import { profile } from "@/lib/schema"
 import { getCurrentSession } from "@/lib/session"
 
 export async function POST(req: Request) {
@@ -15,9 +15,9 @@ export async function POST(req: Request) {
     const key = body.key
 
     const user = await db
-      .update(profiles)
+      .update(profile)
       .set({ image: key })
-      .where(eq(profiles.id, userId))
+      .where(eq(profile.id, userId))
 
     return new Response(null, { status: 204 })
   } catch (error) {

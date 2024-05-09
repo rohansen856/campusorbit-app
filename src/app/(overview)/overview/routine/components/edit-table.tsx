@@ -23,13 +23,14 @@ interface EditTableProps {
 }
 
 export function EditTable({ data }: EditTableProps) {
-  const [code, setCode] = useState<string>(data.code ?? "")
+  const [code, setCode] = useState<string>(data.courseCode ?? "")
+  const [title, setTitle] = useState<string>(data.courseTitle ?? "")
   const [type, setType] = useState<string>(data.type ?? "")
   const [prof, setProf] = useState<string>(data.prof ?? "")
-  const [from, setFrom] = useState<number>(data.from)
-  const [to, setTo] = useState<number>(data.to)
+  const [from, setFrom] = useState<string>(data.from)
+  const [to, setTo] = useState<string>(data.to)
   const [day, setDay] = useState<number>(data.day)
-  const [sem, setSem] = useState<number>(data.sem)
+  const [sem, setSem] = useState<number>(data.semester)
   const [branch, setBranch] = useState<string>(data.branch)
   const [room, setRoom] = useState<string>(data.room)
   const [group, setGroup] = useState<string>(data.group)
@@ -101,7 +102,20 @@ export function EditTable({ data }: EditTableProps) {
               id="code"
               value={code}
               onChange={(e) => {
-                setCode(e.target.value)
+                setCode(e.target.value?.toUpperCase())
+              }}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="title" className="text-right">
+              Title
+            </Label>
+            <Input
+              id="title"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value?.toUpperCase())
               }}
               className="col-span-3"
             />
@@ -140,7 +154,7 @@ export function EditTable({ data }: EditTableProps) {
               id="from"
               value={from}
               onChange={(e) => {
-                setFrom(Number.parseInt(e.target.value))
+                setFrom(e.target.value)
               }}
               className="col-span-3"
             />
@@ -153,7 +167,7 @@ export function EditTable({ data }: EditTableProps) {
               id="to"
               value={to}
               onChange={(e) => {
-                setTo(Number.parseInt(e.target.value))
+                setTo(e.target.value)
               }}
               className="col-span-3"
             />

@@ -51,13 +51,35 @@ export const columns: ColumnDef<Routine>[] = [
       <DataTableColumnHeader column={column} title="Code" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.code)
+      const label = labels.find(
+        (label) => label.value === row.original.courseCode
+      )
 
       return (
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("code")}
+            {row.original.courseCode}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "title",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Title" />
+    ),
+    cell: ({ row }) => {
+      const label = labels.find(
+        (label) => label.value === row.original.courseTitle
+      )
+
+      return (
+        <div className="flex space-x-2">
+          {label && <Badge variant="outline">{label.label}</Badge>}
+          <span className="max-w-[500px] truncate font-medium">
+            {row.original.courseTitle}
           </span>
         </div>
       )
@@ -147,7 +169,7 @@ export const columns: ColumnDef<Routine>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("sem")}
+            {row.original.semester}
           </span>
         </div>
       )
@@ -162,7 +184,7 @@ export const columns: ColumnDef<Routine>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("branch")}
+            {row.original.branch?.toUpperCase()}
           </span>
         </div>
       )

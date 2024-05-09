@@ -25,7 +25,7 @@ export default function DashboardPage() {
 
   async function getUsersData() {
     try {
-      const res = await axios.get("/api/admin/users")
+      const res = await axios.get("/api/admin/users/details")
       if (res.status !== 200) return setUsers([])
       return setUsers(res.data)
     } catch (error) {

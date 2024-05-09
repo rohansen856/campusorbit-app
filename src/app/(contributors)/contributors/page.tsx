@@ -1,7 +1,5 @@
 import { Metadata } from "next/types"
-import { testers } from "drizzle/migrations/schema"
 
-import { db } from "@/lib/db"
 import { ContactDeveloper } from "@/components/contact"
 import { CreatorsComponent } from "@/components/creators-card"
 import { Testers } from "@/components/testers"

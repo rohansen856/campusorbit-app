@@ -1,6 +1,6 @@
-import { createInsertSchema, createSelectSchema } from "drizzle-zod"
-import { z } from "zod"
+// import { createInsertSchema, createSelectSchema } from "drizzle-zod"
+// import { z } from "zod"
 
-import { notifications } from "../schema"
+// import { notifications } from "../schema"
 
-export const insertNotificationsSchema = createInsertSchema(notifications)
+// export const insertNotificationsSchema = createInsertSchema(notifications)

@@ -16,7 +16,7 @@ export default async function OverviewLayout({
 }: OverviewLayoutProps) {
   const user = await getCurrentUser()
   if (!user) return redirect("/login")
-  if (user.accessLevel !== 10) return redirect("/user/profile")
+  if (user.accessLevel !== 2) return redirect("/user/profile")
 
   return (
     <div className="flex min-h-screen flex-col">

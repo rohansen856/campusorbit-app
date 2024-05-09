@@ -13,6 +13,7 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const routine = routineSchema.parse(row.original)
+  console.log(routine)
 
   return <EditTable data={routine} />
 }

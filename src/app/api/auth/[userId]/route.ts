@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm"
 import { z } from "zod"
 
 import { db } from "@/lib/db"
-import { profiles } from "@/lib/schema"
+import { profile } from "@/lib/schema"
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -21,11 +21,11 @@ export async function POST(
 
     const userId = params.userId
 
-    const user = await db.select().from(profiles).where(eq(profiles.id, userId))
+    const user = await db.select().from(profile).where(eq(profile.id, userId))
     if (user.length <= 0) return new Response(null, { status: 404 })
 
     const cookie = cookies()
-    cookie.set("userId", JSON.stringify(user[0].id), { sameSite: "lax" })
+    cookie.set("userId", JSON.stringify(user[0].id))
 
     return new Response(null, { status: 200 })
   } catch (error) {

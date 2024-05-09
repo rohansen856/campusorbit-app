@@ -26,7 +26,9 @@ export function DataTableToolbar<TData>({
           placeholder="Filter classes by code..."
           value={(table.getColumn("code")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("code")?.setFilterValue(event.target.value)
+            table
+              .getColumn("code")
+              ?.setFilterValue(event.target.value?.toUpperCase())
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />

@@ -2,7 +2,7 @@ import { redirect } from "next/navigation"
 import { and, eq } from "drizzle-orm"
 
 import { db } from "@/lib/db"
-import { routine } from "@/lib/schema"
+import { profile, routine } from "@/lib/schema"
 import { getCurrentUser } from "@/lib/session"
 
 import { RoutineLayout } from "./components/routine-layout"
@@ -18,7 +18,11 @@ export default async function Page() {
     return redirect("/login")
   }
 
-  if (!user.branch || !user.group) {
+  const userProfile = (
+    await db.select().from(profile).where(eq(profile.id, user.id))
+  )[0]
+
+  if (!userProfile.branch || !userProfile.group) {
     return (
       <div className="flex h-[30vh] w-full items-center justify-center font-heading">
         Set Your Branch and Group from Settings Menu
@@ -31,8 +35,8 @@ export default async function Page() {
     .from(routine)
     .where(
       and(
-        eq(routine.branch, user.branch.toUpperCase()),
-        eq(routine.group, user.group.toUpperCase())
+        eq(routine.branch, userProfile.branch.toUpperCase()),
+        eq(routine.group, userProfile.group.toUpperCase())
       )
     )
 

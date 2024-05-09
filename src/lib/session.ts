@@ -3,7 +3,7 @@ import { UserSchema } from "@/types"
 import { eq } from "drizzle-orm"
 
 import { db } from "./db"
-import { profiles } from "./schema"
+import { account } from "./schema"
 
 export async function getCurrentSession() {
   const cookie = cookies()
@@ -22,8 +22,8 @@ export async function getCurrentUser() {
     if (!userId) return null
     const user = await db
       .select()
-      .from(profiles)
-      .where(eq(profiles.id, userId.toString()))
+      .from(account)
+      .where(eq(account.id, userId.toString()))
     if (!user) return null
     return user[0]
   }

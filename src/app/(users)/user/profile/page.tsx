@@ -1,5 +1,8 @@
 import { redirect } from "next/navigation"
+import { eq } from "drizzle-orm"
 
+import { db } from "@/lib/db"
+import { profile } from "@/lib/schema"
 import { getCurrentUser } from "@/lib/session"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
@@ -20,17 +23,21 @@ export default async function DashboardPage() {
     return redirect("/login")
   }
 
+  const userProfile = (
+    await db.select().from(profile).where(eq(profile.id, user.id))
+  )[0]
+
   return (
     <div className="flex h-full flex-col items-center">
       <div className="grid place-items-center">
-        <UserImageField image={user.image} />
-        <UserNameField username={user.username} />
+        <UserImageField image={userProfile.image} />
+        <UserNameField username={userProfile.username} />
         <div className="rounded-md bg-secondary p-2">
           {user.email ?? <Icons.spinner className="animate-spin" />}
         </div>
       </div>
       <div className="mt-6">
-        <IdCard image={user.image} />
+        <IdCard image={userProfile.image} />
       </div>
     </div>
   )

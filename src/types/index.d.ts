@@ -87,5 +87,5 @@ export type CurrentuserProps = {
 
 export type RoutineCardProps = Pick<
   Routine,
-  "code" | "room" | "prof" | "from" | "to"
+  "courseCode" | "room" | "prof" | "from" | "to"
 >
