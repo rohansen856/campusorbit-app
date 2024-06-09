@@ -4,6 +4,7 @@ import { z } from "zod"
 import { BigIntWithAggregatesFilterObjectSchema } from "./BigIntWithAggregatesFilter.schema"
 import { BoolWithAggregatesFilterObjectSchema } from "./BoolWithAggregatesFilter.schema"
 import { IntNullableWithAggregatesFilterObjectSchema } from "./IntNullableWithAggregatesFilter.schema"
+import { IntWithAggregatesFilterObjectSchema } from "./IntWithAggregatesFilter.schema"
 import { StringNullableListFilterObjectSchema } from "./StringNullableListFilter.schema"
 import { StringNullableWithAggregatesFilterObjectSchema } from "./StringNullableWithAggregatesFilter.schema"
 import { StringWithAggregatesFilterObjectSchema } from "./StringWithAggregatesFilter.schema"
@@ -52,7 +53,7 @@ const Schema: z.ZodType<Prisma.profileScalarWhereWithAggregatesInput> = z
       .optional()
       .nullable(),
     semester: z
-      .union([z.lazy(() => BigIntWithAggregatesFilterObjectSchema), z.bigint()])
+      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
       .optional(),
     branch: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])

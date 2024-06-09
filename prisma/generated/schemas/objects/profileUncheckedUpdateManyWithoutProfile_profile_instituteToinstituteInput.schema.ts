@@ -3,6 +3,7 @@ import { z } from "zod"
 
 import { BigIntFieldUpdateOperationsInputObjectSchema } from "./BigIntFieldUpdateOperationsInput.schema"
 import { BoolFieldUpdateOperationsInputObjectSchema } from "./BoolFieldUpdateOperationsInput.schema"
+import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from "./NullableIntFieldUpdateOperationsInput.schema"
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from "./NullableStringFieldUpdateOperationsInput.schema"
 import { profileUpdateelectivesInputObjectSchema } from "./profileUpdateelectivesInput.schema"
@@ -40,8 +41,8 @@ const Schema: z.ZodType<Prisma.profileUncheckedUpdateManyWithoutProfile_profile_
         .nullable(),
       semester: z
         .union([
-          z.bigint(),
-          z.lazy(() => BigIntFieldUpdateOperationsInputObjectSchema),
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
       branch: z

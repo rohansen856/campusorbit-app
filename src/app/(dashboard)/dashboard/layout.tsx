@@ -189,9 +189,7 @@ export default async function DashboardLayout({
             </Button>
           </div>
         </header>
-        <main className="grid flex-1 gap-4 overflow-auto overflow-x-hidden p-4 md:grid-cols-2 lg:grid-cols-3">
-          {children}
-        </main>
+        <main className="flex-1">{children}</main>
       </div>
       <SiteFooter />
     </div>

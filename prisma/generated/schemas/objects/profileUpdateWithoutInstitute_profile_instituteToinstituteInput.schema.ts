@@ -7,6 +7,7 @@ import { BigIntFieldUpdateOperationsInputObjectSchema } from "./BigIntFieldUpdat
 import { BoolFieldUpdateOperationsInputObjectSchema } from "./BoolFieldUpdateOperationsInput.schema"
 import { clubsUpdateManyWithoutProfile_clubs_cocoordinatorToprofileNestedInputObjectSchema } from "./clubsUpdateManyWithoutProfile_clubs_cocoordinatorToprofileNestedInput.schema"
 import { clubsUpdateManyWithoutProfile_clubs_coordinatorToprofileNestedInputObjectSchema } from "./clubsUpdateManyWithoutProfile_clubs_coordinatorToprofileNestedInput.schema"
+import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from "./NullableIntFieldUpdateOperationsInput.schema"
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from "./NullableStringFieldUpdateOperationsInput.schema"
 import { profileUpdateelectivesInputObjectSchema } from "./profileUpdateelectivesInput.schema"
@@ -38,8 +39,8 @@ const Schema: z.ZodType<Prisma.profileUpdateWithoutInstitute_profile_instituteTo
         .nullable(),
       semester: z
         .union([
-          z.bigint(),
-          z.lazy(() => BigIntFieldUpdateOperationsInputObjectSchema),
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
       branch: z

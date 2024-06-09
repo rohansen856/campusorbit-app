@@ -99,7 +99,7 @@ model profile {
   username                               String?
   full_name                              String?
   image                                  String?
-  semester                               BigInt
+  semester                               Int        @db.SmallInt
   branch                                 String
   group                                  String?    @default("")
   programme                              String

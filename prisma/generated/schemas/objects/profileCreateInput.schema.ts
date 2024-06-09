@@ -13,7 +13,7 @@ const Schema: z.ZodType<Prisma.profileCreateInput> = z
     username: z.string().optional().nullable(),
     full_name: z.string().optional().nullable(),
     image: z.string().optional().nullable(),
-    semester: z.bigint(),
+    semester: z.number(),
     branch: z.string(),
     group: z.string().optional().nullable(),
     programme: z.string(),

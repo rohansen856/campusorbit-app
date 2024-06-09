@@ -10,6 +10,7 @@ import { BoolFilterObjectSchema } from "./BoolFilter.schema"
 import { ClubsListRelationFilterObjectSchema } from "./ClubsListRelationFilter.schema"
 import { InstituteRelationFilterObjectSchema } from "./InstituteRelationFilter.schema"
 import { instituteWhereInputObjectSchema } from "./instituteWhereInput.schema"
+import { IntFilterObjectSchema } from "./IntFilter.schema"
 import { IntNullableFilterObjectSchema } from "./IntNullableFilter.schema"
 import { StringFilterObjectSchema } from "./StringFilter.schema"
 import { StringNullableFilterObjectSchema } from "./StringNullableFilter.schema"
@@ -48,7 +49,7 @@ const Schema: z.ZodType<Prisma.profileWhereInput> = z
       .optional()
       .nullable(),
     semester: z
-      .union([z.lazy(() => BigIntFilterObjectSchema), z.bigint()])
+      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
       .optional(),
     branch: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
