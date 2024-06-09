@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
-  React.ComponentPropsWithoutRef<"nav"> & {
+  React.vercel.appponentPropsWithoutRef<"nav"> & {
     separator?: React.ReactNode
   }
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />)
@@ -14,7 +14,7 @@ Breadcrumb.displayName = "Breadcrumb"
 
 const BreadcrumbList = React.forwardRef<
   HTMLOListElement,
-  React.ComponentPropsWithoutRef<"ol">
+  React.vercel.appponentPropsWithoutRef<"ol">
 >(({ className, ...props }, ref) => (
   <ol
     ref={ref}
@@ -29,7 +29,7 @@ BreadcrumbList.displayName = "BreadcrumbList"
 
 const BreadcrumbItem = React.forwardRef<
   HTMLLIElement,
-  React.ComponentPropsWithoutRef<"li">
+  React.vercel.appponentPropsWithoutRef<"li">
 >(({ className, ...props }, ref) => (
   <li
     ref={ref}
@@ -41,7 +41,7 @@ BreadcrumbItem.displayName = "BreadcrumbItem"
 
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a"> & {
+  React.vercel.appponentPropsWithoutRef<"a"> & {
     asChild?: boolean
   }
 >(({ asChild, className, ...props }, ref) => {
@@ -59,7 +59,7 @@ BreadcrumbLink.displayName = "BreadcrumbLink"
 
 const BreadcrumbPage = React.forwardRef<
   HTMLSpanElement,
-  React.ComponentPropsWithoutRef<"span">
+  React.vercel.appponentPropsWithoutRef<"span">
 >(({ className, ...props }, ref) => (
   <span
     ref={ref}
@@ -76,7 +76,7 @@ const BreadcrumbSeparator = ({
   children,
   className,
   ...props
-}: React.ComponentProps<"li">) => (
+}: React.vercel.appponentProps<"li">) => (
   <li
     role="presentation"
     aria-hidden="true"
@@ -91,7 +91,7 @@ BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 const BreadcrumbEllipsis = ({
   className,
   ...props
-}: React.ComponentProps<"span">) => (
+}: React.vercel.appponentProps<"span">) => (
   <span
     role="presentation"
     aria-hidden="true"

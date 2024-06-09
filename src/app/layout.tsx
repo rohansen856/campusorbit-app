@@ -43,11 +43,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "rcsen-next-template",
-      url: "https://rcsen-next-template.com",
+      name: "campusorbit",
+      url: "https://campusorbit.vercel.app",
     },
   ],
-  creator: "rcsen-next-template",
+  creator: "campusorbit",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.jpg`],
-    creator: "@rcsen-next-template",
+    creator: "@campusorbit",
   },
   icons: {
     icon: "/favicon.ico",

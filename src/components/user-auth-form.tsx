@@ -28,21 +28,27 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     resolver: zodResolver(userAuthSchema),
   })
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
 
   async function onSubmit(data: FormData) {
     setIsLoading(true)
 
-    const signInResult = await signIn("email", {
-      email: data.email.toLowerCase(),
-      redirect: false,
+    const signInResult = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
       callbackUrl: searchParams?.get("from") || "/dashboard",
     })
 
     setIsLoading(false)
 
     if (!signInResult?.ok) {
+      if (signInResult?.status === 401)
+        return toast({
+          title: "Wrong credentials.",
+          description:
+            "Your email or password is incorrect. Please enter valid details!",
+          variant: "destructive",
+        })
       return toast({
         title: "Something went wrong.",
         description: "Your sign in request failed. Please try again.",
@@ -51,8 +57,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
 
     return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
+      title: "Login successful",
+      description: "Thank you for using our app!",
     })
   }
 
@@ -71,12 +77,32 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading || isGitHubLoading}
+              disabled={isLoading}
               {...register("email")}
             />
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
                 {errors.email.message}
+              </p>
+            )}
+          </div>
+          <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="password">
+              Password
+            </Label>
+            <Input
+              id="password"
+              placeholder="password"
+              type="password"
+              autoCapitalize="none"
+              autoComplete="password"
+              autoCorrect="off"
+              disabled={isLoading}
+              {...register("password")}
+            />
+            {errors?.password && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.password.message}
               </p>
             )}
           </div>
@@ -98,22 +124,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <button
-        type="button"
-        className={cn(buttonVariants({ variant: "outline" }))}
-        onClick={() => {
-          setIsGitHubLoading(true)
-          signIn("github")
-        }}
-        disabled={isLoading || isGitHubLoading}
-      >
-        {isGitHubLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
-        )}{" "}
-        Github
-      </button>
     </div>
   )
 }
