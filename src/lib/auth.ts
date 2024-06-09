@@ -58,7 +58,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return baseUrl + "/dashboard"
+      return url
     },
     async session({ token, session }) {
       if (token) {
@@ -87,7 +87,7 @@ export const authOptions: NextAuthOptions = {
       return {
         id: dbUser.id,
         email: token.email,
-        username: dbUser.username,
+        name: dbUser.username,
         picture: dbUser.image,
       }
     },

@@ -11,7 +11,7 @@ export function RoutineFilter() {
   const currentFilter = params?.get("filter") || "myclasses"
   console.log(currentFilter)
   return (
-    <section className="w-full max-w-full p-2 md:w-[200px] md:border-r">
+    <section className="w-full max-w-full pr-2 md:w-[200px] md:border-r">
       <ul className="flex flex-col gap-1">
         <li>
           <Link

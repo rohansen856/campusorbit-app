@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import {
   Sandwich,
   Search,
@@ -22,7 +22,6 @@ import {
 import { Icons } from "@/components/icons"
 
 export function SideNav() {
-  const router = useRouter()
   const pathname = usePathname()
 
   return (
@@ -38,8 +37,7 @@ export function SideNav() {
                 href="/dashboard"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "rounded-lg",
-                  "text-blue-600",
+                  "rounded-lg text-blue-600",
                   pathname === "/dashboard" && "bg-blue-600 text-primary"
                 )}
                 aria-label="Playground"
@@ -57,8 +55,7 @@ export function SideNav() {
                 href="/dashboard/routine"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "rounded-lg",
-                  "text-green-600",
+                  "rounded-lg text-green-600",
                   pathname === "/dashboard/routine" &&
                     "bg-green-600 text-primary"
                 )}
@@ -77,9 +74,8 @@ export function SideNav() {
                 href="/dashboard/mess"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "text-teal-600",
-                  pathname === "/dashboard/mess" &&
-                    "rounded-lg bg-teal-600 text-primary"
+                  "rounded-lg text-teal-600",
+                  pathname === "/dashboard/mess" && "bg-teal-600 text-primary"
                 )}
                 aria-label="Mess"
               >
@@ -96,9 +92,8 @@ export function SideNav() {
                 href="/dashboard/users"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "text-cyan-600",
-                  pathname === "/dashboard/users" &&
-                    "rounded-lg bg-cyan-600 text-primary"
+                  "rounded-lg text-cyan-600",
+                  pathname === "/dashboard/users" && "bg-cyan-600 text-primary"
                 )}
                 aria-label="Search"
               >
@@ -130,17 +125,20 @@ export function SideNav() {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-auto rounded-lg"
+              <Link
+                href="/dashboard/settings"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  pathname === "/dashboard/settings" &&
+                    "rounded-lg bg-secondary"
+                )}
                 aria-label="Settings"
               >
                 <SettingsIcon className="size-5" />
-              </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
-              Account
+              Settings
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

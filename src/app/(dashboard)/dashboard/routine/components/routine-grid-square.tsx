@@ -23,7 +23,7 @@ export function RoutineGridSquare({ ...props }: RoutineGridSquareProps) {
       <p className="mb-1 text-xs text-muted-foreground">({data.type})</p>
       <p className="mb-1 text-sm">{data.prof}</p>
       <p className="text-xs">
-        {data.from.getHours()}:00 - {data.to.getHours()}:00{" "}
+        {data.from.getHours() - 5}:00 - {data.to.getHours() - 5}:00{" "}
       </p>
       <p className="text-xs">{data.room}</p>
     </span>

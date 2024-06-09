@@ -1,15 +1,37 @@
 import { type routine as RoutineType } from "@prisma/client"
 
+import { db } from "@/lib/db"
+import { Icons } from "@/components/icons"
+
 import { RoutineGridRow } from "./routine-grid-row"
-import { RoutineGridSquare } from "./routine-grid-square"
 
 interface RoutineGridProps extends React.HTMLAttributes<HTMLDivElement> {
   routine: RoutineType[]
 }
 
-export function RoutineGrid({ ...props }: RoutineGridProps) {
+export async function RoutineGrid({ ...props }: RoutineGridProps) {
+  const currentDay = new Date().getDay()
+  const changes = await db.routine_changes.findMany({
+    where: {
+      date: {
+        gte: new Date(),
+      },
+      OR: [
+        ...props.routine
+          .filter((item) => item.day === currentDay)
+          .map((item) => ({ routine_id: item.id })),
+      ],
+    },
+  })
+  console.log(changes)
+
   return (
     <div className="flex-1 p-2">
+      {changes.length > 0 && (
+        <div className="mb-2 flex max-w-lg gap-2 rounded bg-yellow-600 p-2">
+          <Icons.warning /> There is a change in today&apos;s classes
+        </div>
+      )}
       <RoutineGridRow
         day="Monday"
         routine={props.routine.filter((item) => item.day === 1)}
