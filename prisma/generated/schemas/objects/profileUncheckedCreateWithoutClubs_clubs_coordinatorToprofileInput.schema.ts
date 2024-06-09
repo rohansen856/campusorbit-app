@@ -1,0 +1,44 @@
+import type { Prisma } from "@prisma/client"
+import { z } from "zod"
+
+import { analyticsUncheckedCreateNestedOneWithoutProfileInputObjectSchema } from "./analyticsUncheckedCreateNestedOneWithoutProfileInput.schema"
+import { clubsUncheckedCreateNestedManyWithoutProfile_clubs_cocoordinatorToprofileInputObjectSchema } from "./clubsUncheckedCreateNestedManyWithoutProfile_clubs_cocoordinatorToprofileInput.schema"
+import { profileCreateelectivesInputObjectSchema } from "./profileCreateelectivesInput.schema"
+
+const Schema: z.ZodType<Prisma.profileUncheckedCreateWithoutClubs_clubs_coordinatorToprofileInput> =
+  z
+    .object({
+      id: z.string(),
+      username: z.string().optional().nullable(),
+      full_name: z.string().optional().nullable(),
+      image: z.string().optional().nullable(),
+      semester: z.bigint(),
+      branch: z.string(),
+      group: z.string().optional().nullable(),
+      programme: z.string(),
+      year: z.bigint(),
+      institute: z.string(),
+      visibility: z.boolean().optional(),
+      mess: z.number().optional().nullable(),
+      electives: z
+        .union([
+          z.lazy(() => profileCreateelectivesInputObjectSchema),
+          z.string().array(),
+        ])
+        .optional(),
+      analytics: z
+        .lazy(
+          () => analyticsUncheckedCreateNestedOneWithoutProfileInputObjectSchema
+        )
+        .optional(),
+      clubs_clubs_cocoordinatorToprofile: z
+        .lazy(
+          () =>
+            clubsUncheckedCreateNestedManyWithoutProfile_clubs_cocoordinatorToprofileInputObjectSchema
+        )
+        .optional(),
+    })
+    .strict()
+
+export const profileUncheckedCreateWithoutClubs_clubs_coordinatorToprofileInputObjectSchema =
+  Schema

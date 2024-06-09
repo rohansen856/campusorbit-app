@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider = "prisma-zod-generator"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model access {
+  level   Int       @id @unique @db.SmallInt
+  details String?
+  domain  String?
+  account account[]
+}
+
+model account {
+  id                                     String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email                                  String
+  institute                              String
+  created_at                             DateTime          @default(now()) @db.Timestamptz(6)
+  access_level                           Int               @default(1) @db.SmallInt
+  password                               String?
+  access                                 access            @relation(fields: [access_level], references: [level], onDelete: NoAction, onUpdate: NoAction)
+  institute_account_instituteToinstitute institute         @relation("account_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "account_fk2")
+  profile                                profile?
+  routine_changes                        routine_changes[]
+}
+
+model analytics {
+  user_id   String  @id @db.Uuid
+  device    String?
+  fcm_token String?
+  profile   profile @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model clubs {
+  id                                   String    @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                                 String
+  type                                 String
+  field                                String
+  image                                String?
+  coordinator                          String?   @db.Uuid
+  cocoordinator                        String?   @db.Uuid
+  institute                            String
+  members                              BigInt    @default(0)
+  profile_clubs_coordinatorToprofile   profile?  @relation("clubs_coordinatorToprofile", fields: [coordinator], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubs_fk5")
+  profile_clubs_cocoordinatorToprofile profile?  @relation("clubs_cocoordinatorToprofile", fields: [cocoordinator], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubs_fk6")
+  institute_clubs_instituteToinstitute institute @relation("clubs_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "clubs_fk7")
+}
+
+model courses {
+  id                                     String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  institute                              String
+  course_code                            String
+  course_title                           String
+  theory                                 Boolean
+  lab                                    Boolean
+  type                                   String
+  credits                                Int       @db.SmallInt
+  semester                               Int       @db.SmallInt
+  branch                                 String
+  drive_link                             String?
+  institute_courses_instituteToinstitute institute @relation("courses_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "courses_fk1")
+  routine                                routine[]
+}
+
+model institute {
+  id                                   String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                                 String    @unique
+  full_name                            String    @unique
+  domain                               String    @unique
+  account_account_instituteToinstitute account[] @relation("account_instituteToinstitute")
+  clubs_clubs_instituteToinstitute     clubs[]   @relation("clubs_instituteToinstitute")
+  courses_courses_instituteToinstitute courses[] @relation("courses_instituteToinstitute")
+  mess_mess_instituteToinstitute       mess[]    @relation("mess_instituteToinstitute")
+  profile_profile_instituteToinstitute profile[] @relation("profile_instituteToinstitute")
+  routine_routine_instituteToinstitute routine[] @relation("routine_instituteToinstitute")
+}
+
+model mess {
+  id                                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  mess_no                             Int       @db.SmallInt
+  day                                 Int       @db.SmallInt
+  breakfast                           String
+  lunch                               String
+  dinner                              String
+  institute                           String
+  institute_mess_instituteToinstitute institute @relation("mess_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "mess_fk5")
+}
+
+model profile {
+  id                                     String     @id @db.Uuid
+  username                               String?
+  full_name                              String?
+  image                                  String?
+  semester                               BigInt
+  branch                                 String
+  group                                  String?    @default("")
+  programme                              String
+  year                                   BigInt
+  institute                              String
+  visibility                             Boolean    @default(true)
+  mess                                   Int?       @db.SmallInt
+  electives                              String[]   @default([])
+  analytics                              analytics?
+  clubs_clubs_coordinatorToprofile       clubs[]    @relation("clubs_coordinatorToprofile")
+  clubs_clubs_cocoordinatorToprofile     clubs[]    @relation("clubs_cocoordinatorToprofile")
+  institute_profile_instituteToinstitute institute  @relation("profile_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "profile_fk9")
+  account                                account    @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model routine {
+  id                                     String            @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  course_id                              String            @db.Uuid
+  course_code                            String
+  course_title                           String
+  prof                                   String
+  type                                   String            @default("'THEORY'::text")
+  day                                    Int               @db.SmallInt
+  from                                   DateTime          @db.Time(6)
+  to                                     DateTime          @db.Time(6)
+  group                                  String            @default("")
+  branch                                 String
+  institute                              String
+  room                                   String
+  semester                               Int               @db.SmallInt
+  compulsory                             Boolean           @default(true)
+  courses                                courses           @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  institute_routine_instituteToinstitute institute         @relation("routine_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction)
+  routine_changes                        routine_changes[]
+}
+
+model routine_changes {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  created_by  String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  date        DateTime @db.Date
+  description String?
+  routine_id  String   @db.Uuid
+  account     account  @relation(fields: [created_by], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  routine     routine  @relation(fields: [routine_id], references: [id], onDelete: Cascade)
+}
