@@ -1,38 +1,14 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import {
-  BellIcon,
-  Bird,
-  Download,
-  Rabbit,
-  Settings,
-  Turtle,
-} from "lucide-react"
+import { BellIcon, Download, Rabbit } from "lucide-react"
 
 import { getCurrentUser } from "@/lib/session"
 import { Button } from "@/components/ui/button"
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
 import { SiteFooter } from "@/components/shared/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
 
-import { SideNav } from "./components/side-nav"
+import { MobileSidebar } from "./components/mobile-sidebar"
+import Sidebar from "./components/side-bar"
 
 interface DashboardLayoutProps {
   children?: React.ReactNode
@@ -48,10 +24,11 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="grid h-screen w-full pl-[56px]">
-      <SideNav />
+    <div className="grid h-screen w-full">
+      {/* <SideNav /> */}
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
+          <MobileSidebar />
           <h1 className="text-xl font-semibold">CampusOrbit</h1>
 
           <div className="ml-auto mr-4 flex items-center gap-4">
@@ -78,7 +55,10 @@ export default async function DashboardLayout({
             </Button>
           </div>
         </header>
-        <main className="flex-1 p-2">{children}</main>
+        <main className="flex flex-1 p-2">
+          <Sidebar />
+          {children}
+        </main>
       </div>
       <SiteFooter />
     </div>

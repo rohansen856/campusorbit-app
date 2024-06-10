@@ -18,8 +18,13 @@ import {
   MoreVertical,
   Pizza,
   Plus,
+  Sandwich,
+  Search,
   Settings,
+  SquareTerminal,
   SunMedium,
+  Timer,
+  TowerControl,
   Trash,
   Twitter,
   User,
@@ -53,6 +58,11 @@ export const Icons = {
   moon: Moon,
   laptop: Laptop,
   message: MessageCircleMore,
+  profile: SquareTerminal,
+  stopwatch: Timer,
+  food: Sandwich,
+  admin: TowerControl,
+  search: Search,
   logo: ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <svg
       width="500"

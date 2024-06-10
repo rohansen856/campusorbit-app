@@ -30,12 +30,12 @@ export async function PATCH(
     const payload = userNameSchema.parse(body)
 
     // Update the user.
-    await db.user.update({
+    await db.profile.update({
       where: {
         id: session.user.id,
       },
       data: {
-        name: payload.name,
+        username: payload.username,
       },
     })
 

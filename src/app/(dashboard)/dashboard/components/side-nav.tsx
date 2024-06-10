@@ -110,14 +110,16 @@ export function SideNav() {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-auto rounded-lg"
+              <Link
+                href="/admin"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  pathname === "/admin" && "rounded-lg bg-secondary"
+                )}
                 aria-label="Admin"
               >
                 <TowerControl className="size-5" />
-              </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
               Admin

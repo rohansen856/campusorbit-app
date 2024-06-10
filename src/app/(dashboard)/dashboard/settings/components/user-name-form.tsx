@@ -3,7 +3,8 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { profile as Profile } from "@prisma/client"
+import { profile as ProfileType } from "@prisma/client"
+import axios from "axios"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -24,7 +25,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<Profile, "id" | "username">
+  user: Pick<ProfileType, "id" | "username">
 }
 
 type FormData = z.infer<typeof userNameSchema>
@@ -38,7 +39,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user?.username || "",
+      username: user?.username || "",
     },
   })
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
@@ -52,7 +53,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: data.name,
+        username: data.username,
       }),
     })
 
@@ -93,13 +94,15 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
               Name
             </Label>
             <Input
-              id="name"
+              id="username"
               className="w-[400px]"
               size={32}
-              {...register("name")}
+              {...register("username")}
             />
-            {errors?.name && (
-              <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
+            {errors?.username && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.username.message}
+              </p>
             )}
           </div>
         </CardContent>
@@ -109,9 +112,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
             className={cn(buttonVariants(), className)}
             disabled={isSaving}
           >
-            {isSaving && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
+            {isSaving && <Icons.spinner className="mr-2 size-4 animate-spin" />}
             <span>Save</span>
           </button>
         </CardFooter>
