@@ -3,7 +3,8 @@ import { redirect } from "next/navigation"
 import { BellIcon, Download, Rabbit } from "lucide-react"
 
 import { getCurrentUser } from "@/lib/session"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MobileSidebar } from "@/components/shared/mobile-nav"
 import { SiteFooter } from "@/components/shared/site-footer"
@@ -46,14 +47,16 @@ export default async function DashboardLayout({
                 email: user.email,
               }}
             />
-            <Button
-              variant="outline"
-              size="sm"
-              className="hidden gap-1.5 text-sm md:flex"
+            <Link
+              href={"/download"}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "hidden gap-1.5 text-sm md:flex"
+              )}
             >
               <Download className="size-3.5" />
               Download
-            </Button>
+            </Link>
           </div>
         </header>
         <main className="flex flex-1 gap-2 p-2">

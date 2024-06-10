@@ -27,14 +27,11 @@ export function DashboardNav({
   isMobileNav = false,
 }: DashboardNavProps) {
   const path = usePathname()
-  const { isMinimized } = useSidebar()
+  const [{ isMinimized }] = useSidebar()
 
   if (!items?.length) {
     return null
   }
-
-  console.log("isActive", isMobileNav, isMinimized)
-  console.log(path)
 
   return (
     <nav className="grid items-start gap-2">

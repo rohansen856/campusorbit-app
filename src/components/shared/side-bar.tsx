@@ -13,12 +13,12 @@ type SidebarProps = {
 }
 
 export default function Sidebar({ className }: SidebarProps) {
-  const { isMinimized, toggle } = useSidebar()
+  const [{ isMinimized }, setMinimized] = useSidebar()
   const [status, setStatus] = useState(false)
 
   const handleToggle = () => {
     setStatus(true)
-    toggle()
+    setMinimized({ isMinimized: !isMinimized })
     setTimeout(() => setStatus(false), 500)
   }
   return (

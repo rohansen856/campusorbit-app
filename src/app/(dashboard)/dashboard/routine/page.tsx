@@ -2,9 +2,7 @@ import { redirect } from "next/navigation"
 
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
-import { sleep } from "@/lib/utils"
 
-import { RoutineFilter } from "./components/routine-filter"
 import { RoutineGrid } from "./components/routine-grid"
 
 export const metadata = {
