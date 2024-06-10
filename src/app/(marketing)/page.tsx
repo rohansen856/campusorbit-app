@@ -58,7 +58,7 @@ export default async function IndexPage() {
             </div>
             <div className="absolute right-6 top-4 size-48 rotate-90 overflow-hidden rounded-[25%] rounded-br-[60%] border-2 border-dotted border-blue-900 duration-200 hover:scale-110">
               <Link
-                href={"/user/profile"}
+                href={"/dashboard"}
                 // target="_blank"
                 // rel="noreferrer"
                 className="flex size-48 -rotate-90 flex-col items-center justify-center gap-2 bg-white/90 text-2xl font-bold text-black"

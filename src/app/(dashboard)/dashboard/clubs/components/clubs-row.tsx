@@ -31,17 +31,17 @@ export function ClubsRow({ ...props }: ClubsRowProps) {
       <div className="flex justify-between gap-4">
         <div>
           <h4 className="text-md">{props.title}</h4>
-          <p className="mb-3 text-sm text-muted-foreground">{props.subtitle}</p>
+          <p className="mb-3 text-xs text-muted-foreground">{props.subtitle}</p>
         </div>
-        <div className="flex h-full items-center">
+        <div className="relative flex h-full items-center">
           <Input
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             placeholder="Search clubs..."
-            className="max-w-md border-2"
+            className="max-w-md border-2 lg:max-w-lg"
           />
           <Button
-            className="size-7 -translate-x-8 p-0"
+            className="absolute right-2 size-7 p-0"
             variant="secondary"
             size="icon"
           >
@@ -57,12 +57,10 @@ export function ClubsRow({ ...props }: ClubsRowProps) {
         )}
         <div className="flex gap-2">
           {data.map((club, index) => (
-            <div className="h-28 w-36 rounded bg-secondary p-2" key={index}>
-              {club.name} {club.type}
-            </div>
-          ))}
-          {data.map((club, index) => (
-            <div className="h-28 w-36 rounded bg-secondary p-2" key={index}>
+            <div
+              className="h-28 w-36 cursor-pointer rounded bg-secondary p-2"
+              key={index}
+            >
               {club.name} {club.type}
             </div>
           ))}

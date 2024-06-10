@@ -8,6 +8,6 @@ export const siteConfig: SiteConfig = {
   ogImage: "https://campusorbit.vercel.app/og.jpg",
   links: {
     twitter: "https://twitter.com/campusorbit",
-    github: "https://github.com/campusorbit/campusorbit",
+    github: "https://github.com/rohansen856",
   },
 }

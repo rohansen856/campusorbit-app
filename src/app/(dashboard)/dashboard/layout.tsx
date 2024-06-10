@@ -4,7 +4,7 @@ import { BellIcon, Download, Rabbit } from "lucide-react"
 
 import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MobileSidebar } from "@/components/shared/mobile-nav"
 import { SiteFooter } from "@/components/shared/site-footer"
@@ -26,7 +26,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-clip">
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
           <MobileSidebar />
@@ -59,11 +59,9 @@ export default async function DashboardLayout({
             </Link>
           </div>
         </header>
-        <main className="flex flex-1 gap-2 p-2">
-          <Sidebar />
-          {children}
-        </main>
+        <main className="flex flex-1 gap-2 p-2 md:pl-[90px]">{children}</main>
       </div>
+      <Sidebar />
       <SiteFooter />
     </div>
   )

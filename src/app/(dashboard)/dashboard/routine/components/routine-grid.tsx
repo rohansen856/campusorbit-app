@@ -32,7 +32,7 @@ export async function RoutineGrid({ ...props }: RoutineGridProps) {
         </div>
       ) : (
         <div className="mb-2 flex max-w-lg gap-2 rounded bg-green-600 p-2">
-          <Icons.check /> There is a change in today&apos;s classes
+          <Icons.check /> There is no change in today&apos;s classes
         </div>
       )}
       <RoutineGridRow
