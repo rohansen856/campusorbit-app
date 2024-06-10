@@ -23,7 +23,6 @@ export async function RoutineGrid({ ...props }: RoutineGridProps) {
       ],
     },
   })
-  console.log(changes)
 
   return (
     <div className="flex-1 p-2">

@@ -1,15 +1,22 @@
-import * as React from "react"
+"use client"
+
+import { ReactNode, useState } from "react"
 import Link from "next/link"
 import { MainNavItem } from "@/types"
+import { MenuIcon } from "lucide-react"
 
+import { navItems } from "@/config/dashboard"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { useLockBody } from "@/hooks/use-lock-body"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Icons } from "@/components/icons"
+
+import { DashboardNav } from "./dashboard-nav"
 
 interface MobileNavProps {
   items: MainNavItem[]
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 export function MobileNav({ items, children }: MobileNavProps) {
@@ -43,5 +50,36 @@ export function MobileNav({ items, children }: MobileNavProps) {
         {children}
       </div>
     </div>
+  )
+}
+// import { Playlist } from "../data/playlists";
+
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  // playlists: Playlist[];
+}
+
+export function MobileSidebar({ className }: SidebarProps) {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild className="md:hidden">
+          <MenuIcon />
+        </SheetTrigger>
+        <SheetContent side="left" className="!px-0">
+          <div className="space-y-4 py-4">
+            <div className="px-3 py-2">
+              <div className="space-y-1">
+                <DashboardNav
+                  items={navItems}
+                  isMobileNav={true}
+                  setOpen={setOpen}
+                />
+              </div>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </>
   )
 }

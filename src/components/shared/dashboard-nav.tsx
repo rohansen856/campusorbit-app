@@ -3,9 +3,10 @@
 import { Dispatch, SetStateAction } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { NavItem, SidebarNavItem } from "@/types"
+import { SidebarNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
+import { useSidebar } from "@/hooks/useSidebar"
 import {
   Tooltip,
   TooltipContent,
@@ -13,8 +14,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
-
-import { useSidebar } from "./hooks/useSidebar"
 
 interface DashboardNavProps {
   items: SidebarNavItem[]
@@ -35,7 +34,7 @@ export function DashboardNav({
   }
 
   console.log("isActive", isMobileNav, isMinimized)
-  console.log(items)
+  console.log(path)
 
   return (
     <nav className="grid items-start gap-2">
@@ -49,8 +48,8 @@ export function DashboardNav({
                   <Link
                     href={item.disabled ? "/" : item.href}
                     className={cn(
-                      "flex items-center gap-2 overflow-hidden rounded-md py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
-                      path === item.href && `bg-${item.color || "secondary"}`,
+                      "flex items-center gap-2 overflow-hidden rounded py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground md:rounded-r-none",
+                      path === item.href && "bg-secondary",
                       item.disabled && "cursor-not-allowed opacity-80"
                     )}
                     onClick={() => {
@@ -59,9 +58,8 @@ export function DashboardNav({
                   >
                     <Icon
                       className={cn(
-                        `ml-3 size-5`,
-                        `text-${item.color || "primary"}`,
-                        path === item.href && `text-primary`
+                        "ml-3 size-5",
+                        path === item.href && `text-teal-600`
                       )}
                     />
 
@@ -78,7 +76,7 @@ export function DashboardNav({
                   sideOffset={8}
                   className={!isMinimized ? "hidden" : "inline-block"}
                 >
-                  {item.title} hhh
+                  {item.title}
                 </TooltipContent>
               </Tooltip>
             )

@@ -44,7 +44,6 @@ export default async function Routine() {
 
   return (
     <div className="flex size-full flex-col md:flex-row">
-      <RoutineFilter />
       <RoutineGrid routine={[...routine, ...electives]} />
     </div>
   )

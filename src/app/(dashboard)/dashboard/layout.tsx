@@ -4,11 +4,12 @@ import { BellIcon, Download, Rabbit } from "lucide-react"
 
 import { getCurrentUser } from "@/lib/session"
 import { Button } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
+import { MobileSidebar } from "@/components/shared/mobile-nav"
 import { SiteFooter } from "@/components/shared/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
 
-import { MobileSidebar } from "./components/mobile-sidebar"
-import Sidebar from "./components/side-bar"
+import Sidebar from "../../../components/shared/side-bar"
 
 interface DashboardLayoutProps {
   children?: React.ReactNode
@@ -25,10 +26,10 @@ export default async function DashboardLayout({
 
   return (
     <div className="grid h-screen w-full">
-      {/* <SideNav /> */}
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
           <MobileSidebar />
+          <Icons.logo className="hidden size-8 md:block" />
           <h1 className="text-xl font-semibold">CampusOrbit</h1>
 
           <div className="ml-auto mr-4 flex items-center gap-4">
@@ -55,7 +56,7 @@ export default async function DashboardLayout({
             </Button>
           </div>
         </header>
-        <main className="flex flex-1 p-2">
+        <main className="flex flex-1 gap-2 p-2">
           <Sidebar />
           {children}
         </main>
