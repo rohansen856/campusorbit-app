@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntFieldUpdateOperationsInputObjectSchema } from "./BigIntFieldUpdateOperationsInput.schema"
+import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from "./NullableStringFieldUpdateOperationsInput.schema"
 import { StringFieldUpdateOperationsInputObjectSchema } from "./StringFieldUpdateOperationsInput.schema"
 
@@ -60,8 +60,8 @@ const Schema: z.ZodType<Prisma.clubsUncheckedUpdateInput> = z
       .optional(),
     members: z
       .union([
-        z.bigint(),
-        z.lazy(() => BigIntFieldUpdateOperationsInputObjectSchema),
+        z.number(),
+        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
   })

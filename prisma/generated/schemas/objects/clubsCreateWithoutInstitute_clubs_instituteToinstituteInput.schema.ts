@@ -12,7 +12,7 @@ const Schema: z.ZodType<Prisma.clubsCreateWithoutInstitute_clubs_instituteToinst
       type: z.string(),
       field: z.string(),
       image: z.string().optional().nullable(),
-      members: z.bigint().optional(),
+      members: z.number().optional(),
       profile_clubs_coordinatorToprofile: z
         .lazy(
           () =>

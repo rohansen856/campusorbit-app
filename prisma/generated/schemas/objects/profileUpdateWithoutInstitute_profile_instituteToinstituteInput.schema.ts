@@ -3,7 +3,6 @@ import { z } from "zod"
 
 import { accountUpdateOneRequiredWithoutProfileNestedInputObjectSchema } from "./accountUpdateOneRequiredWithoutProfileNestedInput.schema"
 import { analyticsUpdateOneWithoutProfileNestedInputObjectSchema } from "./analyticsUpdateOneWithoutProfileNestedInput.schema"
-import { BigIntFieldUpdateOperationsInputObjectSchema } from "./BigIntFieldUpdateOperationsInput.schema"
 import { BoolFieldUpdateOperationsInputObjectSchema } from "./BoolFieldUpdateOperationsInput.schema"
 import { clubsUpdateManyWithoutProfile_clubs_cocoordinatorToprofileNestedInputObjectSchema } from "./clubsUpdateManyWithoutProfile_clubs_cocoordinatorToprofileNestedInput.schema"
 import { clubsUpdateManyWithoutProfile_clubs_coordinatorToprofileNestedInputObjectSchema } from "./clubsUpdateManyWithoutProfile_clubs_coordinatorToprofileNestedInput.schema"
@@ -64,8 +63,8 @@ const Schema: z.ZodType<Prisma.profileUpdateWithoutInstitute_profile_instituteTo
         .optional(),
       year: z
         .union([
-          z.bigint(),
-          z.lazy(() => BigIntFieldUpdateOperationsInputObjectSchema),
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
       visibility: z

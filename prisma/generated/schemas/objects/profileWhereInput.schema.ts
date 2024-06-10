@@ -5,7 +5,6 @@ import { AccountRelationFilterObjectSchema } from "./AccountRelationFilter.schem
 import { accountWhereInputObjectSchema } from "./accountWhereInput.schema"
 import { AnalyticsRelationFilterObjectSchema } from "./AnalyticsRelationFilter.schema"
 import { analyticsWhereInputObjectSchema } from "./analyticsWhereInput.schema"
-import { BigIntFilterObjectSchema } from "./BigIntFilter.schema"
 import { BoolFilterObjectSchema } from "./BoolFilter.schema"
 import { ClubsListRelationFilterObjectSchema } from "./ClubsListRelationFilter.schema"
 import { InstituteRelationFilterObjectSchema } from "./InstituteRelationFilter.schema"
@@ -61,9 +60,7 @@ const Schema: z.ZodType<Prisma.profileWhereInput> = z
     programme: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
-    year: z
-      .union([z.lazy(() => BigIntFilterObjectSchema), z.bigint()])
-      .optional(),
+    year: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
     institute: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),

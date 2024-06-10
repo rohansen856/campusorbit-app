@@ -11,7 +11,7 @@ const Schema: z.ZodType<Prisma.clubsCreateManyProfile_clubs_coordinatorToprofile
       image: z.string().optional().nullable(),
       cocoordinator: z.string().optional().nullable(),
       institute: z.string(),
-      members: z.bigint().optional(),
+      members: z.number().optional(),
     })
     .strict()
 

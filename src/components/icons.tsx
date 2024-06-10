@@ -4,6 +4,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  Club,
   Command,
   CreditCard,
   File,
@@ -38,6 +39,7 @@ export type Icon = LucideIcon
 
 export const Icons = {
   close: X,
+  club: Club,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,

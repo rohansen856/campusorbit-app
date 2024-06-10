@@ -13,7 +13,6 @@ export type SidebarNavItem = {
   disabled?: boolean
   external?: boolean
   icon?: string
-  color?: string
 } & (
   | {
       href: string

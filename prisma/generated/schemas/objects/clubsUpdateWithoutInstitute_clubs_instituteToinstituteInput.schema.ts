@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntFieldUpdateOperationsInputObjectSchema } from "./BigIntFieldUpdateOperationsInput.schema"
+import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from "./NullableStringFieldUpdateOperationsInput.schema"
 import { profileUpdateOneWithoutClubs_clubs_cocoordinatorToprofileNestedInputObjectSchema } from "./profileUpdateOneWithoutClubs_clubs_cocoordinatorToprofileNestedInput.schema"
 import { profileUpdateOneWithoutClubs_clubs_coordinatorToprofileNestedInputObjectSchema } from "./profileUpdateOneWithoutClubs_clubs_coordinatorToprofileNestedInput.schema"
@@ -43,8 +43,8 @@ const Schema: z.ZodType<Prisma.clubsUpdateWithoutInstitute_clubs_instituteToinst
         .nullable(),
       members: z
         .union([
-          z.bigint(),
-          z.lazy(() => BigIntFieldUpdateOperationsInputObjectSchema),
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
       profile_clubs_coordinatorToprofile: z

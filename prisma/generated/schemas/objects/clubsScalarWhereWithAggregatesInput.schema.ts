@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntWithAggregatesFilterObjectSchema } from "./BigIntWithAggregatesFilter.schema"
+import { IntWithAggregatesFilterObjectSchema } from "./IntWithAggregatesFilter.schema"
 import { StringNullableWithAggregatesFilterObjectSchema } from "./StringNullableWithAggregatesFilter.schema"
 import { StringWithAggregatesFilterObjectSchema } from "./StringWithAggregatesFilter.schema"
 import { UuidNullableWithAggregatesFilterObjectSchema } from "./UuidNullableWithAggregatesFilter.schema"
@@ -62,7 +62,7 @@ const Schema: z.ZodType<Prisma.clubsScalarWhereWithAggregatesInput> = z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
     members: z
-      .union([z.lazy(() => BigIntWithAggregatesFilterObjectSchema), z.bigint()])
+      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
       .optional(),
   })
   .strict()

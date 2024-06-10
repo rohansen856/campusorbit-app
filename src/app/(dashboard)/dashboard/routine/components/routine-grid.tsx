@@ -25,7 +25,7 @@ export async function RoutineGrid({ ...props }: RoutineGridProps) {
   })
 
   return (
-    <div className="flex-1 overflow-x-auto p-2">
+    <div className="p-2">
       {changes.length > 0 ? (
         <div className="mb-2 flex max-w-lg gap-2 rounded bg-yellow-600 p-2">
           <Icons.warning /> There is a change in today&apos;s classes

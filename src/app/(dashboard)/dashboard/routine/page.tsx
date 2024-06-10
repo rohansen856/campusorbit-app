@@ -17,6 +17,12 @@ export default async function Routine() {
     where: {
       id: user.id,
     },
+    select: {
+      branch: true,
+      semester: true,
+      group: true,
+      electives: true,
+    },
   })
 
   if (!profile)
@@ -41,7 +47,7 @@ export default async function Routine() {
   })
 
   return (
-    <div className="flex size-full flex-col md:flex-row">
+    <div className="flex flex-row overflow-x-auto">
       <RoutineGrid routine={[...routine, ...electives]} />
     </div>
   )

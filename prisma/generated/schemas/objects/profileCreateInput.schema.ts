@@ -17,7 +17,7 @@ const Schema: z.ZodType<Prisma.profileCreateInput> = z
     branch: z.string(),
     group: z.string().optional().nullable(),
     programme: z.string(),
-    year: z.bigint(),
+    year: z.number(),
     visibility: z.boolean().optional(),
     mess: z.number().optional().nullable(),
     electives: z

@@ -48,7 +48,7 @@ model clubs {
   coordinator                          String?   @db.Uuid
   cocoordinator                        String?   @db.Uuid
   institute                            String
-  members                              BigInt    @default(0)
+  members                              Int       @default(0) @db.SmallInt
   profile_clubs_coordinatorToprofile   profile?  @relation("clubs_coordinatorToprofile", fields: [coordinator], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubs_fk5")
   profile_clubs_cocoordinatorToprofile profile?  @relation("clubs_cocoordinatorToprofile", fields: [cocoordinator], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "clubs_fk6")
   institute_clubs_instituteToinstitute institute @relation("clubs_instituteToinstitute", fields: [institute], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "clubs_fk7")
@@ -103,7 +103,7 @@ model profile {
   branch                                 String
   group                                  String?    @default("")
   programme                              String
-  year                                   BigInt
+  year                                   Int        @db.SmallInt
   institute                              String
   visibility                             Boolean    @default(true)
   mess                                   Int?       @db.SmallInt

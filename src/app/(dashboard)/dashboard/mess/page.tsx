@@ -17,6 +17,10 @@ export default async function Mess() {
     where: {
       id: user.id,
     },
+    select: {
+      institute: true,
+      mess: true,
+    },
   })
   if (!profile?.mess) return "Please select your mess from settings"
 
@@ -28,11 +32,13 @@ export default async function Mess() {
   })
 
   return (
-    <div className="size-full">
-      <div className="mb-2 flex max-w-lg gap-2 rounded bg-green-600 p-2">
-        <Icons.check /> Mess {profile.mess} menu
+    <div className="flex flex-row overflow-x-auto">
+      <div>
+        <div className="mb-2 flex max-w-lg gap-2 rounded bg-green-600 p-2">
+          <Icons.check /> Mess {profile.mess} menu
+        </div>
+        <MessGrid menu={messMenu} active={profile?.mess} />
       </div>
-      <MessGrid menu={messMenu} active={profile?.mess} />
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntFilterObjectSchema } from "./BigIntFilter.schema"
 import { InstituteRelationFilterObjectSchema } from "./InstituteRelationFilter.schema"
 import { instituteWhereInputObjectSchema } from "./instituteWhereInput.schema"
+import { IntFilterObjectSchema } from "./IntFilter.schema"
 import { ProfileRelationFilterObjectSchema } from "./ProfileRelationFilter.schema"
 import { profileWhereInputObjectSchema } from "./profileWhereInput.schema"
 import { StringFilterObjectSchema } from "./StringFilter.schema"
@@ -55,7 +55,7 @@ const Schema: z.ZodType<Prisma.clubsWhereInput> = z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     members: z
-      .union([z.lazy(() => BigIntFilterObjectSchema), z.bigint()])
+      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
       .optional(),
     profile_clubs_coordinatorToprofile: z
       .union([

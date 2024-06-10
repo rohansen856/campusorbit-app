@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation"
 
+import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
+import { FullNameForm } from "./components/full-name-form"
+import { UploadImageForm } from "./components/image-upload"
 import { UserNameForm } from "./components/user-name-form"
 
 export const metadata = {
@@ -18,14 +21,28 @@ export default async function SettingsPage() {
     redirect("/login")
   }
 
+  const profile = await db.profile.findUnique({
+    where: {
+      id: user.id,
+    },
+  })
+
+  if (!profile) "your profile has not been created yet!"
+
   return (
     <DashboardShell>
       <DashboardHeader
         heading="Settings"
         text="Manage account and website settings."
       />
-      <div className="grid gap-10">
-        <UserNameForm user={{ id: user.id, username: user.name || "" }} />
+      <div className="flex size-full max-w-lg flex-col gap-2">
+        <UploadImageForm image={profile?.image} username={profile?.username} />
+        <UserNameForm
+          user={{ id: user.id, username: profile?.username || "" }}
+        />
+        <FullNameForm
+          user={{ id: user.id, full_name: profile?.full_name || "" }}
+        />
       </div>
     </DashboardShell>
   )

@@ -26,7 +26,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="grid h-screen w-full">
+    <div className="w-full overflow-x-hidden">
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
           <MobileSidebar />

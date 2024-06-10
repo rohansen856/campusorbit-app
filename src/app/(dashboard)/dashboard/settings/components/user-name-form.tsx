@@ -82,20 +82,19 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     >
       <Card>
         <CardHeader>
-          <CardTitle>Your Name</CardTitle>
+          <CardTitle>Your Username</CardTitle>
           <CardDescription>
-            Please enter your full name or a display name you are comfortable
-            with.
+            Please enter your username that you are comfortable with.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="name">
-              Name
+              Username
             </Label>
             <Input
               id="username"
-              className="w-[400px]"
+              className="w-full"
               size={32}
               {...register("username")}
             />

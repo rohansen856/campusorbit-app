@@ -96,25 +96,26 @@ export const navItems: SidebarNavItem[] = [
     title: "Dashboard",
     href: "/dashboard",
     icon: "profile",
-    color: "blue-600",
   },
   {
     title: "Routine",
     href: "/dashboard/routine",
     icon: "stopwatch",
-    color: "green-600",
   },
   {
     title: "Mess",
     href: "/dashboard/mess",
     icon: "food",
-    color: "teal-600",
+  },
+  {
+    title: "Clubs",
+    href: "/dashboard/clubs",
+    icon: "club",
   },
   {
     title: "Search",
     href: "/dashboard/search",
     icon: "search",
-    color: "cyan-600",
   },
   {
     title: "Admin",

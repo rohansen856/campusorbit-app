@@ -9,7 +9,7 @@ interface MessGridProps {
 
 export async function MessGrid({ ...props }: MessGridProps) {
   return (
-    <div className="flex size-full flex-col gap-2">
+    <div className="flex flex-col gap-2">
       {props.menu.map((item) => (
         <MessGridRow
           day={item.day}

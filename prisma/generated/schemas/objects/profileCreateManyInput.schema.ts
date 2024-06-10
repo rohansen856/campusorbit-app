@@ -13,7 +13,7 @@ const Schema: z.ZodType<Prisma.profileCreateManyInput> = z
     branch: z.string(),
     group: z.string().optional().nullable(),
     programme: z.string(),
-    year: z.bigint(),
+    year: z.number(),
     institute: z.string(),
     visibility: z.boolean().optional(),
     mess: z.number().optional().nullable(),

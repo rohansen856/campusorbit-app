@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntFilterObjectSchema } from "./BigIntFilter.schema"
+import { IntFilterObjectSchema } from "./IntFilter.schema"
 import { StringFilterObjectSchema } from "./StringFilter.schema"
 import { StringNullableFilterObjectSchema } from "./StringNullableFilter.schema"
 import { UuidFilterObjectSchema } from "./UuidFilter.schema"
@@ -51,7 +51,7 @@ const Schema: z.ZodType<Prisma.clubsScalarWhereInput> = z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     members: z
-      .union([z.lazy(() => BigIntFilterObjectSchema), z.bigint()])
+      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
       .optional(),
   })
   .strict()

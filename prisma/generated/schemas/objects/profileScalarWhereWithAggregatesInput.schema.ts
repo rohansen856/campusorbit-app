@@ -1,7 +1,6 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntWithAggregatesFilterObjectSchema } from "./BigIntWithAggregatesFilter.schema"
 import { BoolWithAggregatesFilterObjectSchema } from "./BoolWithAggregatesFilter.schema"
 import { IntNullableWithAggregatesFilterObjectSchema } from "./IntNullableWithAggregatesFilter.schema"
 import { IntWithAggregatesFilterObjectSchema } from "./IntWithAggregatesFilter.schema"
@@ -69,7 +68,7 @@ const Schema: z.ZodType<Prisma.profileScalarWhereWithAggregatesInput> = z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
     year: z
-      .union([z.lazy(() => BigIntWithAggregatesFilterObjectSchema), z.bigint()])
+      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
       .optional(),
     institute: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])

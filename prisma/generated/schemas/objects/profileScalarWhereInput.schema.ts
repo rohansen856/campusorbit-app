@@ -1,7 +1,6 @@
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
-import { BigIntFilterObjectSchema } from "./BigIntFilter.schema"
 import { BoolFilterObjectSchema } from "./BoolFilter.schema"
 import { IntFilterObjectSchema } from "./IntFilter.schema"
 import { IntNullableFilterObjectSchema } from "./IntNullableFilter.schema"
@@ -54,9 +53,7 @@ const Schema: z.ZodType<Prisma.profileScalarWhereInput> = z
     programme: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
-    year: z
-      .union([z.lazy(() => BigIntFilterObjectSchema), z.bigint()])
-      .optional(),
+    year: z.union([z.lazy(() => IntFilterObjectSchema), z.number()]).optional(),
     institute: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),

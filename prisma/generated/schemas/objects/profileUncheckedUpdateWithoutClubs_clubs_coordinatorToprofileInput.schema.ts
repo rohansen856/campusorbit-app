@@ -2,7 +2,6 @@ import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
 import { analyticsUncheckedUpdateOneWithoutProfileNestedInputObjectSchema } from "./analyticsUncheckedUpdateOneWithoutProfileNestedInput.schema"
-import { BigIntFieldUpdateOperationsInputObjectSchema } from "./BigIntFieldUpdateOperationsInput.schema"
 import { BoolFieldUpdateOperationsInputObjectSchema } from "./BoolFieldUpdateOperationsInput.schema"
 import { clubsUncheckedUpdateManyWithoutProfile_clubs_cocoordinatorToprofileNestedInputObjectSchema } from "./clubsUncheckedUpdateManyWithoutProfile_clubs_cocoordinatorToprofileNestedInput.schema"
 import { IntFieldUpdateOperationsInputObjectSchema } from "./IntFieldUpdateOperationsInput.schema"
@@ -68,8 +67,8 @@ const Schema: z.ZodType<Prisma.profileUncheckedUpdateWithoutClubs_clubs_coordina
         .optional(),
       year: z
         .union([
-          z.bigint(),
-          z.lazy(() => BigIntFieldUpdateOperationsInputObjectSchema),
+          z.number(),
+          z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
         ])
         .optional(),
       institute: z
