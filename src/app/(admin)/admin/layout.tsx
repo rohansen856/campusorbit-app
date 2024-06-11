@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
     },
   })
   return (
-    <div className="relative flex h-full overflow-hidden bg-background">
+    <div className="relative flex h-full text-ellipsis bg-background">
       <AdminSidebarPadding />
       <div className="flex flex-1 flex-col">
         <header className="sticky top-0 z-10 flex items-center gap-1 border-b bg-background p-3">

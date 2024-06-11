@@ -1,11 +1,11 @@
-import { User } from "@prisma/client"
+import { profile as Profile } from "@prisma/client"
 import { AvatarProps } from "@radix-ui/react-avatar"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Icons } from "@/components/icons"
 
 interface UserAvatarProps extends AvatarProps {
-  user: Pick<User, "image" | "name">
+  user: Pick<Profile, "image" | "username">
 }
 
 export function UserAvatar({ user, ...props }: UserAvatarProps) {
@@ -15,8 +15,8 @@ export function UserAvatar({ user, ...props }: UserAvatarProps) {
         <AvatarImage alt="Picture" src={user.image} />
       ) : (
         <AvatarFallback>
-          <span className="sr-only">{user.name}</span>
-          <Icons.user className="h-4 w-4" />
+          <span className="sr-only">{user.username}</span>
+          <Icons.user className="size-4" />
         </AvatarFallback>
       )}
     </Avatar>

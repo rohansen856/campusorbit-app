@@ -1,16 +1,14 @@
 import Image from "next/image"
 
 import { cn } from "@/lib/utils"
-import { AnimatedButton } from "@/components/animated-button"
 import { Icons } from "@/components/icons"
 
-import Section from "../features/section"
 import { LeftCurve, RightCurve } from "./curves"
 import { collabApps, collabContent, collabText } from "./data"
 
 export function Socials() {
   return (
-    <div className="container lg:flex max-w-full">
+    <div className="container max-w-full lg:flex">
       <div className="max-w-[25rem]">
         <h2 className="h2 mb-4 text-lg md:mb-8 lg:text-2xl 2xl:text-4xl">
           Follow us accross social media platforms
@@ -61,7 +59,7 @@ export function Socials() {
               >
                 <div
                   className={cn(
-                    "bg-n-7 relative -top-[1.6rem] flex h-[3.2rem] w-[3.2rem] rounded-xl border border-muted-foreground bg-secondary hover:scale-110 duration-300 cursor-pointer",
+                    "bg-n-7 relative -top-[1.6rem] flex size-[3.2rem] cursor-pointer rounded-xl border border-muted-foreground bg-secondary duration-300 hover:scale-110",
                     `-rotate-${index * 45}`
                   )}
                 >
