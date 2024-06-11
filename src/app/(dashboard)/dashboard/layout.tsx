@@ -68,7 +68,7 @@ export default async function DashboardLayout({
       <Sidebar />
       <div className="flex w-full">
         <SidebarPadding />
-        <SiteFooter />
+        <SiteFooter className="flex-1" />
       </div>
     </div>
   )

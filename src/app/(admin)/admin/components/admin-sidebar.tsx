@@ -44,7 +44,7 @@ export default function Sidebar2({ className }: SidebarProps) {
         {/* Header */}
         <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4">
           <div className={`flex items-center ${!isCollapsed ? "gap-2" : ""}`}>
-            <Icons.logo className="size-10" />
+            <Icons.logo className="size-8" />
             <div
               className={`flex flex-col justify-end truncate ${isCollapsed ? "invisible w-0" : "visible w-auto"}`}
             >

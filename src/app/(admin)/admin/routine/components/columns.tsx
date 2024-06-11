@@ -1,14 +1,27 @@
+"use client"
+
+import { routine as RoutineType } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { labels, priorities, statuses } from "../../data/data"
 import { Task } from "../../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { labels, priorities, statuses } from "./filters"
 
-export const columns: ColumnDef<Task>[] = [
+const weekDays = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+]
+
+export const columns: ColumnDef<RoutineType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -34,40 +47,53 @@ export const columns: ColumnDef<Task>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "id",
+    accessorKey: "course_code",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Task" />
+      <DataTableColumnHeader column={column} title="Code" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("course_code")}</div>
+    ),
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "title",
+    accessorKey: "course_title",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
+    cell: ({ row }) => (
+      <div className="w-[80px] text-wrap">{row.getValue("course_title")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "type",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Class Type" />
+    ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
+      const label = labels.find((label) => label.value === row.original.type)
 
       return (
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
-            {row.getValue("title")}
+            {row.getValue("type")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: "compulsory",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="Course Type" />
     ),
     cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
+      const status = statuses.find((status) =>
+        status.value === row.getValue("compulsory") ? "compulsory" : "elective"
       )
 
       if (!status) {
@@ -88,25 +114,78 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: "priority",
+    accessorKey: "prof",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Priority" />
+      <DataTableColumnHeader column={column} title="Professor" />
     ),
     cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
-      )
-
-      if (!priority) {
-        return null
-      }
-
       return (
         <div className="flex items-center">
-          {priority.icon && (
-            <priority.icon className="mr-2 size-4 text-muted-foreground" />
-          )}
-          <span>{priority.label}</span>
+          <span>{row.getValue("prof")}</span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: "day",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Day" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{weekDays[row.getValue("day") as number]}</span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: "from",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="From" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{(row.getValue("from") as Date).getHours() - 5}:00</span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: "to",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="To" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{(row.getValue("to") as Date).getHours() - 5}:00</span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: "room",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Room" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{row.getValue("room")}</span>
         </div>
       )
     },
