@@ -64,6 +64,9 @@ module.exports = withUt({
         sans: ["var(--font-sans)", ...fontFamily.sans],
         heading: ["var(--font-heading)", ...fontFamily.sans],
       },
+      fontSize: {
+        xxs: "xx-small", // Custom font size class
+      },
       keyframes: {
         scroll: {
           to: {

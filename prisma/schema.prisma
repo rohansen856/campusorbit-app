@@ -9,10 +9,11 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model access {
-  level   Int       @id @unique @db.SmallInt
-  details String?
-  domain  String?
-  account account[]
+  level          Int       @id @unique @db.SmallInt
+  details        String?
+  domain         String?
+  allowed_routes String[]  @default([])
+  account        account[]
 }
 
 model account {

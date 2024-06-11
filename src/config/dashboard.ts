@@ -119,7 +119,7 @@ export const navItems: SidebarNavItem[] = [
   },
   {
     title: "Admin",
-    href: "/dashboard/admin",
+    href: "/admin",
     icon: "admin",
   },
   {

@@ -11,6 +11,7 @@ import { SiteFooter } from "@/components/shared/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
 
 import Sidebar from "../../../components/shared/side-bar"
+import { SidebarPadding } from "./components/sidebar-padding"
 
 interface DashboardLayoutProps {
   children?: React.ReactNode
@@ -59,10 +60,16 @@ export default async function DashboardLayout({
             </Link>
           </div>
         </header>
-        <main className="flex flex-1 gap-2 p-2 md:pl-[90px]">{children}</main>
+        <main className="flex w-full gap-2 p-2">
+          <SidebarPadding />
+          {children}
+        </main>
       </div>
       <Sidebar />
-      <SiteFooter />
+      <div className="flex w-full">
+        <SidebarPadding />
+        <SiteFooter />
+      </div>
     </div>
   )
 }

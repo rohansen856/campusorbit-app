@@ -3,6 +3,10 @@ import { getCurrentUser } from "@/lib/session"
 
 import { ClubsRow } from "./components/clubs-row"
 
+export const metadata = {
+  title: "Clubs",
+}
+
 export default async function ClubsPage() {
   const user = await getCurrentUser()
   const profile = await db.profile.findUnique({
@@ -29,25 +33,21 @@ export default async function ClubsPage() {
 
   return (
     <div className="w-full space-y-4 overflow-x-auto">
-      <ClubsRow
-        title="All Clubs"
-        subtitle="jhhjhvhgvh"
-        clubs={[...clubs, ...clubs, ...clubs, ...clubs, ...clubs]}
-      />
+      <ClubsRow title="All Clubs" subtitle="jhhjhvhgvh" clubs={[...clubs]} />
       <ClubsRow title="Your Club" subtitle="jhhjhvhhhj" clubs={[]} />
       <ClubsRow
         title="Cultural"
-        subtitle="jhhjhvhgvh"
+        subtitle="cultural clubs"
         clubs={[...clubs.filter((club) => club.type === "cultural")]}
       />
       <ClubsRow
         title="Sports"
-        subtitle="jhhjhvhgvh"
+        subtitle="sports clubs"
         clubs={[...clubs.filter((club) => club.type === "sports")]}
       />
       <ClubsRow
         title="Science"
-        subtitle="jhhjhvhgvh"
+        subtitle="science and tech. clubs"
         clubs={[...clubs.filter((club) => club.type === "science")]}
       />
     </div>

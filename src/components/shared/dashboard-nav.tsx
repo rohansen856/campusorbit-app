@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { SidebarNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
-import { useSidebar } from "@/hooks/useSidebar"
+import { useSidebar } from "@/hooks/use-sidebar"
 import {
   Tooltip,
   TooltipContent,

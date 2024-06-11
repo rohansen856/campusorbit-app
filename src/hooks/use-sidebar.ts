@@ -5,7 +5,7 @@ type Config = {
 }
 
 const configAtom = atom<Config>({
-  isMinimized: false,
+  isMinimized: true,
 })
 
 export function useSidebar() {
