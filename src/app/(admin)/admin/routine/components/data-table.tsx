@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useRoutineChanges } from "@/states/routine-state"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -16,6 +17,8 @@ import {
   VisibilityState,
 } from "@tanstack/react-table"
 
+import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
 import {
   Table,
   TableBody,
@@ -30,13 +33,16 @@ import { DataTableToolbar } from "../components/data-table-toolbar"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
+  modifications: { description: string | null; routine_id: string }[]
   data: TData[]
 }
 
 export function DataTable<TData, TValue>({
   columns,
+  modifications,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [{ changes }, setChanges] = useRoutineChanges()
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -44,7 +50,6 @@ export function DataTable<TData, TValue>({
     []
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
-
   const table = useReactTable({
     data,
     columns,
@@ -67,8 +72,24 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
+  React.useEffect(() => {
+    setChanges({ changes: modifications })
+  }, [])
+
   return (
     <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-4 rounded bg-secondary p-2">
+        <h3 className="text-md lg:text-lg 2xl:text-xl">Today&apos; routine</h3>
+        <Badge>{changes.length} changes</Badge>
+        <Badge>
+          {changes.filter((item) => item.description === "cancelled").length}{" "}
+          cancelled
+        </Badge>
+        <Badge>
+          {changes.filter((item) => item.description === "rescheduled").length}{" "}
+          rescheduled
+        </Badge>
+      </div>
       <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
@@ -96,6 +117,19 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className={cn(
+                    "",
+                    [...changes.map((item) => item.routine_id)].includes(
+                      row.original["id"]
+                    ) &&
+                      (changes[
+                        [...changes.map((item) => item.routine_id)].indexOf(
+                          row.original["id"]
+                        )
+                      ].description === "cancelled"
+                        ? "bg-red-500/30"
+                        : "bg-yellow-500/50")
+                  )}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

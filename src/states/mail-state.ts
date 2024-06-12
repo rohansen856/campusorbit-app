@@ -1,15 +1,15 @@
 import { atom, useAtom } from "jotai"
 
-import { Mail, mails } from "./data"
+import { Mail, mails } from "../app/(dashboard)/dashboard/mails/data"
 
 type Config = {
   selected: Mail["id"] | null
 }
 
-const configAtom = atom<Config>({
+export const mailAtom = atom<Config>({
   selected: null,
 })
 
 export function useMail() {
-  return useAtom(configAtom)
+  return useAtom(mailAtom)
 }

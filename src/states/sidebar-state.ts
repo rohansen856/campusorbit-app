@@ -4,10 +4,10 @@ type Config = {
   isMinimized: boolean
 }
 
-const configAtom = atom<Config>({
+export const sidebarAtom = atom<Config>({
   isMinimized: true,
 })
 
 export function useSidebar() {
-  return useAtom(configAtom)
+  return useAtom(sidebarAtom)
 }

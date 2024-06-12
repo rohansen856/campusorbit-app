@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 
-import { apps } from "./data/apps"
+import { apps } from "../../../config/admin"
 
 const appText = new Map<string, string>([
   ["all", "All Apps"],
@@ -26,7 +26,7 @@ const appText = new Map<string, string>([
   ["notConnected", "Not Connected"],
 ])
 
-export default function Apps() {
+export default function AdminWelcome() {
   const [sort, setSort] = useState("ascending")
   const [appType, setAppType] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")

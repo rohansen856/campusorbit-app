@@ -31,7 +31,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div className="relative flex h-full text-ellipsis bg-background">
       <AdminSidebarPadding />
-      <div className="flex flex-1 flex-col">
+      <div className="flex max-w-full flex-1 flex-col">
         <header className="sticky top-0 z-10 flex items-center gap-1 border-b bg-background p-3">
           <h1 className="text-xl font-semibold">CampusOrbit</h1>
 

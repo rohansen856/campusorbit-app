@@ -10,8 +10,9 @@ interface MessGridProps {
 export async function MessGrid({ ...props }: MessGridProps) {
   return (
     <div className="flex flex-col gap-2">
-      {props.menu.map((item) => (
+      {props.menu.map((item, index) => (
         <MessGridRow
+          key={index}
           day={item.day}
           breakfast={item.breakfast}
           lunch={item.lunch}

@@ -1,7 +1,8 @@
 "use client"
 
+import { useSidebar } from "@/states/sidebar-state"
+
 import { cn } from "@/lib/utils"
-import { useSidebar } from "@/hooks/use-sidebar"
 
 export function SidebarPadding() {
   const [{ isMinimized }] = useSidebar()

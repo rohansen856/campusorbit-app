@@ -1,11 +1,11 @@
 "use client"
 
 import React, { useState } from "react"
+import { useSidebar } from "@/states/sidebar-state"
 import { ChevronLeft } from "lucide-react"
 
 import { navItems } from "@/config/dashboard"
 import { cn } from "@/lib/utils"
-import { useSidebar } from "@/hooks/use-sidebar"
 import { DashboardNav } from "@/components/shared/dashboard-nav"
 
 type SidebarProps = {

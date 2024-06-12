@@ -3,10 +3,10 @@
 import { Dispatch, SetStateAction } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useSidebar } from "@/states/sidebar-state"
 import { SidebarNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
-import { useSidebar } from "@/hooks/use-sidebar"
 import {
   Tooltip,
   TooltipContent,

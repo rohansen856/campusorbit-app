@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useSidebar } from "@/states/sidebar-state"
 import { IconChevronsLeft, IconMenu2, IconX } from "@tabler/icons-react"
 
 import { cn } from "@/lib/utils"
-import { useSidebar } from "@/hooks/use-sidebar"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 

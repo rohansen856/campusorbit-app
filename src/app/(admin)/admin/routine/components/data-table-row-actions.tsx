@@ -1,6 +1,10 @@
+"use client"
+
+import { useRoutineChanges } from "@/states/routine-state"
 import { routine } from "@prisma/client"
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { Row } from "@tanstack/react-table"
+import axios from "axios"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -16,9 +20,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
-import { taskSchema } from "../../data/schema"
-import { labels } from "./filters"
+import { toast } from "@/components/ui/use-toast"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -27,7 +29,76 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = row.original as routine //taskSchema.parse(row.original)
+  const [{ changes }, setChanges] = useRoutineChanges()
+  const routine = row.original as routine
+
+  async function applyModification(modification: "cancelled" | "rescheduled") {
+    try {
+      const { status } = await axios.post("/api/admin/routine", {
+        modification,
+        routineId: routine.id,
+      })
+      if (status !== 204)
+        return toast({
+          title: "Error updating class status!",
+          description:
+            "We were unable to process the request. Please try again later.",
+          variant: "destructive",
+        })
+
+      setChanges({
+        changes: [
+          ...changes,
+          { routine_id: routine.id, description: modification },
+        ],
+      })
+
+      return toast({
+        title: "Successfully updated status.",
+        variant: "default",
+        color: "#ff0000",
+      })
+    } catch (error) {
+      return toast({
+        title: "Error updating class status!",
+        description:
+          "We were unable to process the request. Please try again later.",
+        variant: "destructive",
+      })
+    }
+  }
+
+  async function cancelModification() {
+    try {
+      const { status } = await axios.delete("/api/admin/routine", {
+        data: { routineId: routine.id },
+      })
+      if (status !== 200)
+        return toast({
+          title: "Error updating class status!",
+          description:
+            "We were unable to process the request. Please try again later.",
+          variant: "destructive",
+        })
+
+      setChanges({
+        changes: [...changes.filter((item) => item.routine_id !== routine.id)],
+      })
+
+      return toast({
+        title: "Successfully updated status.",
+        variant: "default",
+        color: "#ff0000",
+      })
+    } catch (error) {
+      return toast({
+        title: "Error updating class status!",
+        description:
+          "We were unable to process the request. Please try again later.",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -40,26 +111,34 @@ export function DataTableRowActions<TData>({
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
+      <DropdownMenuContent align="end" className="w-[200px]">
+        <DropdownMenuItem
+          onClick={() => applyModification("cancelled")}
+          disabled={
+            changes.filter((item) => item.routine_id === routine.id).length > 0
+          }
+        >
+          Mark Cancelled
+          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => applyModification("rescheduled")}
+          disabled={
+            changes.filter((item) => item.routine_id === routine.id).length > 0
+          }
+        >
+          Mark Rescheduled
+          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.course_title}>
-              {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Delete
+        <DropdownMenuItem
+          onClick={() => cancelModification()}
+          disabled={
+            changes.filter((item) => item.routine_id === routine.id).length ===
+            0
+          }
+        >
+          Cancel changes
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

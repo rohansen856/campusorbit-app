@@ -26,8 +26,8 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
+import { useMail } from "../../../../../states/mail-state"
 import { type Mail } from "../data"
-import { useMail } from "../use-mail"
 import { AccountSwitcher } from "./account-switcher"
 import { MailDisplay } from "./mail-display"
 import { MailList } from "./mail-list"
@@ -85,8 +85,8 @@ export function Mail({
         >
           <div
             className={cn(
-              "flex h-[52px] items-center justify-center",
-              isCollapsed ? "h-[52px]" : "px-2"
+              "flex h-[56px] items-center justify-center",
+              isCollapsed ? "h-[56px]" : "px-2"
             )}
           >
             <AccountSwitcher isCollapsed={isCollapsed} accounts={accounts} />
