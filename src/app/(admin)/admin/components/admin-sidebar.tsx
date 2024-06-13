@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 
+import { sidelinks } from "../../../../config/admin"
 import { Layout, LayoutHeader } from "./admin-layout"
 import Nav from "./nav"
-import { sidelinks } from "./sidebar-links"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {}
 

@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MobileSidebar } from "@/components/shared/mobile-nav"
+import Sidebar from "@/components/shared/side-bar"
 import { SiteFooter } from "@/components/shared/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
 
-import Sidebar from "../../../components/shared/side-bar"
 import { SidebarPadding } from "./components/sidebar-padding"
 
 interface DashboardLayoutProps {

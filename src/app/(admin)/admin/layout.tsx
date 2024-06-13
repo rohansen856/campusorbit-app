@@ -20,12 +20,9 @@ export const metadata = {
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const user = await getCurrentUser()
   if (!user) return redirect("/login")
-  const accessLevel = await db.account.findUnique({
+  const isAdmin = await db.admins.findFirst({
     where: {
-      id: user.id,
-    },
-    select: {
-      access_level: true,
+      user_id: user.id,
     },
   })
   return (
@@ -36,8 +33,11 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
           <h1 className="text-xl font-semibold">CampusOrbit</h1>
 
           <div className="ml-auto mr-4 flex items-center gap-4">
-            <Badge variant="secondary">
-              access level: {accessLevel?.access_level}
+            <Badge
+              variant="secondary"
+              className={isAdmin ? "bg-green-700" : "bg-red-700"}
+            >
+              {isAdmin ? "admin access" : "not admin"}
             </Badge>
             <UserAccountNav
               user={{

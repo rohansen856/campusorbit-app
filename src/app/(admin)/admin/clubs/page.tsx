@@ -3,8 +3,7 @@ import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { NoAdminAccess } from "@/components/no-admin-access"
-
-import { MenuTable } from "./components/menu-table"
+import { StillBuilding } from "@/components/still-building"
 
 export default async function MessAdmin() {
   const user = await getCurrentUser()
@@ -12,10 +11,10 @@ export default async function MessAdmin() {
   const hasAccess = await db.admins.findFirst({
     where: {
       user_id: user.id,
-      route: "/mess",
+      route: "/clubs",
     },
   })
-  if (!hasAccess) return <NoAdminAccess route="/mess" />
+  if (!hasAccess) return <NoAdminAccess route="/clubs" />
 
   const profile = await db.profile.findUnique({
     where: {
@@ -28,16 +27,5 @@ export default async function MessAdmin() {
 
   if (!profile) return "You dont have a profile!"
 
-  const messToday = await db.mess.findMany({
-    where: {
-      institute: profile?.institute,
-      day: new Date().getDay(),
-    },
-  })
-
-  return (
-    <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-      <MenuTable menu={messToday} />
-    </div>
-  )
+  return <StillBuilding />
 }

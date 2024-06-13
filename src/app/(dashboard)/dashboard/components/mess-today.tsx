@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { mess as MessType } from "@prisma/client"
+import { Mess } from "@prisma/client"
 import axios from "axios"
 
 export function MessToday() {
-  const [data, setData] = useState<MessType | null>(null)
+  const [data, setData] = useState<Mess | null>(null)
   async function getData() {
     try {
       const mess = await axios.get("/api/mess/today")

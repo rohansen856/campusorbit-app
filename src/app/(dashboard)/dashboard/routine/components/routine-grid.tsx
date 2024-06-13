@@ -1,4 +1,4 @@
-import { type routine as RoutineType } from "@prisma/client"
+import { Routine } from "@prisma/client"
 
 import { db } from "@/lib/db"
 import { Icons } from "@/components/icons"
@@ -6,12 +6,12 @@ import { Icons } from "@/components/icons"
 import { RoutineGridRow } from "./routine-grid-row"
 
 interface RoutineGridProps extends React.HTMLAttributes<HTMLDivElement> {
-  routine: RoutineType[]
+  routine: Routine[]
 }
 
 export async function RoutineGrid({ ...props }: RoutineGridProps) {
   const currentDay = new Date().getDay()
-  const changes = await db.routine_changes.findMany({
+  const changes = await db.routineChanges.findMany({
     where: {
       date: {
         gte: new Date(),

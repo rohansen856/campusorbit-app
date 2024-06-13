@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { clubs as ClubType } from "@prisma/client"
+import { Clubs } from "@prisma/client"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,12 +10,12 @@ import { Icons } from "@/components/icons"
 interface ClubsRowProps {
   title: string
   subtitle: string
-  clubs: ClubType[]
+  clubs: Clubs[]
 }
 
 export function ClubsRow({ ...props }: ClubsRowProps) {
   const [filter, setFilter] = useState<string>("")
-  const [data, setData] = useState<ClubType[]>(props.clubs)
+  const [data, setData] = useState<Clubs[]>(props.clubs)
   useEffect(() => {
     if (filter.length < 1) setData(props.clubs)
     setData([

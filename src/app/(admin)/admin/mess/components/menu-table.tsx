@@ -1,11 +1,11 @@
-import { mess as MessType } from "@prisma/client"
+import { Mess } from "@prisma/client"
 
 import { Badge } from "@/components/ui/badge"
 
 import { MenuList } from "./menu-list"
 
 interface MenuTableProps extends React.HTMLAttributes<HTMLDivElement> {
-  menu: MessType[]
+  menu: Mess[]
 }
 
 export function MenuTable({ menu, ...props }: MenuTableProps) {
@@ -16,9 +16,7 @@ export function MenuTable({ menu, ...props }: MenuTableProps) {
         <h3 className="text-md lg:text-lg 2xl:text-xl">
           Today&apos; mess menu
         </h3>
-        <Badge>0 changes</Badge>
-        <Badge>0 cancelled</Badge>
-        <Badge>0 rescheduled</Badge>
+        <Badge>{menu.length} mess</Badge>
       </div>
       {menu.map((item, index) => (
         <div className="" key={index}>

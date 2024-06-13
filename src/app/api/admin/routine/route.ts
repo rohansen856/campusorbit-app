@@ -14,23 +14,19 @@ export async function POST(req: Request) {
     }
 
     // Get the user data.
-    const accessLevel = await db.account.findUnique({
+    const isAdmin = await db.admins.findFirst({
       where: {
-        id: session.user.id,
-      },
-      select: {
-        access_level: true,
+        user_id: session.user.id,
       },
     })
 
-    if (!accessLevel || accessLevel.access_level < 2)
-      return new Response(null, { status: 403 })
+    if (!isAdmin) return new Response(null, { status: 403 })
 
     const body = await req.json()
     const payload = routineModificationSchema.parse(body)
 
     // Modify the routine.
-    const routineModification = await db.routine_changes.create({
+    const routineModification = await db.routineChanges.create({
       data: {
         created_by: session.user.id,
         date: new Date(),
@@ -58,23 +54,19 @@ export async function DELETE(req: Request) {
     }
 
     // Get the user data.
-    const accessLevel = await db.account.findUnique({
+    const isAdmin = await db.admins.findFirst({
       where: {
-        id: session.user.id,
-      },
-      select: {
-        access_level: true,
+        user_id: session.user.id,
       },
     })
 
-    if (!accessLevel || accessLevel.access_level < 2)
-      return new Response(null, { status: 403 })
+    if (!isAdmin) return new Response(null, { status: 403 })
 
     const body = await req.json()
     const payload = body as { routineId: string }
 
     // Modify the routine.
-    await db.routine_changes.deleteMany({
+    await db.routineChanges.deleteMany({
       where: {
         date: new Date(),
         routine_id: payload.routineId,

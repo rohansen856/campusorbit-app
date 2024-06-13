@@ -23,8 +23,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+import { SideLink } from "../../../../config/admin"
 import useCheckActiveNav from "./check-active-nav"
-import { SideLink } from "./sidebar-links"
 
 interface NavProps extends React.HTMLAttributes<HTMLDivElement> {
   isCollapsed: boolean

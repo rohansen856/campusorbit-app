@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { profile as ProfileType } from "@prisma/client"
+import { Profile } from "@prisma/client"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -25,7 +25,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<ProfileType, "id" | "username">
+  user: Pick<Profile, "id" | "username">
 }
 
 type FormData = z.infer<typeof userNameSchema>

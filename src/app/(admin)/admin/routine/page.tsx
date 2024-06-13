@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
+import { NoAdminAccess } from "@/components/no-admin-access"
 
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
@@ -9,6 +10,14 @@ import { DataTable } from "./components/data-table"
 export default async function RoutineAdmin() {
   const user = await getCurrentUser()
   if (!user) return redirect("/login")
+  const hasAccess = await db.admins.findFirst({
+    where: {
+      user_id: user.id,
+      route: "/routine",
+    },
+  })
+  if (!hasAccess) return <NoAdminAccess route="/routine" />
+
   const profile = await db.profile.findUnique({
     where: {
       id: user.id,
@@ -33,7 +42,7 @@ export default async function RoutineAdmin() {
     },
   })
 
-  const modifications = await db.routine_changes.findMany({
+  const modifications = await db.routineChanges.findMany({
     where: {
       OR: [...routineToday.map((routine) => ({ routine_id: routine.id }))],
       date: new Date(),

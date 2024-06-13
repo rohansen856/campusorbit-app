@@ -1,6 +1,6 @@
 "use client"
 
-import { routine as RoutineType } from "@prisma/client"
+import { Routine } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 
 import { Badge } from "@/components/ui/badge"
@@ -20,7 +20,7 @@ const weekDays = [
   "Saturday",
 ]
 
-export const columns: ColumnDef<RoutineType>[] = [
+export const columns: ColumnDef<Routine>[] = [
   {
     id: "select",
     header: ({ table }) => (

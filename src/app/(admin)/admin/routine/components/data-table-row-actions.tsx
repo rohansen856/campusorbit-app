@@ -1,7 +1,7 @@
 "use client"
 
 import { useRoutineChanges } from "@/states/routine-state"
-import { routine } from "@prisma/client"
+import { Routine } from "@prisma/client"
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { Row } from "@tanstack/react-table"
 import axios from "axios"
@@ -30,7 +30,7 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const [{ changes }, setChanges] = useRoutineChanges()
-  const routine = row.original as routine
+  const routine = row.original as Routine
 
   async function applyModification(modification: "cancelled" | "rescheduled") {
     try {

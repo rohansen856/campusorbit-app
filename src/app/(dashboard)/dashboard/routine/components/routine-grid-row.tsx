@@ -1,4 +1,4 @@
-import { type routine as RoutineType } from "@prisma/client"
+import { Routine } from "@prisma/client"
 
 import { cn } from "@/lib/utils"
 
@@ -6,7 +6,7 @@ import { RoutineGridSquare } from "./routine-grid-square"
 
 interface RoutineGridRowProps extends React.HTMLAttributes<HTMLDivElement> {
   day: string
-  routine: RoutineType[]
+  routine: Routine[]
 }
 
 export function RoutineGridRow({ ...props }: RoutineGridRowProps) {

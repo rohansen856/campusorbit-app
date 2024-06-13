@@ -1,13 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { routine as RoutineType } from "@prisma/client"
+import { Routine } from "@prisma/client"
 import axios from "axios"
 
 import { cn } from "@/lib/utils"
 
 export function RoutineToday() {
-  const [data, setData] = useState<RoutineType[]>([])
+  const [data, setData] = useState<Routine[]>([])
   async function getData() {
     try {
       const routine = await axios.get("/api/routine/today")

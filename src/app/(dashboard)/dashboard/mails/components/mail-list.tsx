@@ -1,4 +1,5 @@
 import { ComponentProps } from "react"
+import { useMail } from "@/states/mail-state"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 
 import { cn } from "@/lib/utils"
@@ -6,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 
-import { useMail } from "../../../../../states/mail-state"
 import { Mail } from "../data"
 
 interface MailListProps {

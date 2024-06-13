@@ -1,9 +1,9 @@
-import { type mess as MessMenuType } from "@prisma/client"
+import { Mess } from "@prisma/client"
 
 import { MessGridRow } from "./mess-grid-row"
 
 interface MessGridProps {
-  menu: MessMenuType[]
+  menu: Mess[]
   active?: number | null
 }
 

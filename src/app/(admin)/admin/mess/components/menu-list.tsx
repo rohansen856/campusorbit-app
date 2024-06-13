@@ -1,9 +1,9 @@
-import { mess as MessType } from "@prisma/client"
+import { Mess } from "@prisma/client"
 
 import { MenuListSquare } from "./menu-list-square"
 
 interface MenuListProps extends React.HTMLAttributes<HTMLDivElement> {
-  menu: MessType
+  menu: Mess
 }
 
 export async function MenuList({ menu, ...props }: MenuListProps) {

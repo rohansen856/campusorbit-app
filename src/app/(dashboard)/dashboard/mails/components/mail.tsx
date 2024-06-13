@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useMail } from "@/states/mail-state"
 import {
   AlertCircle,
   Archive,
@@ -26,7 +27,6 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
-import { useMail } from "../../../../../states/mail-state"
 import { type Mail } from "../data"
 import { AccountSwitcher } from "./account-switcher"
 import { MailDisplay } from "./mail-display"

@@ -3,11 +3,9 @@ import { usePathname } from "next/navigation"
 export default function useCheckActiveNav() {
   const pathname = usePathname()
 
-  const checkActiveNav = (nav: string) => {
+  const checkActiveNav = (href: string) => {
     if (!pathname) return false
-    const pathArray = pathname.split("/").filter((item) => item !== "")
-
-    return pathArray.includes(nav)
+    return pathname === href
   }
 
   return { checkActiveNav }
