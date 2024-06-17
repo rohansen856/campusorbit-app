@@ -2,8 +2,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-import { env } from "@/env.mjs"
-import { siteConfig } from "@/config/site"
 import { db } from "@/lib/db"
 
 export const authOptions: NextAuthOptions = {

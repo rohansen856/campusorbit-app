@@ -19,6 +19,14 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client"],
   },
+  rewrites: async () => {
+    return [
+      {
+        source: "/docs/database",
+        destination: "/docs/index.html",
+      },
+    ]
+  },
 }
 
 export default withMDX(nextConfig)

@@ -12,7 +12,11 @@ export function UserAvatar({ user, ...props }: UserAvatarProps) {
   return (
     <Avatar {...props}>
       {user.image ? (
-        <AvatarImage alt="Picture" src={user.image} />
+        <AvatarImage
+          alt="Picture"
+          src={user.image}
+          className="object-contain"
+        />
       ) : (
         <AvatarFallback>
           <span className="sr-only">{user.username}</span>

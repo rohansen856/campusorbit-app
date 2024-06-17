@@ -130,7 +130,7 @@ export default async function IndexPage() {
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             campusorbit is built by the students of{" "}
             <Link
-              href={""}
+              href={"https://iiitdmj.ac.in"}
               className="underline underline-offset-4 hover:text-blue-800"
             >
               IIITDMJ

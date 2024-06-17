@@ -6,7 +6,7 @@ import axios from "axios"
 
 export function MessToday() {
   const [data, setData] = useState<Mess | null>(null)
-  async function getData() {
+  async function getMessToday() {
     try {
       const mess = await axios.get("/api/mess/today")
       if (mess.status === 200) setData(mess.data)
@@ -16,7 +16,7 @@ export function MessToday() {
     }
   }
   useEffect(() => {
-    getData()
+    getMessToday()
   }, [])
   return (
     <div className="flex flex-wrap gap-2">

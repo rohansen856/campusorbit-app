@@ -10,6 +10,15 @@ interface RoutineGridProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export async function RoutineGrid({ ...props }: RoutineGridProps) {
+  const weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ]
   const currentDay = new Date().getDay()
   const changes = await db.routineChanges.findMany({
     where: {
@@ -21,6 +30,10 @@ export async function RoutineGrid({ ...props }: RoutineGridProps) {
           .filter((item) => item.day === currentDay)
           .map((item) => ({ routine_id: item.id })),
       ],
+    },
+    select: {
+      routine_id: true,
+      description: true,
     },
   })
 
@@ -35,27 +48,15 @@ export async function RoutineGrid({ ...props }: RoutineGridProps) {
           <Icons.check /> There is no change in today&apos;s classes
         </div>
       )}
-      <RoutineGridRow
-        day="Monday"
-        routine={props.routine.filter((item) => item.day === 1)}
-      />
-      <RoutineGridRow
-        day="Tuesday"
-        routine={props.routine.filter((item) => item.day === 2)}
-      />
-
-      <RoutineGridRow
-        day="Wednesday"
-        routine={props.routine.filter((item) => item.day === 3)}
-      />
-      <RoutineGridRow
-        day="Thursday"
-        routine={props.routine.filter((item) => item.day === 4)}
-      />
-      <RoutineGridRow
-        day="Friday"
-        routine={props.routine.filter((item) => item.day === 5)}
-      />
+      {Array.from({ length: 5 }, (_, index) => (
+        <RoutineGridRow
+          key={index}
+          isActive={currentDay === index + 1}
+          changes={changes}
+          day={weekDays[index + 1]}
+          routine={props.routine.filter((item) => item.day === index + 1)}
+        />
+      ))}
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation"
+import { Routine as RoutineProps } from "@prisma/client"
 
 import { db } from "@/lib/db"
+import { redis } from "@/lib/redis"
 import { getCurrentUser } from "@/lib/session"
 
 import { RoutineGrid } from "./components/routine-grid"
@@ -18,6 +20,7 @@ export default async function Routine() {
       id: user.id,
     },
     select: {
+      institute: true,
       branch: true,
       semester: true,
       group: true,
@@ -32,13 +35,31 @@ export default async function Routine() {
       </i>
     )
 
-  const routine = await db.routine.findMany({
-    where: {
-      branch: profile?.branch,
-      semester: profile?.semester,
-      group: profile?.group ?? "",
-    },
-  })
+  const cache = await redis.get(
+    `routine-compulsory-all-${profile.group}-${profile.semester}-${profile.branch}-${profile.institute}`
+  )
+
+  const routine = cache
+    ? (JSON.parse(cache) as RoutineProps[])
+    : await db.routine
+        .findMany({
+          where: {
+            institute: profile?.institute,
+            branch: profile?.branch,
+            semester: profile?.semester,
+            group: profile?.group ?? "",
+            compulsory: true,
+          },
+        })
+        .then((data) => {
+          redis.set(
+            `routine-compulsory-${profile.group}-${profile.semester}-${profile.branch}-${profile.institute}`,
+            JSON.stringify(data),
+            "EX",
+            600
+          )
+          return data
+        })
 
   const electives = await db.routine.findMany({
     where: {

@@ -12,27 +12,14 @@ export async function GET(req: Request) {
       return new Response(null, { status: 403 })
     }
 
-    // Get the user data.
-    const userData = await db.profile.findUnique({
-      where: {
-        id: session.user.id,
-      },
-      select: {
-        institute: true,
-      },
-    })
-
-    if (!userData) return new Response(null, { status: 403 })
-
     // Get the routine.
-    const mess = await db.mess.findFirst({
+    const profiles = await db.profile.findMany({
       where: {
-        institute: userData.institute,
-        day: new Date().getDay(),
+        visibility: true,
       },
     })
 
-    return new Response(JSON.stringify(mess), { status: 200 })
+    return new Response(JSON.stringify(profiles), { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })

@@ -1,9 +1,10 @@
+import { Courses } from "@prisma/client"
 import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
-import { userNameSchema } from "@/lib/validations/user"
+import { redis } from "@/lib/redis"
 
 export async function GET(req: Request) {
   try {
@@ -20,25 +21,37 @@ export async function GET(req: Request) {
       },
       select: {
         institute: true,
-        branch: true,
         semester: true,
-        group: true,
       },
     })
 
     if (!userData) return new Response(null, { status: 403 })
 
-    // Get the routine.
-    const routine = await db.routine.findMany({
-      where: {
-        institute: userData.institute,
-        branch: userData.branch,
-        semester: userData.semester,
-        group: userData.group ?? "",
-      },
-    })
+    // Get the courses.
+    const cache = await redis.get(
+      `courses-elective-${userData.semester}-${userData.institute}`
+    )
+    const electives = cache
+      ? (JSON.parse(cache) as Courses[])
+      : await db.courses
+          .findMany({
+            where: {
+              institute: userData.institute,
+              semester: userData.semester,
+              type: "elective",
+            },
+          })
+          .then((data) => {
+            redis.set(
+              `courses-elective-${userData.semester}-${userData.institute}`,
+              JSON.stringify(data),
+              "EX",
+              3600
+            )
+            return data
+          })
 
-    return new Response(JSON.stringify(routine), { status: 200 })
+    return new Response(JSON.stringify(electives), { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })

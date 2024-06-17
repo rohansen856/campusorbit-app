@@ -152,7 +152,7 @@ export const columns: ColumnDef<Routine>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
-          <span>{(row.getValue("from") as Date).getHours() - 5}:00</span>
+          <span>{(row.getValue("from") as Date).getHours()}:00</span>
         </div>
       )
     },
@@ -168,7 +168,7 @@ export const columns: ColumnDef<Routine>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
-          <span>{(row.getValue("to") as Date).getHours() - 5}:00</span>
+          <span>{(row.getValue("to") as Date).getHours()}:00</span>
         </div>
       )
     },

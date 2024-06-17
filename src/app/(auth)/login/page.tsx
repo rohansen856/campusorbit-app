@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -14,41 +15,86 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <Link
-        href="/"
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "absolute left-4 top-4 md:left-8 md:top-8"
-        )}
-      >
-        <>
-          <Icons.chevronLeft className="mr-2 size-4" />
-          Back
-        </>
-      </Link>
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <div className="flex flex-col space-y-2 text-center">
-          <Icons.logo className="mx-auto size-6" />
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Enter your email to sign in to your account
-          </p>
+    <>
+      <div className="container relative grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+          <div className="absolute inset-0 bg-zinc-900" />
+          <div className="relative z-20 flex items-center text-lg font-medium">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-2 size-6"
+            >
+              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+            </svg>
+            Campusorbit
+          </div>
+
+          <Image
+            src={"/logo.png"}
+            className="relative m-auto"
+            width={301}
+            height={60}
+            alt="Vite"
+          />
+
+          <div className="relative z-20 mt-auto">
+            <blockquote className="space-y-2">
+              <p className="text-lg">
+                &ldquo;Use the campusorbit web along with the app for a seamless
+                experience accross web and app interface.&rdquo;
+              </p>
+              <footer className="text-sm">Rohan Sen</footer>
+            </blockquote>
+          </div>
         </div>
-        <Suspense>
-          <UserAuthForm />
-        </Suspense>
-        <p className="px-8 text-center text-sm text-muted-foreground">
+        <div className="relative flex h-full lg:p-8">
           <Link
-            href="/register"
-            className="hover:text-brand underline underline-offset-4"
+            href="/"
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "absolute left-4 top-4 md:left-8 md:top-8"
+            )}
           >
-            Get your password from the app
+            <Icons.chevronLeft className="mr-2 size-4" />
+            Back
           </Link>
-        </p>
+          <div className="m-auto flex w-full flex-col justify-center space-y-2 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-left">
+              <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email and password below <br />
+                to log into your account
+              </p>
+            </div>
+            <Suspense>
+              <UserAuthForm />
+            </Suspense>
+            <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking login, you agree to our{" "}
+              <a
+                href="/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a
+                href="/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </a>
+              .
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

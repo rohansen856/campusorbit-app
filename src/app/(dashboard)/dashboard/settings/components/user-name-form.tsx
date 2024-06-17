@@ -61,8 +61,8 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
 
     if (!response?.ok) {
       return toast({
-        title: "Something went wrong.",
-        description: "Your name was not updated. Please try again.",
+        title: "Name already taken!",
+        description: "This username was already taken. Please try again.",
         variant: "destructive",
       })
     }

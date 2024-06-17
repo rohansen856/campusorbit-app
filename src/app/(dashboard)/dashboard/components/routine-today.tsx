@@ -1,47 +1,86 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { Routine } from "@prisma/client"
 import axios from "axios"
 
 import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { toast } from "@/components/ui/use-toast"
+import { Icons } from "@/components/icons"
 
 export function RoutineToday() {
-  const [data, setData] = useState<Routine[]>([])
-  async function getData() {
+  const [data, setData] = useState<{ routine: Routine[]; changed: boolean }>({
+    routine: [],
+    changed: false,
+  })
+  async function getRoutineToday() {
     try {
       const routine = await axios.get("/api/routine/today")
-      if (routine.status === 200) setData(routine.data)
+      if (routine.status !== 200)
+        toast({
+          title: "There was an error getting the classes!",
+          variant: "destructive",
+        })
+      setData(routine.data)
     } catch (error) {
-      setData([])
+      setData({ routine: [], changed: false })
       console.log(error)
     }
   }
   useEffect(() => {
-    getData()
+    getRoutineToday()
   }, [])
   return (
-    <div className="flex w-full flex-wrap">
-      {data.length > 0 &&
-        data.map((item, index) => (
-          <span
-            key={index}
-            className={cn(
-              "size-32 cursor-pointer border p-2 hover:bg-secondary",
-              `w-[${(new Date(item.to).getHours() - new Date(item.from).getHours()) * 32}]`
-            )}
-          >
-            <p className="">{item.course_code}</p>
-            <p className="mb-1 text-xs text-muted-foreground">({item.type})</p>
-            <p className="mb-1 text-sm">{item.prof}</p>
-            <p className="text-xs">
-              {new Date(item.from).getHours() - 5}:00 -{" "}
-              {new Date(item.to).getHours() - 5}:00
-              {/* {JSON.stringify(item, null, 2)} */}
-            </p>
-            <p className="text-xs">{item.room}</p>
-          </span>
+    <div className="">
+      {data.routine.length > 0 &&
+        (data.changed ? (
+          <div className="mb-2 flex items-center gap-6 p-2 text-yellow-600">
+            <span className="flex gap-2">
+              <Icons.warning /> There is a change in today&apos;s classes
+            </span>
+            <Link
+              href={"/dashboard/routine"}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "icon" }),
+                "text-yellow-600"
+              )}
+            >
+              <Icons.arrowRight className="size-6" />
+            </Link>
+          </div>
+        ) : (
+          <div className="mb-2 flex gap-2 rounded p-2 text-green-600">
+            <Icons.check /> There is no change in today&apos;s classes
+          </div>
         ))}
+      <div className="flex w-full flex-wrap">
+        {data.routine.sort(
+          (a, b) => new Date(a.from).getHours() - new Date(b.from).getHours()
+        ).length > 0 &&
+          data.routine.map((item, index) => (
+            <span
+              key={index}
+              className={cn(
+                "size-32 cursor-pointer border p-2 hover:bg-secondary",
+                `w-[${(new Date(item.to).getHours() - new Date(item.from).getHours()) * 32}]`
+              )}
+            >
+              <p className="">{item.course_code}</p>
+              <p className="mb-1 text-xs text-muted-foreground">
+                ({item.type})
+              </p>
+              <p className="mb-1 text-sm">{item.prof}</p>
+              <p className="text-xs">
+                {new Date(item.from).getHours()}:00 -{" "}
+                {new Date(item.to).getHours()}:00
+                {/* {JSON.stringify(item, null, 2)} */}
+              </p>
+              <p className="text-xs">{item.room}</p>
+            </span>
+          ))}
+      </div>
     </div>
   )
 }

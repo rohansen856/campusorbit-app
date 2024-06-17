@@ -6,6 +6,7 @@ import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
+import { Electives } from "./components/electives"
 import { MessToday } from "./components/mess-today"
 import { RoutineToday } from "./components/routine-today"
 
@@ -42,11 +43,19 @@ export default async function DashboardPage() {
         text="Your profile info"
       ></DashboardHeader>
       <div>
-        <p>Today&apos; classes:</p>
+        <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">Your electives:</h3>
+        <Electives />
+      </div>
+      <div>
+        <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
+          Today&apos; classes:
+        </h3>
         <RoutineToday />
       </div>
       <div>
-        <p>Today&apos; mess menu:</p>
+        <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
+          Today&apos; Mess menu:
+        </h3>
         <MessToday />
       </div>
     </DashboardShell>

@@ -24,6 +24,7 @@ export default async function AdminWelcome() {
       <div className="flex gap-4">
         {adminAccess.map((access) => (
           <Link
+            key={access.id}
             href={`/admin/${access.route}`}
             className={buttonVariants({ variant: "secondary" })}
           >

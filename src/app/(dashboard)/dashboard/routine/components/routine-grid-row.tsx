@@ -5,12 +5,19 @@ import { cn } from "@/lib/utils"
 import { RoutineGridSquare } from "./routine-grid-square"
 
 interface RoutineGridRowProps extends React.HTMLAttributes<HTMLDivElement> {
+  isActive: boolean
   day: string
   routine: Routine[]
+  changes: {
+    description: string | null
+    routine_id: string
+  }[]
 }
 
 export function RoutineGridRow({ ...props }: RoutineGridRowProps) {
-  props.routine.sort((a, b) => a.from.getTime() - b.from.getTime())
+  props.routine.sort(
+    (a, b) => new Date(a.from).getTime() - new Date(b.from).getTime()
+  )
   const currentDayName = [
     "Sunday",
     "Monday",
@@ -26,7 +33,7 @@ export function RoutineGridRow({ ...props }: RoutineGridRowProps) {
       <span
         className={cn(
           "size-32 cursor-pointer border p-2 text-sm hover:bg-secondary",
-          currentDayName === props.day && "bg-secondary"
+          props.isActive && "bg-secondary"
         )}
       >
         {props.day}{" "}
@@ -35,7 +42,11 @@ export function RoutineGridRow({ ...props }: RoutineGridRowProps) {
         </p>
       </span>
       {props.routine.map((item, index) => (
-        <RoutineGridSquare key={index} data={item} />
+        <RoutineGridSquare
+          key={index}
+          data={item}
+          change={props.changes.filter((data) => data.routine_id === item.id)}
+        />
       ))}
     </div>
   )

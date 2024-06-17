@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation"
+import { Mess as MessProps } from "@prisma/client"
 
 import { db } from "@/lib/db"
+import { redis } from "@/lib/redis"
 import { getCurrentUser } from "@/lib/session"
 import { Icons } from "@/components/icons"
 
@@ -24,12 +26,26 @@ export default async function Mess() {
   })
   if (!profile?.mess) return "Please select your mess from settings"
 
-  const messMenu = await db.mess.findMany({
-    where: {
-      institute: profile.institute,
-      mess_no: profile.mess,
-    },
-  })
+  const cache = await redis.get(`mess-${profile.mess}-${profile.institute}`)
+
+  const messMenu = cache
+    ? (JSON.parse(cache) as MessProps[])
+    : await db.mess
+        .findMany({
+          where: {
+            institute: profile.institute,
+            mess_no: profile.mess,
+          },
+        })
+        .then((data) => {
+          redis.set(
+            `mess-${profile.mess}-${profile.institute}`,
+            JSON.stringify(data),
+            "EX",
+            600
+          )
+          return data
+        })
 
   return (
     <div className="flex flex-row overflow-x-auto">
