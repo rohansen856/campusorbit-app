@@ -13,7 +13,10 @@ containerize:
 	docker build -t campusorbit .
 
 start-container:
-	docker run -p 3000:3000 campusorbit npm run dev
+	docker run --env-file .env -p 3000:3000 campusorbit npm run dev
 
-start-all:
-	echo "make sure you have the correct env variables" && docker compose --env-file .env up -d && npm i && npm run dev
+start-server:
+	docker compose up -d
+
+contributor:
+	make start-server && make containerize && make start-container

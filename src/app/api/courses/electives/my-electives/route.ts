@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     // Get the courses.
     const electives = await db.courses.findMany({
       where: {
-        type: "elective",
+        course_type: "elective",
         OR: [...userData.electives.map((data) => ({ id: data }))],
       },
     })

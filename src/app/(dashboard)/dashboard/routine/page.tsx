@@ -51,12 +51,12 @@ export default async function Routine() {
             compulsory: true,
           },
         })
-        .then((data) => {
+        .then(async (data) => {
           redis.set(
-            `routine-compulsory-${profile.group}-${profile.semester}-${profile.branch}-${profile.institute}`,
+            `routine-compulsory-all-${profile.group}-${profile.semester}-${profile.branch}-${profile.institute}`,
             JSON.stringify(data),
             "EX",
-            600
+            3600
           )
           return data
         })

@@ -68,12 +68,14 @@ export const columns: ColumnDef<Routine>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "type",
+    accessorKey: "class_type",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Class Type" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.type)
+      const label = labels.find(
+        (label) => label.value === row.original.class_type
+      )
 
       return (
         <div className="flex space-x-2">

@@ -69,7 +69,7 @@ export function RoutineToday() {
             >
               <p className="">{item.course_code}</p>
               <p className="mb-1 text-xs text-muted-foreground">
-                ({item.type})
+                ({item.class_type})
               </p>
               <p className="mb-1 text-sm">{item.prof}</p>
               <p className="text-xs">

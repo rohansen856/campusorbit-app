@@ -26,7 +26,7 @@ export default async function Mess() {
   })
   if (!profile?.mess) return "Please select your mess from settings"
 
-  const cache = await redis.get(`mess-${profile.mess}-${profile.institute}`)
+  const cache = await redis.get(`mess-all-${profile.mess}-${profile.institute}`)
 
   const messMenu = cache
     ? (JSON.parse(cache) as MessProps[])
@@ -39,10 +39,10 @@ export default async function Mess() {
         })
         .then((data) => {
           redis.set(
-            `mess-${profile.mess}-${profile.institute}`,
+            `mess-all-${profile.mess}-${profile.institute}`,
             JSON.stringify(data),
             "EX",
-            600
+            3600
           )
           return data
         })

@@ -61,7 +61,7 @@ export function ClubsRow({ ...props }: ClubsRowProps) {
               className="h-28 w-36 cursor-pointer rounded bg-secondary p-2"
               key={index}
             >
-              {club.name} {club.type}
+              {club.name} {club.club_type}
             </div>
           ))}
         </div>

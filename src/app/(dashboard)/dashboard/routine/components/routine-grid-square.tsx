@@ -28,7 +28,7 @@ export function RoutineGridSquare({ ...props }: RoutineGridSquareProps) {
       )}
     >
       <p className="">{data.course_code}</p>
-      <p className="mb-1 text-xs text-muted-foreground">({data.type})</p>
+      <p className="mb-1 text-xs text-muted-foreground">({data.class_type})</p>
       <p className="mb-1 text-sm">{data.prof}</p>
       <p className="text-xs">
         {new Date(data.from).getHours()}:00 - {new Date(data.to).getHours()}:00{" "}

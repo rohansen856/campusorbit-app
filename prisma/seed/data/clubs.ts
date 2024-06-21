@@ -4,7 +4,7 @@ export const clubs: Clubs[] = [
   {
     id: "86f47fef-8d87-41fe-b28b-a3792f38713b",
     name: "Aavartan",
-    type: "cultural",
+    club_type: "cultural",
     field: "dance",
     image: null,
     coordinator: null,
@@ -15,7 +15,7 @@ export const clubs: Clubs[] = [
   {
     id: "8b02d96e-803c-4a3c-8a9c-a1d4d6e1669c",
     name: "Abhivayakti",
-    type: "cultural",
+    club_type: "cultural",
     field: "arts & craft",
     image: null,
     coordinator: null,
@@ -26,7 +26,7 @@ export const clubs: Clubs[] = [
   {
     id: "5f57ba81-385f-4342-9e31-092aeabf15f2",
     name: "Aakrti",
-    type: "cultural",
+    club_type: "cultural",
     field: "film & photography",
     image: null,
     coordinator: null,
@@ -37,7 +37,7 @@ export const clubs: Clubs[] = [
   {
     id: "87eceb57-09cc-45b6-a46f-ab0cfe6486de",
     name: "Jazbaat",
-    type: "cultural",
+    club_type: "cultural",
     field: "dramatic society",
     image: null,
     coordinator: null,
@@ -48,7 +48,7 @@ export const clubs: Clubs[] = [
   {
     id: "fffdbb35-bd09-4c52-bfb8-d78c2e308683",
     name: "Saaz",
-    type: "cultural",
+    club_type: "cultural",
     field: "music",
     image: null,
     coordinator: null,
@@ -59,7 +59,7 @@ export const clubs: Clubs[] = [
   {
     id: "0868a687-133a-4c83-bcce-50a972d68b8e",
     name: "Samvaad",
-    type: "cultural",
+    club_type: "cultural",
     field: "literature & quiz",
     image: null,
     coordinator: null,
@@ -70,7 +70,7 @@ export const clubs: Clubs[] = [
   {
     id: "47b5ef77-1374-43d8-b9bd-abd28c7aedf2",
     name: "Astronomy & Physics",
-    type: "science",
+    club_type: "science",
     field: "astronomy",
     image: null,
     coordinator: null,
@@ -81,7 +81,7 @@ export const clubs: Clubs[] = [
   {
     id: "c61a328f-c6f7-4b5c-a0b6-f1b9e2d38b15",
     name: "Automotive & Fabrication",
-    type: "science",
+    club_type: "science",
     field: "aerofabrication",
     image: null,
     coordinator: null,
@@ -92,7 +92,7 @@ export const clubs: Clubs[] = [
   {
     id: "2c1349e7-34e4-4dbb-87d1-48c044f223a0",
     name: "Business & Management",
-    type: "science",
+    club_type: "science",
     field: "business",
     image: null,
     coordinator: null,
@@ -103,7 +103,7 @@ export const clubs: Clubs[] = [
   {
     id: "0ad59dcf-956c-4f84-a0f3-e0f6765833f3",
     name: "CAD & 3D Printing",
-    type: "science",
+    club_type: "science",
     field: "3d printing",
     image: null,
     coordinator: null,
@@ -114,7 +114,7 @@ export const clubs: Clubs[] = [
   {
     id: "9bded209-369f-43dd-9f33-9d9781496581",
     name: "Racing",
-    type: "science",
+    club_type: "science",
     field: "racing",
     image: null,
     coordinator: null,
@@ -125,7 +125,7 @@ export const clubs: Clubs[] = [
   {
     id: "4da95b09-f7e2-4b24-b964-5084573ad997",
     name: "Programming & webix",
-    type: "science",
+    club_type: "science",
     field: "programming",
     image: null,
     coordinator: null,
@@ -136,7 +136,7 @@ export const clubs: Clubs[] = [
   {
     id: "a498a644-a335-43dc-aa29-d8b3cf423886",
     name: "Electronics and Robotics",
-    type: "science",
+    club_type: "science",
     field: "robotics",
     image: null,
     coordinator: null,
@@ -147,7 +147,7 @@ export const clubs: Clubs[] = [
   {
     id: "6f6c82a9-0c37-429d-beaa-a1a3b11ffae2",
     name: "Athletics",
-    type: "sports",
+    club_type: "sports",
     field: "athletics",
     image: null,
     coordinator: null,
@@ -158,7 +158,7 @@ export const clubs: Clubs[] = [
   {
     id: "594ebd67-cf84-4d39-a026-2f0cd331adb7",
     name: "Badminton",
-    type: "sports",
+    club_type: "sports",
     field: "badminton",
     image: null,
     coordinator: null,
@@ -169,7 +169,7 @@ export const clubs: Clubs[] = [
   {
     id: "6009d55b-dc8b-40e2-80b6-6a6d87c070a8",
     name: "Basketball",
-    type: "sports",
+    club_type: "sports",
     field: "basketball",
     image: null,
     coordinator: null,
@@ -180,7 +180,7 @@ export const clubs: Clubs[] = [
   {
     id: "ce6f4a5a-db04-4353-8a67-12c5257bc4af",
     name: "Chess",
-    type: "sports",
+    club_type: "sports",
     field: "chess",
     image: null,
     coordinator: null,
@@ -191,7 +191,7 @@ export const clubs: Clubs[] = [
   {
     id: "8dcedd18-2c4a-4b38-9407-e7e857dc36b8",
     name: "Carrom",
-    type: "sports",
+    club_type: "sports",
     field: "carrom",
     image: null,
     coordinator: null,
@@ -202,7 +202,7 @@ export const clubs: Clubs[] = [
   {
     id: "00a4eb7d-afca-4902-985e-4e54bcc0f5df",
     name: "Cricket",
-    type: "sports",
+    club_type: "sports",
     field: "cricket",
     image: null,
     coordinator: null,
@@ -213,7 +213,7 @@ export const clubs: Clubs[] = [
   {
     id: "73390112-6d17-4335-9392-4443ee06ad08",
     name: "Football",
-    type: "sports",
+    club_type: "sports",
     field: "football",
     image: null,
     coordinator: null,
@@ -224,7 +224,7 @@ export const clubs: Clubs[] = [
   {
     id: "9d1cc460-856e-4505-8865-2d1f64927c5e",
     name: "Lawn Tennis",
-    type: "sports",
+    club_type: "sports",
     field: "lawn tennis",
     image: null,
     coordinator: null,
@@ -235,7 +235,7 @@ export const clubs: Clubs[] = [
   {
     id: "0c3f7088-3687-4028-b8f9-3069f11bebd5",
     name: "Table Tennis",
-    type: "sports",
+    club_type: "sports",
     field: "table tennis",
     image: null,
     coordinator: null,
@@ -246,7 +246,7 @@ export const clubs: Clubs[] = [
   {
     id: "bb1a0176-61d7-498b-bf14-0be0fb02ce50",
     name: "Volleyball",
-    type: "sports",
+    club_type: "sports",
     field: "volleyball",
     image: null,
     coordinator: null,

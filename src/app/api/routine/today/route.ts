@@ -53,7 +53,7 @@ export async function GET(req: Request) {
               `routine-compulsory-day${new Date().getDay()}-${userData.group}-${userData.semester}-${userData.branch}-${userData.institute}`,
               JSON.stringify(data),
               "EX",
-              600
+              3600
             )
             return data
           })

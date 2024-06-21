@@ -38,7 +38,7 @@ model Analytics {
 model Clubs {
   id                                   String    @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                                 String
-  type                                 String
+  club_type                            String
   field                                String
   image                                String?
   coordinator                          String?   @db.Uuid
@@ -59,7 +59,7 @@ model Courses {
   course_title                           String
   theory                                 Boolean
   lab                                    Boolean
-  type                                   String
+  course_type                            String
   credits                                Int       @db.SmallInt
   semester                               Int       @db.SmallInt
   branch                                 String
@@ -127,7 +127,7 @@ model Routine {
   course_code                            String
   course_title                           String
   prof                                   String
-  type                                   String           @default("'THEORY'::text")
+  class_type                             String           @default("'THEORY'::text")
   day                                    Int              @db.SmallInt
   from                                   DateTime         @db.Time(6)
   to                                     DateTime         @db.Time(6)

@@ -38,7 +38,7 @@ export async function GET(req: Request) {
             where: {
               institute: userData.institute,
               semester: userData.semester,
-              type: "elective",
+              course_type: "elective",
             },
           })
           .then((data) => {

@@ -1,8 +1,11 @@
+import nextra from "nextra"
+
 import "./src/env.mjs"
 
-import mdx from "@next/mdx"
-
-const withMDX = mdx()
+const withNextra = nextra({
+  theme: "nextra-theme-docs",
+  themeConfig: "./theme.config.tsx",
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,4 +32,4 @@ const nextConfig = {
   },
 }
 
-export default withMDX(nextConfig)
+export default withNextra(nextConfig)

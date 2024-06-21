@@ -38,17 +38,17 @@ export default async function ClubsPage() {
       <ClubsRow
         title="Cultural"
         subtitle="cultural clubs"
-        clubs={[...clubs.filter((club) => club.type === "cultural")]}
+        clubs={[...clubs.filter((club) => club.club_type === "cultural")]}
       />
       <ClubsRow
         title="Sports"
         subtitle="sports clubs"
-        clubs={[...clubs.filter((club) => club.type === "sports")]}
+        clubs={[...clubs.filter((club) => club.club_type === "sports")]}
       />
       <ClubsRow
         title="Science"
         subtitle="science and tech. clubs"
-        clubs={[...clubs.filter((club) => club.type === "science")]}
+        clubs={[...clubs.filter((club) => club.club_type === "science")]}
       />
     </div>
   )
