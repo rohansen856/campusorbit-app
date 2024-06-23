@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
+import { DetailsForm } from "./components/details-form"
 import { FullNameForm } from "./components/full-name-form"
 import { UploadImageForm } from "./components/image-upload"
 import { UserNameForm } from "./components/user-name-form"
@@ -37,12 +38,7 @@ export default async function SettingsPage() {
       />
       <div className="flex size-full max-w-lg flex-col gap-2">
         <UploadImageForm image={profile?.image} username={profile?.username} />
-        <UserNameForm
-          user={{ id: user.id, username: profile?.username || "" }}
-        />
-        <FullNameForm
-          user={{ id: user.id, full_name: profile?.full_name || "" }}
-        />
+        <DetailsForm profile={profile} />
       </div>
     </DashboardShell>
   )

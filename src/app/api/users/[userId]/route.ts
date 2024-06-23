@@ -3,7 +3,7 @@ import { z } from "zod"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
-import { userNameSchema } from "@/lib/validations/user"
+import { userNameSchema, userProfileSchema } from "@/lib/validations/user"
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -27,7 +27,7 @@ export async function PATCH(
 
     // Get the request body and validate it.
     const body = await req.json()
-    const payload = userNameSchema.parse(body)
+    const payload = userProfileSchema.parse(body)
 
     // Update the user.
     await db.profile.update({
@@ -35,16 +35,16 @@ export async function PATCH(
         id: session.user.id,
       },
       data: {
-        username: payload.username,
+        ...payload,
       },
     })
 
     return new Response(null, { status: 200 })
   } catch (error) {
+    console.log(error)
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })
     }
-
     return new Response(null, { status: 500 })
   }
 }

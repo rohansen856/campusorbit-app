@@ -14,6 +14,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
+    error: "/login/auth-error",
   },
   providers: [
     CredentialsProvider({
@@ -55,8 +56,13 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      return url
+    // async redirect({ url, baseUrl }) {
+    //   return url
+    // },
+    async signIn({ account, profile }) {
+      if (profile?.email?.endsWith("@gmail.com"))
+        throw new Error("Use only institute email!")
+      return true
     },
     async session({ token, session }) {
       if (token) {

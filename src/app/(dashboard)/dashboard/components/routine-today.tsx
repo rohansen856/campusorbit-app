@@ -11,11 +11,13 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 export function RoutineToday() {
+  const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState<{ routine: Routine[]; changed: boolean }>({
     routine: [],
     changed: false,
   })
   async function getRoutineToday() {
+    setIsLoading(true)
     try {
       const routine = await axios.get("/api/routine/today")
       if (routine.status !== 200)
@@ -27,6 +29,8 @@ export function RoutineToday() {
     } catch (error) {
       setData({ routine: [], changed: false })
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
   useEffect(() => {
@@ -34,6 +38,9 @@ export function RoutineToday() {
   }, [])
   return (
     <div className="">
+      {!isLoading && !data.routine.length && (
+        <p className="p-2 rounded bg-secondary max-w-md">No classes today!</p>
+      )}
       {data.routine.length > 0 &&
         (data.changed ? (
           <div className="mb-2 flex items-center gap-6 p-2 text-yellow-600">

@@ -61,6 +61,7 @@ export async function GET(req: Request) {
     const electives = await db.routine.findMany({
       where: {
         compulsory: false,
+        day: new Date().getDay(),
         OR: [
           ...userData.electives.map((elective) => ({ course_id: elective })),
         ],

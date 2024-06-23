@@ -24,7 +24,7 @@ export default function Sidebar({ className }: SidebarProps) {
   return (
     <nav
       className={cn(
-        `fixed left-2 top-0 hidden h-screen flex-none border-r-2 bg-background pt-14 md:block`,
+        `fixed left-0 pl-1 top-0 hidden h-screen flex-none border-r-2 bg-background pt-14 md:block`,
         status && "duration-500",
         !isMinimized ? "w-72" : "w-[72px]",
         className

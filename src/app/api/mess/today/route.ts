@@ -31,26 +31,25 @@ export async function GET(req: Request) {
     const cache = await redis.get(
       `mess-day${new Date().getDay()}-${userData.mess}-${userData.institute}`
     )
-    const mess = cache
-      ? (JSON.parse(cache) as Mess[])
-      : await db.mess
-          .findFirst({
-            where: {
-              institute: userData.institute,
-              mess_no: userData.mess ?? 0,
-              day: new Date().getDay(),
-            },
-          })
-          .then((data) => {
-            redis.set(
-              `mess-day${new Date().getDay()}-${userData.mess}-${userData.institute}`,
-              JSON.stringify(data),
-              "EX",
-              3600
-            )
-            return data
-          })
 
+    const mess = await db.mess
+      .findFirst({
+        where: {
+          institute: userData.institute,
+          mess_no: userData.mess ?? 1,
+          day: new Date().getDay() + 1,
+        },
+      })
+      .then((data) => {
+        if (data)
+          redis.set(
+            `mess-day${new Date().getDay()}-${userData.mess}-${userData.institute}`,
+            JSON.stringify(data),
+            "EX",
+            3600
+          )
+        return data
+      })
     return new Response(JSON.stringify(mess), { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {

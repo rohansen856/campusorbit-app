@@ -12,6 +12,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().min(1),
     UPLOADTHING_SECRET: z.string().min(1),
     REDIS_URL: z.string().min(1),
+    BACKEND_URL: z.string().url(),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1),
@@ -25,5 +26,6 @@ export const env = createEnv({
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
     REDIS_URL: process.env.REDIS_URL,
+    BACKEND_URL: process.env.BACKEND_URL,
   },
 })

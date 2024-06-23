@@ -1,7 +1,9 @@
 import { Courses } from "@prisma/client"
+import axios from "axios"
 import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
+import { env } from "@/env.mjs"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { redis } from "@/lib/redis"
@@ -22,15 +24,32 @@ export async function GET(req: Request) {
       select: {
         institute: true,
         semester: true,
+        branch: true,
       },
     })
 
     if (!userData) return new Response(null, { status: 403 })
 
-    // Get the courses.
+    const data = await axios.get(`${env.BACKEND_URL}/courses/electives`, {
+      params: {
+        institute: userData.institute,
+        semester: userData.semester,
+        branch: userData.branch,
+      },
+    })
+
+    if (data)
+      return new Response(JSON.stringify(data.data.courses), { status: 200 })
+
+    /**
+     * @deprecated Moved to rust backend.
+     */
     const cache = await redis.get(
       `courses-elective-${userData.semester}-${userData.institute}`
     )
+    /**
+     * @deprecated Moved to rust backend.
+     */
     const electives = cache
       ? (JSON.parse(cache) as Courses[])
       : await db.courses
@@ -38,6 +57,7 @@ export async function GET(req: Request) {
             where: {
               institute: userData.institute,
               semester: userData.semester,
+              branch: userData.branch,
               course_type: "elective",
             },
           })
