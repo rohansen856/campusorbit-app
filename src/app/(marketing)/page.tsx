@@ -24,7 +24,7 @@ export default async function IndexPage() {
                 "https://github.githubassets.com/images/modules/site/home-campaign/hero-bg.webp"
               }
               alt=""
-              className="object-contain max-lg:object-cover max-lg:opacity-50"
+              className="object-cover max-lg:object-cover max-lg:opacity-50"
             />
           </div>
         </div>

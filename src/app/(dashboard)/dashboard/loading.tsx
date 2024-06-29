@@ -1,14 +1,9 @@
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import { Icons } from "@/components/icons"
 
 export default function DashboardLoading() {
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading="Posts"
-        text="Create and manage posts."
-      ></DashboardHeader>
-      <div className="divide-border-200 divide-y rounded-md border"></div>
-    </DashboardShell>
+    <div className="w-full h-[60vh] inset-0 flex justify-center items-center">
+      <Icons.logo variant="loader" className="size-32 animate-spin" />
+    </div>
   )
 }

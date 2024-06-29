@@ -1,6 +1,8 @@
+import axios from "axios"
 import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
+import { env } from "@/env.mjs"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 
@@ -23,6 +25,17 @@ export async function GET(req: Request) {
     })
 
     if (!userData) return new Response(null, { status: 403 })
+
+    // const data = await axios.get(
+    //   `${env.BACKEND_URL}/courses/electives/my-electives`,
+    //   {
+    //     params: {
+    //       ids: [...userData.electives],
+    //     },
+    //   }
+    // )
+    // if (data)
+    //   return new Response(JSON.stringify(data.data.courses), { status: 200 })
 
     // Get the courses.
     const electives = await db.courses.findMany({

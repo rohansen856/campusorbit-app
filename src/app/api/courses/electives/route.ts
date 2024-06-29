@@ -30,16 +30,16 @@ export async function GET(req: Request) {
 
     if (!userData) return new Response(null, { status: 403 })
 
-    const data = await axios.get(`${env.BACKEND_URL}/courses/electives`, {
-      params: {
-        institute: userData.institute,
-        semester: userData.semester,
-        branch: userData.branch,
-      },
-    })
+    // const data = await axios.get(`${env.BACKEND_URL}/courses/electives`, {
+    //   params: {
+    //     institute: userData.institute,
+    //     semester: userData.semester,
+    //     branch: userData.branch,
+    //   },
+    // })
 
-    if (data)
-      return new Response(JSON.stringify(data.data.courses), { status: 200 })
+    // if (data)
+    //   return new Response(JSON.stringify(data.data.courses), { status: 200 })
 
     /**
      * @deprecated Moved to rust backend.

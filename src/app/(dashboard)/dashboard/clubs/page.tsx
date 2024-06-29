@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation"
+
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 
@@ -9,6 +11,8 @@ export const metadata = {
 
 export default async function ClubsPage() {
   const user = await getCurrentUser()
+  if (!user) return redirect("/login")
+
   const profile = await db.profile.findUnique({
     where: {
       id: user?.id,
@@ -31,10 +35,24 @@ export default async function ClubsPage() {
     },
   })
 
+  const myClubs = await db.clubs.findMany({
+    where: {
+      members: {
+        some: {
+          user_id: user.id,
+        },
+      },
+    },
+  })
+
   return (
     <div className="w-full space-y-4 overflow-x-auto">
-      <ClubsRow title="All Clubs" subtitle="jhhjhvhgvh" clubs={[...clubs]} />
-      <ClubsRow title="Your Club" subtitle="jhhjhvhhhj" clubs={[]} />
+      <ClubsRow
+        title="All Clubs"
+        subtitle="all clubs under gymkhana"
+        clubs={[...clubs]}
+      />
+      <ClubsRow title="Your Club" subtitle="jhhjhvhhhj" clubs={[...myClubs]} />
       <ClubsRow
         title="Cultural"
         subtitle="cultural clubs"

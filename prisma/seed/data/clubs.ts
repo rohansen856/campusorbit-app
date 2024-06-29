@@ -10,7 +10,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "8b02d96e-803c-4a3c-8a9c-a1d4d6e1669c",
@@ -21,7 +21,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "5f57ba81-385f-4342-9e31-092aeabf15f2",
@@ -32,7 +32,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "87eceb57-09cc-45b6-a46f-ab0cfe6486de",
@@ -43,7 +43,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "fffdbb35-bd09-4c52-bfb8-d78c2e308683",
@@ -54,7 +54,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "0868a687-133a-4c83-bcce-50a972d68b8e",
@@ -65,7 +65,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "47b5ef77-1374-43d8-b9bd-abd28c7aedf2",
@@ -76,7 +76,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "c61a328f-c6f7-4b5c-a0b6-f1b9e2d38b15",
@@ -87,7 +87,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "2c1349e7-34e4-4dbb-87d1-48c044f223a0",
@@ -98,7 +98,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "0ad59dcf-956c-4f84-a0f3-e0f6765833f3",
@@ -109,7 +109,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "9bded209-369f-43dd-9f33-9d9781496581",
@@ -120,7 +120,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "4da95b09-f7e2-4b24-b964-5084573ad997",
@@ -131,7 +131,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "a498a644-a335-43dc-aa29-d8b3cf423886",
@@ -142,7 +142,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "6f6c82a9-0c37-429d-beaa-a1a3b11ffae2",
@@ -153,7 +153,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "594ebd67-cf84-4d39-a026-2f0cd331adb7",
@@ -164,7 +164,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "6009d55b-dc8b-40e2-80b6-6a6d87c070a8",
@@ -175,7 +175,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "ce6f4a5a-db04-4353-8a67-12c5257bc4af",
@@ -186,7 +186,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "8dcedd18-2c4a-4b38-9407-e7e857dc36b8",
@@ -197,7 +197,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "00a4eb7d-afca-4902-985e-4e54bcc0f5df",
@@ -208,7 +208,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "73390112-6d17-4335-9392-4443ee06ad08",
@@ -219,7 +219,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "9d1cc460-856e-4505-8865-2d1f64927c5e",
@@ -230,7 +230,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "0c3f7088-3687-4028-b8f9-3069f11bebd5",
@@ -241,7 +241,7 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
   {
     id: "bb1a0176-61d7-498b-bf14-0be0fb02ce50",
@@ -252,6 +252,6 @@ export const clubs: Clubs[] = [
     coordinator: null,
     cocoordinator: null,
     institute: "iiitdmj",
-    members: 0,
+    website: null,
   },
 ]

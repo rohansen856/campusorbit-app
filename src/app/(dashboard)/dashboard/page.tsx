@@ -1,12 +1,13 @@
+import { Suspense } from "react"
 import { redirect } from "next/navigation"
-import axios from "axios"
 
 import { getCurrentUser } from "@/lib/session"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
+import { sleep } from "@/lib/utils"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
 import { Electives } from "./components/electives"
+import { Logo3d } from "./components/logo-3d"
 import { MessToday } from "./components/mess-today"
 import { RoutineToday } from "./components/routine-today"
 
@@ -21,43 +22,45 @@ export default async function DashboardPage() {
     redirect("/login")
   }
 
-  // const posts = await db.post.findMany({
-  //   where: {
-  //     authorId: user.id,
-  //   },
-  //   select: {
-  //     id: true,
-  //     title: true,
-  //     published: true,
-  //     createdAt: true,
-  //   },
-  //   orderBy: {
-  //     updatedAt: "desc",
-  //   },
-  // })
-
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading="Dashboard"
-        text="Your profile info"
-      ></DashboardHeader>
-      <div>
-        <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">Your electives:</h3>
-        <Electives />
+    <div className="flex w-full">
+      <DashboardShell className="z-10">
+        <DashboardHeader
+          heading="Dashboard"
+          text="Your profile info"
+        ></DashboardHeader>
+        <div>
+          <div>
+            <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
+              Today&apos; classes:
+            </h3>
+            <Suspense>
+              <RoutineToday />
+            </Suspense>
+          </div>
+          <div>
+            <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
+              Your electives:
+            </h3>
+            <Suspense>
+              <Electives />
+            </Suspense>
+          </div>
+          <div>
+            <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
+              Today&apos; Mess menu:
+            </h3>
+            <Suspense>
+              <MessToday />
+            </Suspense>
+          </div>
+        </div>
+      </DashboardShell>
+      <div className="max-w-lg max-h-[90vh] flex-1 z-0 overflow-visible opacity-70">
+        <Suspense>
+          <Logo3d />
+        </Suspense>
       </div>
-      <div>
-        <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
-          Today&apos; classes:
-        </h3>
-        <RoutineToday />
-      </div>
-      <div>
-        <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
-          Today&apos; Mess menu:
-        </h3>
-        <MessToday />
-      </div>
-    </DashboardShell>
+    </div>
   )
 }

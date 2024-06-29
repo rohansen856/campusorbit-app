@@ -36,6 +36,9 @@ import {
 import { cn } from "@/lib/utils"
 
 export type Icon = LucideIcon
+export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: "default" | "loader"
+}
 
 export const Icons = {
   close: X,
@@ -65,7 +68,7 @@ export const Icons = {
   food: Sandwich,
   admin: TowerControl,
   search: Search,
-  logo: ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  logo: ({ variant = "default", ...props }: LogoProps) => (
     <svg
       width="500"
       height="500"
@@ -76,7 +79,7 @@ export const Icons = {
     >
       <path
         d="M426.777 426.777C391.814 461.74 347.268 485.55 298.773 495.196C250.277 504.843 200.011 499.892 154.329 480.97C108.648 462.048 69.603 430.005 42.1326 388.893C14.6622 347.78 3.04528e-06 299.445 0 250C-3.04528e-06 200.555 14.6622 152.22 42.1326 111.107C69.6029 69.9952 108.648 37.952 154.329 19.0301C200.011 0.108214 250.277 -4.84262 298.773 4.80367C347.268 14.45 391.814 38.2602 426.777 73.2233L250 250L426.777 426.777Z"
-        fill="#FF007A"
+        fill={variant === "loader" ? "#0F172A" : "#FF007A"}
       />
       <circle
         cx="250"
@@ -95,8 +98,9 @@ export const Icons = {
           y2="400"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#00FFD1" />
-          <stop offset="1" stopColor="#005099" />
+          {variant === "loader" && <stop stopColor="#000"></stop>}
+          {variant !== "loader" && <stop stopColor="#00FFD1" />}
+          {variant !== "loader" && <stop offset="1" stopColor="#005099" />}
         </linearGradient>
       </defs>
     </svg>

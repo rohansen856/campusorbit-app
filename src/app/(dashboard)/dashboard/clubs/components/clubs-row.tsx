@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { Clubs } from "@prisma/client"
 
 import { Button } from "@/components/ui/button"
@@ -56,13 +57,14 @@ export function ClubsRow({ ...props }: ClubsRowProps) {
           </div>
         )}
         <div className="flex gap-2">
-          {data.map((club, index) => (
-            <div
+          {data.map((club) => (
+            <Link
+              href={`/dashboard/clubs/${club.id}`}
               className="h-28 w-36 cursor-pointer rounded bg-secondary p-2"
-              key={index}
+              key={club.id}
             >
               {club.name} {club.club_type}
-            </div>
+            </Link>
           ))}
         </div>
       </div>
