@@ -127,4 +127,9 @@ export const navItems: SidebarNavItem[] = [
     href: "/dashboard/settings",
     icon: "settings",
   },
+  {
+    title: "Help",
+    href: "/dashboard/help",
+    icon: "featured",
+  },
 ]

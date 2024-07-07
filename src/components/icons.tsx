@@ -4,6 +4,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  CircleHelp,
   Club,
   Command,
   CreditCard,
@@ -67,6 +68,7 @@ export const Icons = {
   stopwatch: Timer,
   food: Sandwich,
   admin: TowerControl,
+  featured: CircleHelp,
   search: Search,
   logo: ({ variant = "default", ...props }: LogoProps) => (
     <svg

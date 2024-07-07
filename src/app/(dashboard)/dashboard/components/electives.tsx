@@ -10,24 +10,31 @@ import { Button } from "@/components/ui/button"
 export function Electives() {
   const [allElectives, setAllElectives] = useState<Courses[]>([])
   const [myElectives, setMyElectives] = useState<Courses[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   async function getAllElectives() {
+    setIsLoading(true)
     try {
       const electives = await axios.get("/api/courses/electives")
       if (electives.status === 200) setAllElectives(electives.data)
     } catch (error) {
       setAllElectives([])
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   async function getMyElectives() {
+    setIsLoading(true)
     try {
       const electives = await axios.get("/api/courses/electives/my-electives")
       if (electives.status === 200) setMyElectives(electives.data)
     } catch (error) {
       setAllElectives([])
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -61,6 +68,11 @@ export function Electives() {
   }, [])
   return (
     <div className="flex flex-wrap gap-2">
+      {!isLoading && allElectives.length === 0 && (
+        <p className="p-2 rounded bg-secondary">
+          No electives registered for this semester
+        </p>
+      )}
       {allElectives.map((topic) => (
         <div
           key={topic.id}
