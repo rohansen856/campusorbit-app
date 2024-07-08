@@ -31,36 +31,27 @@ export default async function DashboardPage() {
         ></DashboardHeader>
         <div>
           <div>
-            <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
-              Today&apos; classes:
-            </h3>
             <Suspense>
               <RoutineToday />
             </Suspense>
           </div>
           <div>
-            <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
-              Your electives:
-            </h3>
             <Suspense>
               <Electives />
             </Suspense>
           </div>
           <div>
-            <h3 className="text-md mb-4 lg:text-lg 2xl:text-xl">
-              Today&apos; Mess menu:
-            </h3>
             <Suspense>
               <MessToday />
             </Suspense>
           </div>
         </div>
       </DashboardShell>
-      <div className="max-w-lg max-h-[90vh] flex-1 z-0 overflow-visible opacity-70">
+      {/* <div className="max-w-lg max-h-[90vh] flex-1 z-0 overflow-visible opacity-70">
         <Suspense>
           <Logo3d />
         </Suspense>
-      </div>
+      </div> */}
     </div>
   )
 }

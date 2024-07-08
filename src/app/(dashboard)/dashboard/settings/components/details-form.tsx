@@ -116,7 +116,7 @@ export function DetailsForm({ profile }: DetailsFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full max-w-lg space-y-6"
+        className="w-full max-w-3xl space-y-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
       >
         <FormField
           control={form.control}
@@ -125,11 +125,8 @@ export function DetailsForm({ profile }: DetailsFormProps) {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="rcsen" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -141,9 +138,8 @@ export function DetailsForm({ profile }: DetailsFormProps) {
             <FormItem>
               <FormLabel>Fullname</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="rcsen" {...field} />
               </FormControl>
-              <FormDescription>This is your full name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -157,7 +153,9 @@ export function DetailsForm({ profile }: DetailsFormProps) {
               <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your programme" />
+                    <SelectValue
+                      placeholder={field.value || "Select your programme"}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -179,7 +177,9 @@ export function DetailsForm({ profile }: DetailsFormProps) {
               <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your branch" />
+                    <SelectValue
+                      placeholder={field.value || "Select your branch"}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -198,11 +198,13 @@ export function DetailsForm({ profile }: DetailsFormProps) {
           name="semester"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Semester</FormLabel>
               <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your semester" />
+                    <SelectValue
+                      placeholder={field.value || "Select your semester"}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -227,9 +229,8 @@ export function DetailsForm({ profile }: DetailsFormProps) {
             <FormItem>
               <FormLabel>Group</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="rcsen" {...field} />
               </FormControl>
-              <FormDescription>This is your Group.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -241,14 +242,17 @@ export function DetailsForm({ profile }: DetailsFormProps) {
             <FormItem>
               <FormLabel>Mess</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="rcsen" {...field} />
               </FormControl>
-              <FormDescription>This is your Mess.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <Button
+          type="submit"
+          className="w-full col-span-1 md:col-span-2 xl:col-span-3"
+          disabled={isLoading}
+        >
           {isLoading && <Icons.spinner className="animate-spin size-4" />}
           Submit
         </Button>

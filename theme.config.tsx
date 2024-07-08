@@ -29,8 +29,8 @@ const config: DocsThemeConfig = {
     ),
   },
   banner: {
-    key: "beta-release",
-    text: "🎉 Daily ReactUIs beta is released",
+    key: "welcome",
+    text: "🎉 Thanks for trying campusorbit",
   },
   editLink: {
     text: null,

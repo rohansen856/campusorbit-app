@@ -36,7 +36,7 @@ export default async function SettingsPage() {
         heading="Settings"
         text="Manage account and website settings."
       />
-      <div className="flex size-full max-w-lg flex-col gap-2">
+      <div className="flex size-full gap-2 items-center flex-col">
         <UploadImageForm image={profile?.image} username={profile?.username} />
         <DetailsForm profile={profile} />
       </div>

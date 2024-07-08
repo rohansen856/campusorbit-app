@@ -15,7 +15,7 @@ export function UploadImageForm({
 }: UploadImageFormProps) {
   return (
     <section
-      className="flex w-full flex-col items-center justify-between rounded-lg border p-4"
+      className="flex w-full flex-col items-center justify-between rounded-lg border p-4 max-w-lg"
       {...props}
     >
       <Avatar className="size-32 bg-secondary">
