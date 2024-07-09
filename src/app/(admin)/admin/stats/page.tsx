@@ -51,6 +51,13 @@ export default async function StatsPage() {
       .toArray()
   ).sort((a, b) => a.count - b.count)
 
+  const devLogs = await mongo
+    .db("analytics")
+    .collection("views")
+    .countDocuments({
+      user: "::1",
+    })
+
   const totalLogs = allViews.reduce((acc, num) => acc + num.count, 0)
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -59,9 +66,7 @@ export default async function StatsPage() {
           <StatsCard title="Total users" />
           <Card x-chunk="dashboard-01-chunk-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Subscriptions
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Total Views</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -73,11 +78,13 @@ export default async function StatsPage() {
           </Card>
           <Card x-chunk="dashboard-01-chunk-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sales</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Developer Logs
+              </CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+12,234</div>
+              <div className="text-2xl font-bold">+{devLogs}</div>
               <p className="text-xs text-muted-foreground">
                 +19% from last month
               </p>

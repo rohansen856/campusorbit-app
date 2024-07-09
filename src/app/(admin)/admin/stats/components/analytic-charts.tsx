@@ -1,10 +1,11 @@
 import { db } from "@/lib/db"
 
+import { VisitsChart } from "./charts/area-chart"
 import { BranchwiseGraph } from "./charts/branchwise-users"
-import { PieChartComponent } from "./charts/pie-chart"
+import { MesswiseGraph } from "./charts/messwise-users"
 import { ProgrammewiseGraph } from "./charts/programmewise-users.tsx"
 import { SemwiseGraph } from "./charts/semwise-users"
-import { VisitsChart } from "./charts/views-chart"
+import { ViewsGraph } from "./charts/views-graph"
 
 export async function AnalyticsCharts() {
   return (
@@ -16,11 +17,9 @@ export async function AnalyticsCharts() {
         <SemwiseGraph />
         <BranchwiseGraph />
         <ProgrammewiseGraph />
-        <ProgrammewiseGraph />
+        <MesswiseGraph />
       </div>
-      <div className="w-full">
-        <VisitsChart />
-      </div>
+      <ViewsGraph />
     </section>
   )
 }

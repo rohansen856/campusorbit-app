@@ -75,7 +75,7 @@ export async function UsersTable({ allViews, ...props }: UsersTableProps) {
           <Table>
             <TableBody>
               {profiles.map((user) => (
-                <TableRow className="flex gap-4">
+                <TableRow className="flex gap-4" key={user.email}>
                   <TableCell>
                     <Avatar className="h-9 w-9 bg-secondary">
                       <AvatarImage
@@ -110,7 +110,7 @@ export async function UsersTable({ allViews, ...props }: UsersTableProps) {
         </CardHeader>
         <CardContent className="grid gap-8">
           {allViews.map((log) => (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4" key={log._id}>
               <Avatar className="hidden h-9 w-9 sm:flex">
                 <AvatarImage src="/avatars/01.png" alt="Avatar" />
                 <AvatarFallback>CO</AvatarFallback>

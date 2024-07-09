@@ -6,15 +6,6 @@ import { absoluteUrl } from "./lib/utils"
 
 export default withAuth(
   async function middleware(req: NextRequest) {
-    console.log("middleware called!")
-    fetch(absoluteUrl("/api/admin/views"), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ route: req.nextUrl.pathname }),
-    }).catch((e) => console.log(e))
-
     const token = await getToken({ req })
     const isAuth = !!token
     const isAuthPage = req.nextUrl.pathname.startsWith("/login")
@@ -36,6 +27,18 @@ export default withAuth(
         new URL(`/login?from=${encodeURIComponent(from)}`, req.url)
       )
     }
+
+    fetch(absoluteUrl("/api/admin/views"), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        route: req.nextUrl.pathname,
+        email: token.email,
+        device: req.headers.get("user-agent") || "unknown",
+      }),
+    }).catch((e) => console.log(e))
   },
   {
     callbacks: {

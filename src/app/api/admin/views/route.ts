@@ -16,7 +16,7 @@ export async function GET(req: Request) {
 
     await mongo.db("analytics").collection("views").insertOne({
       email: session.user.email,
-      time: new Date().toISOString(),
+      time: new Date(),
       route: "/api/admin/views",
       user_id: session.user.id,
     })
@@ -33,7 +33,6 @@ export async function GET(req: Request) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })
     }
-
     return new Response(null, { status: 500 })
   }
 }
@@ -44,9 +43,15 @@ export async function POST(req: Request) {
     const body = await req.json()
     const payload = viewsSchema.parse(body)
 
+    // Extract analytics data from the req object
+    const ip = req.headers.get("x-forwarded-for")
+
     await mongo.db("analytics").collection("views").insertOne({
       route: payload.route,
-      time: new Date().toISOString(),
+      user: ip,
+      email: payload.email,
+      device: payload.device,
+      time: new Date(),
     })
 
     return new Response(null, { status: 200 })

@@ -14,41 +14,41 @@ const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  cs: {
-    label: "CSE",
+  1: {
+    label: "Mess 1",
     color: "hsl(var(--chart-1))",
   },
-  ec: {
-    label: "ECE",
+  2: {
+    label: "Mess 2",
     color: "hsl(var(--chart-2))",
   },
-  sm: {
-    label: "SM",
+  3: {
+    label: "Mess 3",
     color: "hsl(var(--chart-3))",
   },
-  me: {
-    label: "ME",
+  4: {
+    label: "Mess 4",
     color: "hsl(var(--chart-4))",
   },
 } satisfies ChartConfig
 
-export async function BranchwiseGraph() {
+export async function MesswiseGraph() {
   const profiles = await db.profile.groupBy({
-    by: ["branch"],
+    by: ["mess"],
     _count: {
-      branch: true,
+      mess: true,
     },
   })
   const chartData = profiles.map((profile) => ({
-    key: profile.branch,
-    value: profile._count.branch,
-    fill: `var(--color-${profile.branch})`,
+    key: profile.mess,
+    value: profile._count.mess,
+    fill: `var(--color-${profile.mess})`,
   }))
 
   return (
     <PieChartComponent
-      title="Branch Distribution"
-      description="users by their respective branch"
+      title="Year Distribution"
+      description="users by their respective year"
       chartData={chartData}
       chartConfig={chartConfig}
     />

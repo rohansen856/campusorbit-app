@@ -1,3 +1,4 @@
+import { db } from "@/lib/db"
 import { ChartConfig } from "@/components/ui/chart"
 
 import { PieChartComponent } from "./pie-chart"
@@ -15,28 +16,40 @@ const chartConfig = {
     label: "Visitors",
   },
   sem1: {
-    label: "Sem1",
+    label: "Semester 1",
     color: "hsl(var(--chart-1))",
   },
   sem2: {
-    label: "Sem2",
+    label: "Semester 2",
     color: "hsl(var(--chart-2))",
   },
   sem3: {
-    label: "Sem3",
+    label: "Semester 3",
     color: "hsl(var(--chart-3))",
   },
   sem4: {
-    label: "Sem4",
+    label: "Semester 4",
     color: "hsl(var(--chart-4))",
   },
   sem5: {
-    label: "Sem5",
+    label: "Semester 5",
     color: "hsl(var(--chart-5))",
   },
 } satisfies ChartConfig
 
 export async function SemwiseGraph() {
+  const profiles = await db.profile.groupBy({
+    by: ["semester"],
+    _count: {
+      semester: true,
+    },
+  })
+  const chartData = profiles.map((profile) => ({
+    key: `sem${profile.semester}`,
+    value: profile._count.semester,
+    fill: `var(--color-sem${profile.semester})`,
+  }))
+
   return (
     <PieChartComponent
       title="Semester Distribution"

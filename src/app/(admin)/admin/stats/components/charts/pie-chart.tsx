@@ -22,7 +22,7 @@ import {
 interface PieChartComponentProps extends React.HTMLProps<typeof Card> {
   title: string
   description: string
-  chartData: any
+  chartData: Array<any>
   chartConfig: ChartConfig
 }
 
@@ -32,7 +32,7 @@ export function PieChartComponent({
   ...props
 }: PieChartComponentProps) {
   const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.value, 0)
+    return chartData.length
   }, [])
 
   return (
@@ -80,7 +80,7 @@ export function PieChartComponent({
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          variation(s)
                         </tspan>
                       </text>
                     )
