@@ -41,33 +41,13 @@ export function RoutineToday() {
       {!isLoading && !data.routine.length && (
         <p className="p-2 rounded bg-secondary max-w-md">No classes today!</p>
       )}
-      {data.routine.length > 0 &&
-        (data.changed ? (
-          <div className="mb-2 flex items-center gap-6 p-2 text-yellow-600">
-            <span className="flex gap-2">
-              <Icons.warning /> There is a change in today&apos;s classes
-            </span>
-            <Link
-              href={"/dashboard/routine"}
-              className={cn(
-                buttonVariants({ variant: "secondary", size: "icon" }),
-                "text-yellow-600"
-              )}
-            >
-              <Icons.arrowRight className="size-6" />
-            </Link>
-          </div>
-        ) : (
-          <div className="mb-2 flex gap-2 rounded p-2 text-green-600">
-            <Icons.check /> There is no change in today&apos;s classes
-          </div>
-        ))}
       <div className="flex w-full flex-wrap">
         {data.routine.sort(
           (a, b) => new Date(a.from).getHours() - new Date(b.from).getHours()
         ).length > 0 &&
           data.routine.map((item, index) => (
-            <span
+            <Link
+              href={`/dashboard/classes/${item.id}`}
               key={index}
               className={cn(
                 "size-32 cursor-pointer border p-2 hover:bg-secondary",
@@ -85,9 +65,31 @@ export function RoutineToday() {
                 {/* {JSON.stringify(item, null, 2)} */}
               </p>
               <p className="text-xs">{item.room}</p>
-            </span>
+            </Link>
           ))}
       </div>
+
+      {data.routine.length > 0 &&
+        (data.changed ? (
+          <div className="mb-2 flex items-center gap-6 p-2 text-yellow-600">
+            <span className="flex gap-2">
+              <Icons.warning /> There is a change in today&apos;s classes
+            </span>
+            <Link
+              href={"/dashboard/routine"}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "icon" }),
+                "text-yellow-600"
+              )}
+            >
+              <Icons.arrowRight className="size-6" />
+            </Link>
+          </div>
+        ) : (
+          <div className="flex gap-2 rounded p-2 text-green-600">
+            <Icons.check /> There is no change in today&apos;s classes
+          </div>
+        ))}
     </div>
   )
 }

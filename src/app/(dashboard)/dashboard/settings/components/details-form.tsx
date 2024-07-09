@@ -74,6 +74,7 @@ interface DetailsFormProps {
 
 export function DetailsForm({ profile }: DetailsFormProps) {
   const [isLoading, setIsLoading] = useState(false)
+  const [canSubmit, setCanSubmit] = useState(false)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -116,6 +117,7 @@ export function DetailsForm({ profile }: DetailsFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
+        onChange={(e) => setCanSubmit(true)}
         className="w-full max-w-3xl space-y-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
       >
         <FormField
@@ -251,7 +253,7 @@ export function DetailsForm({ profile }: DetailsFormProps) {
         <Button
           type="submit"
           className="w-full col-span-1 md:col-span-2 xl:col-span-3"
-          disabled={isLoading}
+          disabled={isLoading || !canSubmit}
         >
           {isLoading && <Icons.spinner className="animate-spin size-4" />}
           Submit

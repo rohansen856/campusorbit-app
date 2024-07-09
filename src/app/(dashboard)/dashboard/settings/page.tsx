@@ -31,15 +31,9 @@ export default async function SettingsPage() {
   if (!profile) "your profile has not been created yet!"
 
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading="Settings"
-        text="Manage account and website settings."
-      />
-      <div className="flex size-full gap-2 items-center flex-col">
-        <UploadImageForm image={profile?.image} username={profile?.username} />
-        <DetailsForm profile={profile} />
-      </div>
-    </DashboardShell>
+    <div className="flex size-full gap-2 items-center flex-col">
+      <UploadImageForm image={profile?.image} username={profile?.username} />
+      <DetailsForm profile={profile} />
+    </div>
   )
 }

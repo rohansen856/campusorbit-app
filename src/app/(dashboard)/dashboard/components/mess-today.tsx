@@ -22,13 +22,13 @@ export function MessToday() {
     <div className="flex flex-wrap gap-2">
       {data && (
         <>
-          <div className="h-32 w-44 cursor-pointer rounded-lg border p-2 hover:bg-secondary">
+          <div className="h-36 overflow-y-auto w-44 cursor-pointer rounded-lg border p-2 hover:bg-secondary">
             {data.breakfast}
           </div>
-          <div className="h-32 w-44 cursor-pointer rounded-lg border p-2 hover:bg-secondary">
+          <div className="h-36 overflow-y-auto w-44 cursor-pointer rounded-lg border p-2 hover:bg-secondary">
             {data.lunch}
           </div>
-          <div className="h-32 w-44 cursor-pointer rounded-lg border p-2 hover:bg-secondary">
+          <div className="h-36 overflow-y-auto w-44 cursor-pointer rounded-lg border p-2 hover:bg-secondary">
             {data.dinner}
           </div>
         </>

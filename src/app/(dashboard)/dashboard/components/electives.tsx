@@ -67,9 +67,9 @@ export function Electives() {
     getMyElectives()
   }, [])
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 w-full">
       {!isLoading && allElectives.length === 0 && (
-        <p className="p-2 rounded bg-secondary">
+        <p className="p-2 rounded bg-secondary w-full text-center max-w-lg mx-auto">
           No electives registered for this semester
         </p>
       )}

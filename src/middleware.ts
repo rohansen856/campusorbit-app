@@ -7,13 +7,13 @@ import { absoluteUrl } from "./lib/utils"
 export default withAuth(
   async function middleware(req: NextRequest) {
     console.log("middleware called!")
-    fetch(absoluteUrl("/api/admin/views"), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ route: req.nextUrl.pathname }),
-    }).catch((e) => console.log(e))
+    // fetch(absoluteUrl("/api/admin/views"), {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ route: req.nextUrl.pathname }),
+    // }).catch((e) => console.log(e))
 
     const token = await getToken({ req })
     const isAuth = !!token
