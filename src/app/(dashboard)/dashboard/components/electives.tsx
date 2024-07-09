@@ -6,6 +6,7 @@ import axios from "axios"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
 
 export function Electives() {
   const [allElectives, setAllElectives] = useState<Courses[]>([])
@@ -39,6 +40,7 @@ export function Electives() {
   }
 
   async function updateElectives(id: string, action: "add" | "remove") {
+    setIsLoading(true)
     try {
       const updatedIds: string[] =
         action === "add"
@@ -59,6 +61,8 @@ export function Electives() {
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -67,7 +71,7 @@ export function Electives() {
     getMyElectives()
   }, [])
   return (
-    <div className="flex flex-wrap gap-2 w-full">
+    <div className="flex gap-2 w-full justify-center flex-wrap">
       {!isLoading && allElectives.length === 0 && (
         <p className="p-2 rounded bg-secondary w-full text-center max-w-lg mx-auto">
           No electives registered for this semester
@@ -77,15 +81,16 @@ export function Electives() {
         <div
           key={topic.id}
           className={cn(
-            "flex flex-col items-center justify-center rounded-lg border p-2",
+            "flex flex-col items-center justify-center rounded-lg border p-2 shrink-0 w-80 text-center",
             [...myElectives.map((item) => item.id)].includes(topic.id)
               ? "bg-green-700"
               : "bg-secondary"
           )}
         >
           <h3>{topic.course_title}</h3>
-          <h4>{topic.course_code}</h4>
-          <h4>credits: {topic.credits}</h4>
+          <h4>
+            {topic.course_code} credits: {topic.credits}
+          </h4>
           <Button
             onClick={() => {
               updateElectives(
@@ -95,7 +100,9 @@ export function Electives() {
                   : "add"
               )
             }}
+            disabled={isLoading}
           >
+            {isLoading && <Icons.spinner className="animate-spin" />}
             {[...myElectives.map((item) => item.id)].includes(topic.id)
               ? "remove"
               : "add"}

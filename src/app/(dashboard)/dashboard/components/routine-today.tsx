@@ -37,11 +37,11 @@ export function RoutineToday() {
     getRoutineToday()
   }, [])
   return (
-    <div className="">
+    <div>
       {!isLoading && !data.routine.length && (
         <p className="p-2 rounded bg-secondary max-w-md">No classes today!</p>
       )}
-      <div className="flex w-full flex-wrap">
+      <div className="flex w-full flex-wrap justify-center">
         {data.routine.sort(
           (a, b) => new Date(a.from).getHours() - new Date(b.from).getHours()
         ).length > 0 &&
