@@ -49,11 +49,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             "Your email or password is incorrect. Please enter valid details!",
           variant: "destructive",
         })
-      return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
-        variant: "destructive",
-      })
     }
 
     return toast({

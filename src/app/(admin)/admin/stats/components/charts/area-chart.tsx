@@ -53,7 +53,7 @@ export function VisitsChart({ chartData, ...props }: VisitsChartProps) {
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Area Chart - Interactive</CardTitle>
           <CardDescription>
-            Showing total visitors for the last hour
+            Showing total visitors for the last 24 hours
           </CardDescription>
         </div>
       </CardHeader>
