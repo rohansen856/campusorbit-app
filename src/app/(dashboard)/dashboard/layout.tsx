@@ -6,6 +6,7 @@ import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
+import { CustomCursor } from "@/components/mouse-animation"
 import { BackgroundBeams } from "@/components/shared/bg"
 import { MobileSidebar } from "@/components/shared/mobile-nav"
 import Sidebar from "@/components/shared/side-bar"
@@ -74,6 +75,7 @@ export default async function DashboardLayout({
         <SidebarPadding />
         <SiteFooter className="flex-1" />
       </div>
+      <CustomCursor username={user.name} />
     </div>
   )
 }
