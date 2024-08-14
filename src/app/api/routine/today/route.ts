@@ -1,16 +1,16 @@
 import { Routine } from "@prisma/client"
-import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { redis } from "@/lib/redis"
+import { getCurrentUser } from "@/lib/session"
 import { userNameSchema } from "@/lib/validations/user"
 
 export async function GET(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }
@@ -32,9 +32,7 @@ export async function GET(req: Request) {
     if (!userData) return new Response(null, { status: 403 })
 
     // Get the routine.
-    const cache = await redis.get(
-      `routine-compulsory-day${new Date().getDay()}-${userData.group}-${userData.semester}-${userData.branch}-${userData.institute}`
-    )
+    const cache = null //await redis.get(`routine-compulsory-day${new Date().getDay()}-${userData.group}-${userData.semester}-${userData.branch}-${userData.institute}`)
     const routine = cache
       ? (JSON.parse(cache) as Routine[])
       : await db.routine

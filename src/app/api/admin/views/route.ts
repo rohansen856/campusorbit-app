@@ -1,15 +1,15 @@
-import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { mongo } from "@/lib/mongo"
+import { getCurrentUser } from "@/lib/session"
 import { viewsSchema } from "@/lib/validations/views"
 
 export async function GET(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }

@@ -26,7 +26,7 @@ export default async function Mess() {
   })
   if (!profile?.mess) return "Please select your mess from settings"
 
-  const cache = await redis.get(`mess-all-${profile.mess}-${profile.institute}`)
+  const cache = null //await redis.get(`mess-all-${profile.mess}-${profile.institute}`)
 
   const messMenu = cache
     ? (JSON.parse(cache) as MessProps[])

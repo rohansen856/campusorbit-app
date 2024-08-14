@@ -1,15 +1,15 @@
 import axios from "axios"
-import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
 import { env } from "@/env.mjs"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 
 export async function GET(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }
@@ -62,7 +62,7 @@ const updateElectivesSchema = z.object({
 export async function PATCH(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }

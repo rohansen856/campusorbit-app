@@ -35,9 +35,7 @@ export default async function Routine() {
       </i>
     )
 
-  const cache = await redis.get(
-    `routine-compulsory-all-${profile.group}-${profile.semester}-${profile.branch}-${profile.institute}`
-  )
+  const cache = null //await redis.get(`routine-compulsory-all-${profile.group}-${profile.semester}-${profile.branch}-${profile.institute}`)
 
   const routine = cache
     ? (JSON.parse(cache) as RoutineProps[])

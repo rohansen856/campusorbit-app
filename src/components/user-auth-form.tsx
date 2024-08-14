@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react"
@@ -20,46 +22,46 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 type FormData = z.infer<typeof userAuthSchema>
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(userAuthSchema),
-  })
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<FormData>({
+  //   resolver: zodResolver(userAuthSchema),
+  // })
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
 
-  async function onSubmit(data: FormData) {
-    setIsLoading(true)
+  // async function onSubmit(data: FormData) {
+  //   setIsLoading(true)
 
-    const signInResult = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    })
+  //   const signInResult = await signIn("credentials", {
+  //     email: data.email,
+  //     password: data.password,
+  //     callbackUrl: searchParams?.get("from") || "/dashboard",
+  //   })
 
-    setIsLoading(false)
+  //   setIsLoading(false)
 
-    if (!signInResult?.ok) {
-      if (signInResult?.status === 401)
-        return toast({
-          title: "Wrong credentials.",
-          description:
-            "Your email or password is incorrect. Please enter valid details!",
-          variant: "destructive",
-        })
-    }
+  //   if (!signInResult?.ok) {
+  //     if (signInResult?.status === 401)
+  //       return toast({
+  //         title: "Wrong credentials.",
+  //         description:
+  //           "Your email or password is incorrect. Please enter valid details!",
+  //         variant: "destructive",
+  //       })
+  //   }
 
-    return toast({
-      title: "Login successful",
-      description: "Thank you for using our app!",
-    })
-  }
+  //   return toast({
+  //     title: "Login successful",
+  //     description: "Thank you for using our app!",
+  //   })
+  // }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {/* <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
@@ -108,15 +110,18 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             Sign In with Email
           </button>
         </div>
-      </form>
+      </form> */}
       <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
+          <Link
+            className={buttonVariants({
+              className: "w-[400px] max-w-full gap-4",
+            })}
+            href={"/api/auth/google"}
+          >
+            <Image src={"/icons/google.svg"} height={20} width={20} alt="G" />
+            google
+          </Link>
         </div>
       </div>
     </div>

@@ -6,8 +6,7 @@ import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import { CustomCursor } from "@/components/mouse-animation"
-import { BackgroundBeams } from "@/components/shared/bg"
+// import { CustomCursor } from "@/components/mouse-animation"
 import { MobileSidebar } from "@/components/shared/mobile-nav"
 import Sidebar from "@/components/shared/side-bar"
 import { SiteFooter } from "@/components/shared/site-footer"
@@ -30,9 +29,6 @@ export default async function DashboardLayout({
 
   return (
     <div className="w-full overflow-x-clip">
-      <div className="-z-50 fixed top-0 left-0 right-0 h-full w-full">
-        <BackgroundBeams />
-      </div>
       <div className="flex flex-col z-0">
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
           <MobileSidebar />
@@ -75,7 +71,7 @@ export default async function DashboardLayout({
         <SidebarPadding />
         <SiteFooter className="flex-1" />
       </div>
-      <CustomCursor username={user.name} />
+      {/* <CustomCursor username={user.name} /> */}
     </div>
   )
 }

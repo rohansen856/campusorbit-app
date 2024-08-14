@@ -1,14 +1,14 @@
-import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 import { routineModificationSchema } from "@/lib/validations/routine"
 
 export async function POST(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }

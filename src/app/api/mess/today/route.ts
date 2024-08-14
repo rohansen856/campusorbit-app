@@ -1,17 +1,17 @@
 import { Mess } from "@prisma/client"
 import axios from "axios"
-import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
 import { env } from "@/env.mjs"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { redis } from "@/lib/redis"
+import { getCurrentUser } from "@/lib/session"
 
 export async function GET(req: Request) {
   try {
     // Ensure user is authentication and has access to this user.
-    const session = await getServerSession(authOptions)
+    const session = { user: await getCurrentUser() }
     if (!session?.user || !session.user.id) {
       return new Response(null, { status: 403 })
     }
@@ -43,9 +43,7 @@ export async function GET(req: Request) {
     /**
      * @deprecated Moved to rust backend.
      */
-    const cache = await redis.get(
-      `mess-day${new Date().getDay()}-${userData.mess}-${userData.institute}`
-    )
+    const cache = null //await redis.get(`mess-day${new Date().getDay()}-${userData.mess}-${userData.institute}`)
 
     /**
      * @deprecated Moved to rust backend.
